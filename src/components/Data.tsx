@@ -6,11 +6,11 @@ interface DataProps {
   data: any;
 }
 
-const Data = (data: DataProps) => {
+const Data = (props: DataProps) => {
   return (
     <div>
-      <h1>{data.title}</h1>
-      {JSON.stringify(data.data)}
+      <h1 className="title">{props.title}</h1>
+      {JSON.stringify(props.data)}
     </div>
   );
 };
