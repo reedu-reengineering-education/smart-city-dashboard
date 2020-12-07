@@ -9,7 +9,7 @@
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react-dom": "^16.9.8",
-    "husky": "^4.3.0",
+    "husky": "^4.3.5",
     "lint-staged": "^10.5.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
