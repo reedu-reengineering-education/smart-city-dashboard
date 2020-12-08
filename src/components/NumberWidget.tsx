@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // @ts-ignore
@@ -7,7 +6,7 @@ import AnimatedNumber from 'animated-number-react';
 interface NumberWidgetProps {
   title: string;
   number: number;
-  unit: string;
+  unit?: string;
 }
 
 const Card = styled.div`
@@ -15,6 +14,10 @@ const Card = styled.div`
   height: 200px;
   margin: 1rem;
   padding: 1rem;
+
+  &:first-child {
+    margin-left: 0;
+  }
 `;
 
 const NumberWidget = (props: NumberWidgetProps) => {
@@ -27,7 +30,7 @@ const NumberWidget = (props: NumberWidgetProps) => {
           formatValue={(value: number) => value.toFixed(2)}
         />
       </h1>
-      <h2 className="subtitle">{props.unit}</h2>
+      {props.unit && <h2 className="subtitle">{props.unit}</h2>}
     </Card>
   );
 };
