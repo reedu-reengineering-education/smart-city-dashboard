@@ -5,7 +5,7 @@ import AnimatedNumber from 'animated-number-react';
 
 interface NumberWidgetProps {
   title: string;
-  number: number;
+  number: number | string;
   unit?: string;
   decimals?: number;
 }
@@ -13,12 +13,9 @@ interface NumberWidgetProps {
 const Card = styled.div`
   width: 200px;
   height: 200px;
-  margin: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
   padding: 1rem;
-
-  &:first-child {
-    margin-left: 0;
-  }
 `;
 
 const NumberWidget = (props: NumberWidgetProps) => {
@@ -42,7 +39,7 @@ const NumberWidget = (props: NumberWidgetProps) => {
 
 NumberWidget.propTypes = {
   title: PropTypes.string,
-  number: PropTypes.number,
+  number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   unit: PropTypes.string,
   decimals: PropTypes.number,
 };
