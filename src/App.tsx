@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import Data from './components/Data';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import NumberWidget from './components/NumberWidget';
@@ -103,7 +102,19 @@ function App() {
             {(parkhausData?.metadata?.updatedAt as Date).toLocaleString()}
           </h2>
         )}
-        <Data data={parkhausData}></Data>
+        {parkhausData?.data?.features && (
+          <FlexContainer>
+            {parkhausData?.data?.features.map((p: any) => (
+              <NumberWidget
+                key={p.properties.LFDNR}
+                title={p.properties.NAME}
+                number={p.properties.parkingFree}
+                unit={'freie Parkplätze'}
+                decimals={0 as number}
+              ></NumberWidget>
+            ))}
+          </FlexContainer>
+        )}
       </div>
     </React.Fragment>
   );

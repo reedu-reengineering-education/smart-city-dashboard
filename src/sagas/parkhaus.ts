@@ -16,7 +16,7 @@ export function* fetchParkhausDataPeriodically() {
 
 export function* fetchParkhausData() {
   try {
-    const endpoint = 'https://www.stadt-muenster.de/index.php?id=10910';
+    const endpoint = 'https://city-dashboard.felixerdmann.com/parkhaus';
     const response: Response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_PARKHAUS_DATA, parkhaus: data });

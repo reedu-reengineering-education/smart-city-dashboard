@@ -7,6 +7,7 @@ interface NumberWidgetProps {
   title: string;
   number: number;
   unit?: string;
+  decimals?: number;
 }
 
 const Card = styled.div`
@@ -27,7 +28,11 @@ const NumberWidget = (props: NumberWidgetProps) => {
       <h1 className="title">
         <AnimatedNumber
           value={props.number}
-          formatValue={(value: number) => value.toFixed(2)}
+          formatValue={(value: number) => {
+            if (props.decimals != null) return value.toFixed(props.decimals);
+
+            return value.toFixed(2);
+          }}
         />
       </h1>
       {props.unit && <h2 className="subtitle">{props.unit}</h2>}
@@ -39,6 +44,7 @@ NumberWidget.propTypes = {
   title: PropTypes.string,
   number: PropTypes.number,
   unit: PropTypes.string,
+  decimals: PropTypes.number,
 };
 
 export default NumberWidget;
