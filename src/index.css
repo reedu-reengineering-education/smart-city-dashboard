@@ -1,3 +1,9 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
 html {
   background-color: rgba(133, 208, 244, 0.3);
 }

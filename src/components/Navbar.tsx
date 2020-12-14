@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import logo from './../resources/smart-city-ms-logo.jpg';
 
 const Nav = styled.nav`
-  margin-bottom: 1rem;
-
   .navbar-brand > .navbar-item {
     padding: 0;
 

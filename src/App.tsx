@@ -9,7 +9,7 @@ import Info from './pages/Info';
 function App() {
   return (
     <Router>
-      <div>
+      <React.Fragment>
         <Navbar></Navbar>
 
         {/* A <Switch> looks through its children <Route>s and
@@ -25,7 +25,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
-      </div>
+      </React.Fragment>
     </Router>
   );
 }

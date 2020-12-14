@@ -8,10 +8,13 @@ import {
   RENDER_PARKHAUS_DATA,
 } from '../actions/parkhaus';
 
+import { UPDATE_MAP_VIEWPORT } from '../actions/map';
+
 interface AppData {
   aasee: AppDataObject;
   parkhaus: AppDataObject;
   opensensemap: AppDataObject;
+  mapViewport: any;
 }
 
 interface AppDataObject {
@@ -53,6 +56,12 @@ const initialState: AppData = {
       online: false,
       error: undefined,
     },
+  },
+  mapViewport: {
+    latitude: 51.9577,
+    longitude: 7.6376,
+    zoom: 12,
+    maxZoom: 17,
   },
 };
 
@@ -132,6 +141,11 @@ export default function dashboardApp(state = initialState, action: any) {
             error: action.error,
           },
         },
+      };
+    case UPDATE_MAP_VIEWPORT:
+      return {
+        ...state,
+        mapViewport: action.viewport,
       };
     default:
       return state;
