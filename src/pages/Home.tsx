@@ -12,9 +12,13 @@ const FlexContainer = styled.div`
 
 function Home() {
   // get data from redux store
-  const aaseeData = useSelector((state: RootStateOrAny) => state.aasee);
-  const parkhausData = useSelector((state: RootStateOrAny) => state.parkhaus);
-  const opensensemapData = useSelector(
+  const aaseeData: ServiceState = useSelector(
+    (state: RootStateOrAny) => state.aasee
+  );
+  const parkhausData: ServiceState = useSelector(
+    (state: RootStateOrAny) => state.parkhaus
+  );
+  const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
 

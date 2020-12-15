@@ -1,10 +1,11 @@
 import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { UPDATE_MAP_VIEWPORT } from '../actions/map';
+import { updateMapViewport } from '../actions/map';
 
 function Map() {
-  const viewport = useSelector((state: RootStateOrAny) => state.mapViewport);
+  const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
+  // const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);
   const dispatch = useDispatch();
 
   const rasterStyle = {
@@ -33,12 +34,9 @@ function Map() {
       mapStyle={rasterStyle}
       width="100%"
       height="calc(100% - 64px)" // 100% minus navbar height
-      onViewportChange={(nextViewport: any) =>
-        dispatch({
-          type: UPDATE_MAP_VIEWPORT,
-          viewport: nextViewport,
-        })
-      }
+      onViewportChange={(nextViewport: any) => {
+        dispatch(updateMapViewport(nextViewport));
+      }}
     />
   );
 }

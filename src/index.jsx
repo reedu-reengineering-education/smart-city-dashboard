@@ -9,7 +9,7 @@ import App from './App';
 import { loadParkhausData } from './actions/parkhaus';
 import { loadAaseeData } from './actions/aasee';
 import { loadOsemData } from './actions/opensensemap';
-import dashboardApp from './reducers';
+import mainReducer from './reducers';
 import rootSaga from './sagas';
 
 import './index.css';
@@ -19,12 +19,13 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  dashboardApp,
+  mainReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
 
+// we might want to run that somewhere else
 store.dispatch(loadParkhausData());
 store.dispatch(loadAaseeData());
 store.dispatch(loadOsemData());
