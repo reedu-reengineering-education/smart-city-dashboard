@@ -16,9 +16,7 @@ const Container = styled.div`
 
 function Home() {
   // get data from redux store
-  const aaseeData: ServiceState = useSelector(
-    (state: RootStateOrAny) => state.aasee
-  );
+
   const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
@@ -26,23 +24,23 @@ function Home() {
   return (
     <React.Fragment>
       <Container className="container">
-        <div className="tile is-ancestor">
+        <div className="tile">
           <div className="tile is-vertical">
             <div className="tile">
-              <div className="tile is-parent is-horizontal">
+              <div className="tile is-3 is-parent is-horizontal">
                 <LogoComponent></LogoComponent>
               </div>
               <div className="tile is-6 is-parent">
                 <ParkhausComponent></ParkhausComponent>
               </div>
-              <div className="tile is-parent">
+              <div className="tile is-3 is-parent">
                 <DateTimeComponent></DateTimeComponent>
               </div>
             </div>
           </div>
         </div>
-        <div className="tile is-ancestor">
-          <div className="tile is-vertical is-7">
+        <div className="tile">
+          <div className="tile is-vertical is-6">
             <div className="tile">
               <div className="tile is-parent">
                 <RadfahrerComponent></RadfahrerComponent>
@@ -50,13 +48,13 @@ function Home() {
             </div>
             <div className="tile">
               <div className="tile is-parent">
-                <RadfahrerComponent></RadfahrerComponent>
+                <PassantenComponent></PassantenComponent>
               </div>
             </div>
           </div>
-          <div className="tile is-vertical">
+          <div className="tile is-vertical is-6">
             <div className="tile is-parent">
-              <RadfahrerComponent></RadfahrerComponent>
+              <AaseeComponent></AaseeComponent>
             </div>
           </div>
         </div>

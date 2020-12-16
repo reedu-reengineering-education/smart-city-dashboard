@@ -22,6 +22,11 @@ const DateContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
+
+  @media screen and (min-width: 769px) and (max-width: 960px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 export const DateTimeComponent = () => {

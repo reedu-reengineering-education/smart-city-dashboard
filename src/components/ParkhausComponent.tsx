@@ -65,19 +65,21 @@ export const ParkhausComponent = () => {
   const [freeTotal, setFreeTotal] = useState(0);
 
   useEffect(() => {
-    const parkingTotalReducer = (acc: any, curr: any) =>
-      acc + Number(curr.properties?.parkingTotal);
+    if (parkhausData?.data?.features?.length > 0) {
+      const parkingTotalReducer = (acc: any, curr: any) =>
+        acc + Number(curr.properties?.parkingTotal);
 
-    setParkingTotal(
-      parkhausData?.data?.features?.reduce(parkingTotalReducer, 0)
-    );
+      setParkingTotal(
+        parkhausData?.data?.features?.reduce(parkingTotalReducer, 0)
+      );
 
-    setCarParkTotal(parkhausData?.data?.features?.length);
+      setCarParkTotal(parkhausData?.data?.features?.length);
 
-    const freeTotalReducer = (acc: any, curr: any) =>
-      acc + Number(curr.properties?.parkingFree);
+      const freeTotalReducer = (acc: any, curr: any) =>
+        acc + Number(curr.properties?.parkingFree);
 
-    setFreeTotal(parkhausData?.data?.features?.reduce(freeTotalReducer, 0));
+      setFreeTotal(parkhausData?.data?.features?.reduce(freeTotalReducer, 0));
+    }
   }, [parkhausData]);
 
   return (
@@ -99,18 +101,18 @@ export const ParkhausComponent = () => {
         </StatsWrapper>
       </HeadingWrapper>
       <ParkhausProgressWrapper>
-        {parkhausData?.data?.features?.map((p: any) => (
-          <Progress
-            key={p.properties.LFDNR}
-            id={p.properties.LFDNR}
-            title={p.properties.NAME.replace('Parkhaus ', '').replace(
-              'Parkplatz ',
-              ''
-            )}
-            value={p.properties.parkingFree}
-            max={p.properties.parkingTotal}
-          ></Progress>
-        ))}
+        {parkhausData?.data?.features?.length > 0 &&
+          parkhausData?.data?.features?.map((p: any) => (
+            <Progress
+              key={p.properties.LFDNR}
+              id={p.properties.LFDNR}
+              title={p.properties.NAME.replace('Parkhaus ', '')
+                .replace('Parkplatz ', '')
+                .replace('PH ', '')} // replace text we don't really need
+              value={p.properties.parkingFree}
+              max={p.properties.parkingTotal}
+            ></Progress>
+          ))}
       </ParkhausProgressWrapper>
       <FooterWrapper>
         <p>
