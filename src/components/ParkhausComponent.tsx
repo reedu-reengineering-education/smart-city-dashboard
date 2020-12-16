@@ -1,0 +1,123 @@
+import React, { useEffect, useState } from 'react';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { Progress } from './Progress';
+import { ComponentWrapper } from './styles';
+
+const ParkhausProgressWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 200px;
+  overflow-y: scroll;
+  padding: 0 1rem;
+`;
+
+const HeadingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+const HeadingTitle = styled.p`
+  @media only screen and (max-width: 440px) {
+    width: 100%;
+  }
+`;
+
+const StatsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StatusGreen = styled.span`
+  color: var(--scms-green);
+  font-weight: bold;
+`;
+
+const StatusOrange = styled.span`
+  color: var(--scms-orange);
+  font-weight: bold;
+`;
+
+const FooterWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  > p > a {
+    color: inherit;
+  }
+`;
+
+export const ParkhausComponent = () => {
+  const parkhausData: ServiceState = useSelector(
+    (state: RootStateOrAny) => state.parkhaus
+  );
+
+  const [parkingTotal, setParkingTotal] = useState(0);
+  const [carParkTotal, setCarParkTotal] = useState(0);
+  const [freeTotal, setFreeTotal] = useState(0);
+
+  useEffect(() => {
+    const parkingTotalReducer = (acc: any, curr: any) =>
+      acc + Number(curr.properties?.parkingTotal);
+
+    setParkingTotal(
+      parkhausData?.data?.features?.reduce(parkingTotalReducer, 0)
+    );
+
+    setCarParkTotal(parkhausData?.data?.features?.length);
+
+    const freeTotalReducer = (acc: any, curr: any) =>
+      acc + Number(curr.properties?.parkingFree);
+
+    setFreeTotal(parkhausData?.data?.features?.reduce(freeTotalReducer, 0));
+  }, [parkhausData]);
+
+  return (
+    <ComponentWrapper>
+      <HeadingWrapper>
+        <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
+        <StatsWrapper>
+          <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
+          <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
+        </StatsWrapper>
+        <StatsWrapper>
+          <p className="is-size-7">
+            Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
+          </p>
+          <p className="is-size-7">
+            Belegt gesamt:{' '}
+            <StatusOrange>{parkingTotal - freeTotal}</StatusOrange>
+          </p>
+        </StatsWrapper>
+      </HeadingWrapper>
+      <ParkhausProgressWrapper>
+        {parkhausData?.data?.features?.map((p: any) => (
+          <Progress
+            key={p.properties.LFDNR}
+            id={p.properties.LFDNR}
+            title={p.properties.NAME.replace('Parkhaus ', '').replace(
+              'Parkplatz ',
+              ''
+            )}
+            value={p.properties.parkingFree}
+            max={p.properties.parkingTotal}
+          ></Progress>
+        ))}
+      </ParkhausProgressWrapper>
+      <FooterWrapper>
+        <p>
+          <Link to="/map">Karte öffnen</Link>
+        </p>
+        <p>Datenquelle</p>
+      </FooterWrapper>
+    </ComponentWrapper>
+  );
+};

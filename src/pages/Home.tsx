@@ -1,13 +1,17 @@
 import React from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { AaseeComponent } from '../components/AaseeComponent';
+import { DateTimeComponent } from '../components/DateTimeComponent';
+import { LogoComponent } from '../components/LogoComponent';
 import NumberWidget from '../components/NumberWidget';
 import OnlineStatus from '../components/OnlineStatus';
+import { ParkhausComponent } from '../components/ParkhausComponent';
+import { PassantenComponent } from '../components/PassantenComponent';
+import { RadfahrerComponent } from '../components/RadfahrerComponent';
 
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+const Container = styled.div`
+  margin-top: 32px;
 `;
 
 function Home() {
@@ -15,17 +19,57 @@ function Home() {
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
   );
-  const parkhausData: ServiceState = useSelector(
-    (state: RootStateOrAny) => state.parkhaus
-  );
   const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
 
   return (
     <React.Fragment>
-      <div className="container is-fluid">
-        <h1 className="title">
+      <Container className="container">
+        <div className="tile is-ancestor">
+          <div className="tile is-vertical">
+            <div className="tile">
+              <div className="tile is-parent is-horizontal">
+                <LogoComponent></LogoComponent>
+              </div>
+              <div className="tile is-6 is-parent">
+                <ParkhausComponent></ParkhausComponent>
+              </div>
+              <div className="tile is-parent">
+                <DateTimeComponent></DateTimeComponent>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="tile is-ancestor">
+          <div className="tile is-vertical is-7">
+            <div className="tile">
+              <div className="tile is-parent">
+                <RadfahrerComponent></RadfahrerComponent>
+              </div>
+            </div>
+            <div className="tile">
+              <div className="tile is-parent">
+                <RadfahrerComponent></RadfahrerComponent>
+              </div>
+            </div>
+          </div>
+          <div className="tile is-vertical">
+            <div className="tile is-parent">
+              <RadfahrerComponent></RadfahrerComponent>
+            </div>
+          </div>
+        </div>
+
+        {/* <GridLayout>
+          <LogoComponent></LogoComponent>
+          <ParkhausComponent></ParkhausComponent>
+          <DateTimeComponent></DateTimeComponent>
+          <RadfahrerComponent></RadfahrerComponent>
+          <PassantenComponent></PassantenComponent>
+          <AaseeComponent></AaseeComponent>
+        </GridLayout> */}
+        {/* <h1 className="title">
           {opensensemapData?.metadata.title}
           <OnlineStatus
             online={opensensemapData?.metadata.online}
@@ -115,8 +159,8 @@ function Home() {
               ></NumberWidget>
             ))}
           </FlexContainer>
-        )}
-      </div>
+        )} */}
+      </Container>
     </React.Fragment>
   );
 }
