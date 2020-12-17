@@ -6,4 +6,5 @@ export const ComponentWrapper = styled.div`
   width: 100%;
   min-height: 250px;
   padding: 2rem;
+  padding-bottom: 1rem;
 `;

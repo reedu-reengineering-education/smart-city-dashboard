@@ -32,7 +32,7 @@ export const AaseeComponent = () => {
         (p: any) => 'water_temperature' in p.parsed
       )[0];
 
-      if (sensorWithTempPh.parsed) {
+      if (sensorWithTempPh && sensorWithTempPh.parsed) {
         setTemperature(sensorWithTempPh.parsed.water_temperature);
         setPh(sensorWithTempPh.parsed.pH);
       }
@@ -42,11 +42,7 @@ export const AaseeComponent = () => {
   return (
     <ComponentWrapper>
       <HeadingWrapper>
-        <p className="is-size-5">
-          Aasee
-          <br />
-          Wasserqualität
-        </p>
+        <p className="is-size-5">Wasserqualität Aasee</p>
       </HeadingWrapper>
       <TilesWrapper>
         <MeasurementTile

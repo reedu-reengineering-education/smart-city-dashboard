@@ -41,7 +41,7 @@ const ProgressWrapper = styled.div`
 `;
 
 const ProgressBar = styled.div`
-  background-color: var(--scms-orange);
+  background-color: var(--scms-green);
   border-radius: 3px;
   position: relative;
   margin: 1rem 0;
@@ -64,9 +64,8 @@ const ProgressKnob = styled.div`
   align-items: center;
   color: white;
   font-size: smaller;
-  font-weight: bold;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-    0 0px 0 1px rgba(10, 10, 10, 0.02);
+  box-shadow: var(--scms-box-shadow-small);
+  font-weight: var(--scms-semi-bold);
 `;
 
 const ProgressKnobHidden = styled(ProgressKnob)`
@@ -78,10 +77,12 @@ const ProgressStart = styled(ProgressKnob)`
   position: absolute;
   left: 0;
   margin-left: -1rem;
+  z-index: 1;
+  border-radius: 0.25rem;
 `;
 
 const ProgressStatus = styled(ProgressKnob)<ProgressBarProps>`
-  background-color: var(--scms-green);
+  background-color: var(--scms-orange);
   position: absolute;
   margin-left: -1rem;
   left: ${(props) => `${props.value}%` || '0%'};
@@ -89,14 +90,14 @@ const ProgressStatus = styled(ProgressKnob)<ProgressBarProps>`
 `;
 
 const ProgressEnd = styled(ProgressKnob)`
-  background-color: var(--scms-orange);
+  background-color: var(--scms-green);
   position: absolute;
   right: 0;
   margin-right: -1rem;
 `;
 
 const ProgressDone = styled.div<ProgressBarProps>`
-  background: var(--scms-green);
+  background: var(--scms-orange);
   border-radius: 3px;
   color: #fff;
   display: flex;
@@ -117,7 +118,7 @@ export const Progress = (props: ProgressProps) => (
       <ProgressKnobs>
         <ProgressKnobHidden></ProgressKnobHidden>
         <ProgressStart>P{props.id}</ProgressStart>
-        <ProgressEnd>{props.max}</ProgressEnd>
+        <ProgressEnd>{props.max - props.value}</ProgressEnd>
         <ProgressStatus value={(props.value / props.max) * 100}>
           {props.value}
         </ProgressStatus>

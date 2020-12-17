@@ -16,8 +16,7 @@ const DateContainer = styled.div`
   border-radius: 1rem;
   width: 150px;
   height: 150px;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-    0 0px 0 1px rgba(10, 10, 10, 0.02);
+  box-shadow: var(--scms-box-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +26,10 @@ const DateContainer = styled.div`
     width: 120px;
     height: 120px;
   }
+`;
+
+const DateTimeSemiBold = styled.p`
+  font-weight: var(--scms-semi-bold);
 `;
 
 export const DateTimeComponent = () => {
@@ -44,13 +47,13 @@ export const DateTimeComponent = () => {
       <Container>
         <p className="is-size-5">Datum / Uhrzeit</p>
         <DateContainer>
-          <p className="is-size-2">{date.getDate()}</p>
-          <p>
-            <b>{date.toLocaleString('default', { month: 'long' })}</b>
-          </p>
-          <p>
-            <b>{date.getFullYear()}</b>
-          </p>
+          <DateTimeSemiBold className="is-size-2">
+            {date.getDate()}
+          </DateTimeSemiBold>
+          <DateTimeSemiBold>
+            {date.toLocaleString('default', { month: 'long' })}
+          </DateTimeSemiBold>
+          <DateTimeSemiBold>{date.getFullYear()}</DateTimeSemiBold>
         </DateContainer>
         <p>{date.toLocaleTimeString('de-DE')}</p>
       </Container>
