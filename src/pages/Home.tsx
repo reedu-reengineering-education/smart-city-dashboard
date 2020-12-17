@@ -6,6 +6,7 @@ import { DateTimeComponent } from '../components/DateTimeComponent';
 import { LogoComponent } from '../components/LogoComponent';
 import NumberWidget from '../components/NumberWidget';
 import OnlineStatus from '../components/OnlineStatus';
+import { OpenSenseMapComponent } from '../components/OpenSenseMapComponent';
 import { ParkhausComponent } from '../components/ParkhausComponent';
 import { PassantenComponent } from '../components/PassantenComponent';
 import { RadfahrerComponent } from '../components/RadfahrerComponent';
@@ -55,6 +56,9 @@ function Home() {
           <div className="tile is-vertical is-6">
             <div className="tile is-parent">
               <AaseeComponent></AaseeComponent>
+            </div>
+            <div className="tile is-parent">
+              <OpenSenseMapComponent></OpenSenseMapComponent>
             </div>
           </div>
         </div>

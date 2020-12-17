@@ -36,7 +36,7 @@ const MeasurementContainer = styled.div<TileStyleProps>`
     }
   }};
   margin: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
   border-radius: 1rem;
   width: 150px;
@@ -73,6 +73,7 @@ export const MeasurementTile = (props: MeasurementTileProps) => {
             return value.toFixed(1);
           }}
         />
+        <wbr />
         <span className="is-size-5">{props.unit}</span>
       </Value>
       <p>
