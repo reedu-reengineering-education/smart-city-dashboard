@@ -82,7 +82,7 @@ const ProgressStart = styled(ProgressKnob)`
 `;
 
 const ProgressStatus = styled(ProgressKnob)<ProgressBarProps>`
-  background-color: var(--scms-orange);
+  background-color: var(--scms-red);
   position: absolute;
   margin-left: -1rem;
   left: ${(props) => `${props.value}%` || '0%'};
@@ -97,7 +97,7 @@ const ProgressEnd = styled(ProgressKnob)`
 `;
 
 const ProgressDone = styled.div<ProgressBarProps>`
-  background: var(--scms-orange);
+  background: var(--scms-red);
   border-radius: 3px;
   color: #fff;
   display: flex;

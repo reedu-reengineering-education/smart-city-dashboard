@@ -38,8 +38,8 @@ const StatusGreen = styled.span`
   font-weight: bold;
 `;
 
-const StatusOrange = styled.span`
-  color: var(--scms-orange);
+const StatusRed = styled.span`
+  color: var(--scms-red);
   font-weight: bold;
 `;
 
@@ -95,8 +95,7 @@ export const ParkhausComponent = () => {
             Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
           </p>
           <p className="is-size-7">
-            Belegt gesamt:{' '}
-            <StatusOrange>{parkingTotal - freeTotal}</StatusOrange>
+            Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
           </p>
         </StatsWrapper>
       </HeadingWrapper>

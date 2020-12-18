@@ -30,7 +30,7 @@ const MeasurementContainer = styled.div<TileStyleProps>`
       case Status.warning:
         return 'var(--scms-yellow)';
       case Status.bad:
-        return 'var(--scms-orange)';
+        return 'var(--scms-red)';
       default:
         return 'var(--scms-primary-blue)';
     }
@@ -54,6 +54,10 @@ const MeasurementContainer = styled.div<TileStyleProps>`
   }
 `;
 
+const TopText = styled.p`
+  font-weight: var(--scms-semi-bold);
+`;
+
 const Value = styled.p`
   font-weight: var(--scms-semi-bold);
 `;
@@ -61,9 +65,7 @@ const Value = styled.p`
 export const MeasurementTile = (props: MeasurementTileProps) => {
   return (
     <MeasurementContainer status={props.status}>
-      <p>
-        <b>{props.location}</b>
-      </p>
+      <TopText>{props.location}</TopText>
       <Value className="is-size-2">
         <AnimatedNumber
           value={props.value}
@@ -76,9 +78,7 @@ export const MeasurementTile = (props: MeasurementTileProps) => {
         <wbr />
         <span className="is-size-5">{props.unit}</span>
       </Value>
-      <p>
-        <b>{props.title}</b>
-      </p>
+      <p>{props.title}</p>
     </MeasurementContainer>
   );
 };
