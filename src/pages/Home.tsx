@@ -36,7 +36,7 @@ function Home() {
           <div className="tile is-vertical is-6">
             <div className="tile">
               <div className="tile is-parent">
-                <RadfahrerComponent></RadfahrerComponent>
+                <AaseeComponent></AaseeComponent>
               </div>
             </div>
             <div className="tile">
@@ -47,13 +47,13 @@ function Home() {
           </div>
           <div className="tile is-vertical is-6">
             <div className="tile is-parent">
-              <AaseeComponent></AaseeComponent>
-            </div>
-            <div className="tile is-parent">
               <OpenSenseMapComponent></OpenSenseMapComponent>
             </div>
           </div>
         </div>
+        {/* <RadfahrerComponent>
+          TODO: Add Radfahrer Daten
+        </RadfahrerComponent> */}
       </Container>
     </React.Fragment>
   );

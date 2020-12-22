@@ -33,8 +33,8 @@ export const PassantenComponent = () => {
           pedestrianData.data.map((p: any) => (
             <MeasurementTile
               key={p.id}
-              title={'letzte Stunde'}
-              location={p.name}
+              footer={'letzte Stunde'}
+              header={p.name}
               value={p.statistics.timerange_count}
               decimals={0}
             ></MeasurementTile>

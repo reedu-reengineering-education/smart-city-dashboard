@@ -46,7 +46,7 @@ const StatusRed = styled.span`
 const FooterWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   justify-content: space-around;
   flex-wrap: wrap;
 

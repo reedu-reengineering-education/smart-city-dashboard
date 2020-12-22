@@ -10,8 +10,8 @@ export enum Status {
 }
 
 interface MeasurementTileProps {
-  title: string;
-  location?: string;
+  header: string;
+  footer?: string;
   value: number;
   unit?: string;
   status?: Status;
@@ -65,7 +65,7 @@ const Value = styled.p`
 export const MeasurementTile = (props: MeasurementTileProps) => {
   return (
     <MeasurementContainer status={props.status}>
-      <TopText>{props.location}</TopText>
+      <TopText>{props.header}</TopText>
       <Value className="is-size-2">
         <AnimatedNumber
           value={props.value}
@@ -78,7 +78,7 @@ export const MeasurementTile = (props: MeasurementTileProps) => {
         <wbr />
         <span className="is-size-5">{props.unit}</span>
       </Value>
-      <p>{props.title}</p>
+      <p>{props.footer}</p>
     </MeasurementContainer>
   );
 };

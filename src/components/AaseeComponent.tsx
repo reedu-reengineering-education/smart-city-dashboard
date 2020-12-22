@@ -46,21 +46,21 @@ export const AaseeComponent = () => {
       </HeadingWrapper>
       <TilesWrapper>
         <MeasurementTile
-          title="Sauerstoffgehalt"
+          header="Sauerstoffgehalt"
           value={7}
-          unit="%"
+          footer="in %"
           status={Status.warning}
         ></MeasurementTile>
         <MeasurementTile
-          title="Temperatur"
+          header="Temperatur"
           value={temperature}
-          unit="°C"
+          footer="in °C"
           status={Status.bad}
         ></MeasurementTile>
         <MeasurementTile
-          title="ph-Wert"
+          header="pH-Wert"
           value={ph}
-          unit="ph"
+          footer="pH"
           status={Status.good}
         ></MeasurementTile>
       </TilesWrapper>
