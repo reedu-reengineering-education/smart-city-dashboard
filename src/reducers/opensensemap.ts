@@ -2,6 +2,7 @@ import {
   LOAD_OSEM_DATA_FAILED,
   RENDER_OSEM_DATA,
   RENDER_TEMPERATURE_24_DATA,
+  RENDER_HUMIDITY_24_DATA,
 } from '../actions/opensensemap';
 
 const initialState: ServiceState = {
@@ -45,6 +46,19 @@ export default function opensensemap(state = initialState, action: any) {
         data: {
           ...state.data,
           temperature24: action.data,
+        },
+      };
+    case RENDER_HUMIDITY_24_DATA:
+      return {
+        ...state,
+        metadata: {
+          ...state.metadata,
+          updatedAt: new Date(),
+          online: true,
+        },
+        data: {
+          ...state.data,
+          humidity24: action.data,
         },
       };
     case LOAD_OSEM_DATA_FAILED:
