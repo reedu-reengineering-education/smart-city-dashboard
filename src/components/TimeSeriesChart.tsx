@@ -87,21 +87,19 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
     xaxis: {
       type: 'datetime',
     },
+    colors: ['#009fe3'],
+    title: {
+      text: props.yAxisTitle,
+      align: 'left',
+    },
     yaxis: {
       tickAmount: 3,
-      title: {
-        text: props.yAxisTitle,
+      labels: {
+        formatter: (value: number) => {
+          return value.toFixed(0);
+        },
       },
     },
-    // fill: {
-    //   type: 'gradient',
-    //   gradient: {
-    //     shadeIntensity: 1,
-    //     opacityFrom: 0,
-    //     opacityTo: 0.9,
-    //     stops: [0, 90, 100],
-    //   },
-    // },
   };
 
   return (
@@ -113,7 +111,7 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
           data: props.data,
         },
       ]}
-      type="line"
+      type="area"
       height="100%"
     />
   );
