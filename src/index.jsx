@@ -9,6 +9,7 @@ import App from './App';
 import { loadParkhausData } from './actions/parkhaus';
 import { loadAaseeData } from './actions/aasee';
 import { loadOsemData } from './actions/opensensemap';
+import { loadPedestrianData } from './actions/passanten';
 import mainReducer from './reducers';
 import rootSaga from './sagas';
 
@@ -29,6 +30,7 @@ sagaMiddleware.run(rootSaga);
 store.dispatch(loadParkhausData());
 store.dispatch(loadAaseeData());
 store.dispatch(loadOsemData());
+store.dispatch(loadPedestrianData());
 
 ReactDOM.render(
   <Provider store={store}>

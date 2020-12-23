@@ -1,4 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+// my custom css variables
+:root {
+  --scms-primary-blue: rgb(0, 159, 227);
+  --scms-green: rgb(134, 188, 37);
+  --scms-yellow: rgb(253, 195, 0);
+  --scms-orange: rgb(242, 140, 0);
+  --scms-red: rgb(234, 79, 61);
+
+  --scms-box-shadow: 3.5px 3.5px 7px rgba(0, 0, 0, 0.12),
+    2.5px 2.5px 2.5px rgba(0, 0, 0, 0.06);
+  --scms-box-shadow-small: 2px 2px 4px rgba(0, 0, 0, 0.12),
+    1px 1px 1px rgba(0, 0, 0, 0.02);
+
+  --scms-semi-bold: 600;
+  --scms-bold: 700;
+}
 
 // TODO: Import only what you need from Bulma
-@import '../node_modules/bulma/bulma.sass';
+@import '~bulma/bulma.sass';

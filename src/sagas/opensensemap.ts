@@ -3,6 +3,8 @@ import {
   LOAD_OSEM_DATA,
   LOAD_OSEM_DATA_FAILED,
   RENDER_OSEM_DATA,
+  RENDER_TEMPERATURE_24_DATA,
+  RENDER_HUMIDITY_24_DATA,
 } from '../actions/opensensemap';
 
 const INTERVAL = 60;
@@ -21,6 +23,24 @@ export function* fetchOsemData() {
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_OSEM_DATA, osem: data });
+  } catch (error) {
+    yield put({ type: LOAD_OSEM_DATA_FAILED, error });
+  }
+
+  try {
+    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapTemperature24`;
+    const response = yield call(fetch, endpoint);
+    const data = yield response.json();
+    yield put({ type: RENDER_TEMPERATURE_24_DATA, data: data });
+  } catch (error) {
+    yield put({ type: LOAD_OSEM_DATA_FAILED, error });
+  }
+
+  try {
+    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapHumidity24`;
+    const response = yield call(fetch, endpoint);
+    const data = yield response.json();
+    yield put({ type: RENDER_HUMIDITY_24_DATA, data: data });
   } catch (error) {
     yield put({ type: LOAD_OSEM_DATA_FAILED, error });
   }

@@ -1,12 +1,16 @@
+html {
+  /* font-size: 16px; */
+}
+
 html,
 body,
 #root {
   height: 100%;
 }
 
-html {
-  background-color: rgba(133, 208, 244, 0.3);
-}
+/* html {
+  background: linear-gradient(135deg, transparent, #f0f0f0);
+} */
 
 body {
   margin: 0;
