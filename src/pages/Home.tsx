@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
-import { AaseeComponent } from '../components/AaseeComponent';
-import { DateTimeComponent } from '../components/DateTimeComponent';
-import { LogoComponent } from '../components/LogoComponent';
-import { OpenSenseMapComponent } from '../components/OpenSenseMapComponent';
-import { ParkhausComponent } from '../components/ParkhausComponent';
-import { PassantenComponent } from '../components/PassantenComponent';
-import { RadfahrerComponent } from '../components/RadfahrerComponent';
+
+const AaseeComponent = lazy(() => import('../components/AaseeComponent'));
+const DateTimeComponent = lazy(() => import('../components/DateTimeComponent'));
+const LogoComponent = lazy(() => import('../components/LogoComponent'));
+const OpenSenseMapComponent = lazy(
+  () => import('../components/OpenSenseMapComponent')
+);
+const ParkhausComponent = lazy(() => import('../components/ParkhausComponent'));
+const PassantenComponent = lazy(
+  () => import('../components/PassantenComponent')
+);
+const RadfahrerComponent = lazy(
+  () => import('../components/RadfahrerComponent')
+);
 
 const Container = styled.div`
   max-width: 1632px !important;
@@ -20,13 +28,19 @@ function Home() {
           <div className="tile is-vertical">
             <div className="tile">
               <div className="tile is-3 is-parent is-horizontal">
-                <LogoComponent></LogoComponent>
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <LogoComponent></LogoComponent>
+                </Suspense>
               </div>
               <div className="tile is-6 is-parent">
-                <ParkhausComponent></ParkhausComponent>
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <ParkhausComponent></ParkhausComponent>
+                </Suspense>
               </div>
               <div className="tile is-3 is-parent">
-                <DateTimeComponent></DateTimeComponent>
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <DateTimeComponent></DateTimeComponent>
+                </Suspense>
               </div>
             </div>
           </div>
@@ -35,23 +49,31 @@ function Home() {
           <div className="tile is-vertical is-5">
             <div className="tile">
               <div className="tile is-parent">
-                <AaseeComponent></AaseeComponent>
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <AaseeComponent></AaseeComponent>
+                </Suspense>
               </div>
             </div>
             <div className="tile">
               <div className="tile is-parent">
-                <PassantenComponent></PassantenComponent>
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <PassantenComponent></PassantenComponent>
+                </Suspense>
               </div>
             </div>
           </div>
           <div className="tile is-vertical is-2">
             <div className="tile is-parent">
-              <RadfahrerComponent></RadfahrerComponent>
+              <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                <RadfahrerComponent></RadfahrerComponent>
+              </Suspense>
             </div>
           </div>
           <div className="tile is-vertical is-5">
             <div className="tile is-parent">
-              <OpenSenseMapComponent></OpenSenseMapComponent>
+              <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                <OpenSenseMapComponent></OpenSenseMapComponent>
+              </Suspense>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ const ChartWrapper = styled.div`
   height: 9rem;
 `;
 
-export const OpenSenseMapComponent = () => {
+const OpenSenseMapComponent = () => {
   const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
@@ -100,3 +100,5 @@ export const OpenSenseMapComponent = () => {
     </ComponentWrapper>
   );
 };
+
+export default OpenSenseMapComponent;

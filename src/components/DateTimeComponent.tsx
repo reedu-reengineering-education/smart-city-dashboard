@@ -32,7 +32,7 @@ const DateTimeSemiBold = styled.p`
   font-weight: var(--scms-semi-bold);
 `;
 
-export const DateTimeComponent = () => {
+const DateTimeComponent = () => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -60,3 +60,5 @@ export const DateTimeComponent = () => {
     </ComponentWrapper>
   );
 };
+
+export default DateTimeComponent;

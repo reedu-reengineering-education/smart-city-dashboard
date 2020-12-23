@@ -10,13 +10,14 @@ const TilesWrapper = styled.div`
   justify-content: space-around;
 `;
 
-export const AaseeComponent = () => {
+const AaseeComponent = () => {
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
   );
 
   const [temperature, setTemperature] = useState(0);
   const [ph, setPh] = useState(0);
+  const [oxygen, setOxygen] = useState(0);
 
   useEffect(() => {
     if (aaseeData.data.data) {
@@ -28,6 +29,14 @@ export const AaseeComponent = () => {
         setTemperature(sensorWithTempPh.parsed.water_temperature);
         setPh(sensorWithTempPh.parsed.pH);
       }
+
+      const sensorWithOxygen = aaseeData.data.data.packets.filter(
+        (p: any) => 'dissolved_oxygen' in p.parsed
+      )[0];
+
+      if (sensorWithOxygen && sensorWithOxygen.parsed) {
+        setOxygen(sensorWithOxygen.parsed.dissolved_oxygen);
+      }
     }
   }, [aaseeData]);
 
@@ -38,10 +47,9 @@ export const AaseeComponent = () => {
       </HeadingWrapper>
       <TilesWrapper>
         <MeasurementTile
-          header="Sauerstoffgehalt"
-          value={7}
-          footer="in %"
-          status={Status.dummy}
+          header="Sauerstoff"
+          value={oxygen}
+          footer="in mg/L"
         ></MeasurementTile>
         <MeasurementTile
           header="Temperatur"
@@ -59,3 +67,5 @@ export const AaseeComponent = () => {
     </ComponentWrapper>
   );
 };
+
+export default AaseeComponent;

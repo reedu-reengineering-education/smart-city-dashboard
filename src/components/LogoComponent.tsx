@@ -31,7 +31,7 @@ const Logo = styled.img`
   width: auto;
 `;
 
-export const LogoComponent = () => (
+const LogoComponent = () => (
   <ComponentWrapper>
     <Container>
       <p className="is-size-5">Stadt</p>
@@ -42,3 +42,5 @@ export const LogoComponent = () => (
     </Container>
   </ComponentWrapper>
 );
+
+export default LogoComponent;

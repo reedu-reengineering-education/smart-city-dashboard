@@ -59,6 +59,7 @@ const MeasurementContainer = styled.div<TileStyleProps>`
 
 const TopText = styled.p`
   font-weight: var(--scms-semi-bold);
+  hyphens: auto;
 `;
 
 const Value = styled.p`

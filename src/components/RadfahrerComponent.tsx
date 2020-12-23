@@ -2,7 +2,7 @@ import React from 'react';
 import { MeasurementTile, Status } from './MeasurementTile';
 import { ComponentWrapper, HeadingWrapper, TilesWrapper } from './styles';
 
-export const RadfahrerComponent = () => (
+const RadfahrerComponent = () => (
   <ComponentWrapper>
     <HeadingWrapper>
       <p className="is-size-5">Radfahrer</p>
@@ -32,3 +32,5 @@ export const RadfahrerComponent = () => (
     </TilesWrapper>
   </ComponentWrapper>
 );
+
+export default RadfahrerComponent;

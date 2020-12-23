@@ -18,7 +18,7 @@ const TilesWrapper = styled.div`
   justify-content: space-around;
 `;
 
-export const PassantenComponent = () => {
+const PassantenComponent = () => {
   const pedestrianData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.passanten
   );
@@ -43,3 +43,5 @@ export const PassantenComponent = () => {
     </ComponentWrapper>
   );
 };
+
+export default PassantenComponent;

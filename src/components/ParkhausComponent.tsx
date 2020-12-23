@@ -47,7 +47,7 @@ const FooterWrapper = styled.div`
   }
 `;
 
-export const ParkhausComponent = () => {
+const ParkhausComponent = () => {
   const parkhausData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.parkhaus
   );
@@ -114,3 +114,5 @@ export const ParkhausComponent = () => {
     </ComponentWrapper>
   );
 };
+
+export default ParkhausComponent;
