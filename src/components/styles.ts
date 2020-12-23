@@ -5,6 +5,20 @@ export const ComponentWrapper = styled.div`
   border-radius: 1rem;
   width: 100%;
   min-height: 250px;
-  padding: 2rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
+  /* padding-bottom: 1rem; */
+`;
+
+export const HeadingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+export const TilesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;

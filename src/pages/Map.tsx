@@ -1,8 +1,8 @@
 import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { updateMapViewport } from '../actions/map';
-import React, { useState } from 'react';
+import { updateFeaturesVisible, updateMapViewport } from '../actions/map';
+import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -66,16 +66,9 @@ const IconLabel = styled.p<IconLabelProps>`
 
 function Map() {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
+  const features = useSelector((state: RootStateOrAny) => state.map.features);
   // const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);
   const dispatch = useDispatch();
-
-  const [featuresVisible, setFeaturesVisible] = useState({
-    opensensemap: false,
-    aasee: false,
-    carPark: false,
-    pedestrians: false,
-    bicycles: false,
-  });
 
   const rasterStyle = {
     version: 8,
@@ -108,11 +101,9 @@ function Map() {
           dispatch(updateMapViewport(nextViewport));
         }}
       >
-        <MapCarParkComponent
-          visible={featuresVisible.carPark}
-        ></MapCarParkComponent>
+        <MapCarParkComponent visible={features.parking}></MapCarParkComponent>
         <MapPedestrianComponent
-          visible={featuresVisible.pedestrians}
+          visible={features.pedestrians}
         ></MapPedestrianComponent>
       </ReactMapGL>
       <Sidebar>
@@ -137,24 +128,28 @@ function Map() {
           ph-Wert
         </IconLabel>
         <IconLabel
-          active={featuresVisible.carPark}
+          active={features.parking}
           onClick={() =>
-            setFeaturesVisible({
-              ...featuresVisible,
-              carPark: !featuresVisible.carPark,
-            })
+            dispatch(
+              updateFeaturesVisible({
+                ...features,
+                parking: !features.parking,
+              })
+            )
           }
         >
           <CarParking fill="#fff" />
           Parkhäuser
         </IconLabel>
         <IconLabel
-          active={featuresVisible.pedestrians}
+          active={features.pedestrians}
           onClick={() =>
-            setFeaturesVisible({
-              ...featuresVisible,
-              pedestrians: !featuresVisible.pedestrians,
-            })
+            dispatch(
+              updateFeaturesVisible({
+                ...features,
+                pedestrians: !features.pedestrians,
+              })
+            )
           }
         >
           <Pedestrian fill="#fff" />

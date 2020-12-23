@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { MeasurementTile } from './MeasurementTile';
-import { ComponentWrapper } from './styles';
+import { ComponentWrapper, HeadingWrapper } from './styles';
 
-import Chart from 'react-apexcharts';
-
-const HeadingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
+const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
 
 const TilesWrapper = styled.div`
   display: flex;
@@ -22,6 +15,11 @@ const TilesWrapper = styled.div`
   > div[type='area'] {
     width: 100% !important;
   }
+`;
+
+const ChartWrapper = styled.div`
+  width: 100%;
+  height: 9rem;
 `;
 
 export const OpenSenseMapComponent = () => {
@@ -66,125 +64,37 @@ export const OpenSenseMapComponent = () => {
           decimals={0}
         ></MeasurementTile>
       </TilesWrapper>
-      <TilesWrapper style={{ flexGrow: 1 }}>
+      <TilesWrapper
+        style={{ flexGrow: 1, maxHeight: '20rem', flexDirection: 'column' }}
+      >
         {opensensemapData.data.temperature24.length > 0 && (
-          <Chart
-            options={{
-              chart: {
-                id: 'temperature',
-                toolbar: {
-                  show: false,
-                },
-                selection: {
-                  enabled: false,
-                },
-                sparkline: {
-                  enabled: false,
-                },
-                zoom: {
-                  enabled: false,
-                },
-                fontFamily: 'Open Sans, sans-serif',
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              stroke: {
-                curve: 'smooth',
-              },
-              xaxis: {
-                type: 'datetime',
-              },
-              yaxis: {
-                tickAmount: 4,
-                title: {
-                  text: 'Temperatur in °C',
-                },
-              },
-              fill: {
-                type: 'gradient',
-                gradient: {
-                  shadeIntensity: 1,
-                  opacityFrom: 0,
-                  opacityTo: 0.9,
-                  stops: [0, 90, 100],
-                },
-              },
-            }}
-            series={[
-              {
-                name: 'Temperatur',
-                data: opensensemapData.data.temperature24.map(
-                  (measurement: any) => ({
-                    x: measurement.createdAt,
-                    y: measurement.value,
-                  })
-                ),
-              },
-            ]}
-            type="area"
-            height={150}
-          />
+          <ChartWrapper>
+            <Suspense fallback={<Skeleton count={5} />}>
+              <TimeSeriesChart
+                id="temperature"
+                data={opensensemapData.data.temperature24}
+                title="Temperatur"
+                yAxisTitle="Temperatur in °C"
+              ></TimeSeriesChart>
+            </Suspense>
+          </ChartWrapper>
         )}
         {opensensemapData.data.humidity24.length > 0 && (
-          <Chart
-            options={{
-              chart: {
-                id: 'humidity',
-                toolbar: {
-                  show: false,
-                },
-                selection: {
-                  enabled: false,
-                },
-                sparkline: {
-                  enabled: false,
-                },
-                zoom: {
-                  enabled: false,
-                },
-                fontFamily: 'Open Sans, sans-serif',
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              stroke: {
-                curve: 'smooth',
-              },
-              xaxis: {
-                type: 'datetime',
-              },
-              yaxis: {
-                tickAmount: 4,
-                max: 100,
-                title: {
-                  text: 'rel. Luftfeuchte in %',
-                },
-              },
-              fill: {
-                type: 'gradient',
-                gradient: {
-                  shadeIntensity: 1,
-                  opacityFrom: 0,
-                  opacityTo: 0.9,
-                  stops: [0, 90, 100],
-                },
-              },
-            }}
-            series={[
-              {
-                name: 'rel. Luftfeuchte',
-                data: opensensemapData.data.humidity24.map(
-                  (measurement: any) => ({
-                    x: measurement.createdAt,
-                    y: measurement.value,
-                  })
-                ),
-              },
-            ]}
-            type="area"
-            height={150}
-          />
+          <ChartWrapper>
+            <Suspense fallback={<Skeleton count={5} />}>
+              <TimeSeriesChart
+                id="humidity"
+                data={opensensemapData.data.humidity24}
+                title="rel. Luftfeuchte"
+                yAxisTitle="rel. Luftfeuchte in %"
+                chartOptions={{
+                  yaxis: {
+                    max: 100.001, // adding the .001 still shows the hover dot on the line
+                  },
+                }}
+              ></TimeSeriesChart>
+            </Suspense>
+          </ChartWrapper>
         )}
       </TilesWrapper>
     </ComponentWrapper>

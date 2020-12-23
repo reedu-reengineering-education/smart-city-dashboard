@@ -7,6 +7,7 @@ export enum Status {
   good,
   warning,
   bad,
+  dummy,
 }
 
 interface MeasurementTileProps {
@@ -31,16 +32,18 @@ const MeasurementContainer = styled.div<TileStyleProps>`
         return 'var(--scms-yellow)';
       case Status.bad:
         return 'var(--scms-red)';
+      case Status.dummy:
+        return 'lightgrey';
       default:
         return 'var(--scms-primary-blue)';
     }
   }};
-  margin: 1rem;
+  margin: 0.5rem;
   padding: 0.5rem;
   text-align: center;
   border-radius: 1rem;
-  width: 150px;
-  height: 150px;
+  width: 9rem;
+  height: 9rem;
   box-shadow: var(--scms-box-shadow);
   display: flex;
   flex-direction: column;

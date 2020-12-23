@@ -28,11 +28,7 @@ export function* fetchOsemData() {
   }
 
   try {
-    let fromRaw = new Date();
-    fromRaw.setHours(fromRaw.getHours() - 24);
-    const from = fromRaw.toISOString();
-
-    const endpoint = `https://api.opensensemap.org/boxes/5d91f4bb5f3de0001ab6bb78/data/5d91f4bb5f3de0001ab6bb7f?from-date=${from}`;
+    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapTemperature24`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_TEMPERATURE_24_DATA, data: data });
@@ -41,11 +37,7 @@ export function* fetchOsemData() {
   }
 
   try {
-    let fromRaw = new Date();
-    fromRaw.setHours(fromRaw.getHours() - 24);
-    const from = fromRaw.toISOString();
-
-    const endpoint = `https://api.opensensemap.org/boxes/5d91f4bb5f3de0001ab6bb78/data/5d91f4bb5f3de0001ab6bb7e?from-date=${from}`;
+    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapHumidity24`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_HUMIDITY_24_DATA, data: data });

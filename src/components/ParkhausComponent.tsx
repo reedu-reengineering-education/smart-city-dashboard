@@ -3,23 +3,15 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Progress } from './Progress';
-import { ComponentWrapper } from './styles';
+import { ComponentWrapper, HeadingWrapper } from './styles';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 200px;
+  max-height: 9rem;
   overflow-y: scroll;
   padding: 0 1rem;
-`;
-
-const HeadingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
 `;
 
 const HeadingTitle = styled.p`

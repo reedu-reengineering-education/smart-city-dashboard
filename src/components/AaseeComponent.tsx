@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { MeasurementTile, Status } from './MeasurementTile';
-import { ComponentWrapper } from './styles';
-
-const HeadingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
+import { ComponentWrapper, HeadingWrapper } from './styles';
 
 const TilesWrapper = styled.div`
   display: flex;
@@ -49,7 +41,7 @@ export const AaseeComponent = () => {
           header="Sauerstoffgehalt"
           value={7}
           footer="in %"
-          status={Status.warning}
+          status={Status.dummy}
         ></MeasurementTile>
         <MeasurementTile
           header="Temperatur"

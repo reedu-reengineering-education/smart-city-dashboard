@@ -14,8 +14,8 @@ const DateContainer = styled.div`
   padding: 1rem;
   text-align: center;
   border-radius: 1rem;
-  width: 150px;
-  height: 150px;
+  width: 9rem;
+  height: 9rem;
   box-shadow: var(--scms-box-shadow);
   display: flex;
   flex-direction: column;

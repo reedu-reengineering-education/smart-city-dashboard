@@ -1,5 +1,4 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { AaseeComponent } from '../components/AaseeComponent';
 import { DateTimeComponent } from '../components/DateTimeComponent';
@@ -10,7 +9,7 @@ import { PassantenComponent } from '../components/PassantenComponent';
 import { RadfahrerComponent } from '../components/RadfahrerComponent';
 
 const Container = styled.div`
-  margin-top: 32px;
+  max-width: 1632px !important;
 `;
 
 function Home() {
@@ -33,7 +32,7 @@ function Home() {
           </div>
         </div>
         <div className="tile">
-          <div className="tile is-vertical is-6">
+          <div className="tile is-vertical is-5">
             <div className="tile">
               <div className="tile is-parent">
                 <AaseeComponent></AaseeComponent>
@@ -45,15 +44,17 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="tile is-vertical is-6">
+          <div className="tile is-vertical is-2">
+            <div className="tile is-parent">
+              <RadfahrerComponent></RadfahrerComponent>
+            </div>
+          </div>
+          <div className="tile is-vertical is-5">
             <div className="tile is-parent">
               <OpenSenseMapComponent></OpenSenseMapComponent>
             </div>
           </div>
         </div>
-        {/* <RadfahrerComponent>
-          TODO: Add Radfahrer Daten
-        </RadfahrerComponent> */}
       </Container>
     </React.Fragment>
   );

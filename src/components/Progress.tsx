@@ -113,14 +113,16 @@ export const Progress = (props: ProgressProps) => (
     <Title>{props.title}</Title>
     <ProgressWrapper>
       <ProgressBar>
-        <ProgressDone value={(props.value / props.max) * 100}></ProgressDone>
+        <ProgressDone
+          value={(1 - props.value / props.max) * 100}
+        ></ProgressDone>
       </ProgressBar>
       <ProgressKnobs>
         <ProgressKnobHidden></ProgressKnobHidden>
         <ProgressStart>P{props.id}</ProgressStart>
-        <ProgressEnd>{props.max - props.value}</ProgressEnd>
-        <ProgressStatus value={(props.value / props.max) * 100}>
-          {props.value}
+        <ProgressEnd>{props.value}</ProgressEnd>
+        <ProgressStatus value={(1 - props.value / props.max) * 100}>
+          {props.max - props.value}
         </ProgressStatus>
       </ProgressKnobs>
     </ProgressWrapper>
