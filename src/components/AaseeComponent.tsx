@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { updateFeaturesVisible } from '../actions/map';
 import { MeasurementTile, Status } from './MeasurementTile';
 import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
 
@@ -15,6 +16,7 @@ const AaseeComponent = () => {
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
   );
+  const dispatch = useDispatch();
 
   const [temperature, setTemperature] = useState(0);
   const [ph, setPh] = useState(0);
@@ -66,7 +68,15 @@ const AaseeComponent = () => {
         ></MeasurementTile>
       </TilesWrapper>
       <FooterWrapper>
-        <p>
+        <p
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                aasee: true,
+              })
+            )
+          }
+        >
           <Link to="/map">Karte öffnen</Link>
         </p>
         <p>Datenquelle</p>

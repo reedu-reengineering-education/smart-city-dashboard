@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { updateFeaturesVisible } from '../actions/map';
 import { Progress } from './Progress';
 import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
 
@@ -39,6 +40,7 @@ const ParkhausComponent = () => {
   const parkhausData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.parkhaus
   );
+  const dispatch = useDispatch();
 
   const [parkingTotal, setParkingTotal] = useState(0);
   const [carParkTotal, setCarParkTotal] = useState(0);
@@ -94,7 +96,15 @@ const ParkhausComponent = () => {
           ))}
       </ParkhausProgressWrapper>
       <FooterWrapper>
-        <p>
+        <p
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                parking: true,
+              })
+            )
+          }
+        >
           <Link to="/map">Karte öffnen</Link>
         </p>
         <p>Datenquelle</p>

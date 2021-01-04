@@ -1,7 +1,8 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { updateFeaturesVisible } from '../actions/map';
 import { MeasurementTile } from './MeasurementTile';
 import { ComponentWrapper, FooterWrapper } from './styles';
 
@@ -23,6 +24,7 @@ const PassantenComponent = () => {
   const pedestrianData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.passanten
   );
+  const dispatch = useDispatch();
 
   return (
     <ComponentWrapper>
@@ -42,7 +44,15 @@ const PassantenComponent = () => {
           ))}
       </TilesWrapper>
       <FooterWrapper>
-        <p>
+        <p
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                pedestrians: true,
+              })
+            )
+          }
+        >
           <Link to="/map">Karte öffnen</Link>
         </p>
         <p>Datenquelle</p>
