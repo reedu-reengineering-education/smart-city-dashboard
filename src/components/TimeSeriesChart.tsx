@@ -5,7 +5,7 @@ interface ITimeSeriesChartProps {
   id: string;
   data: [];
   title: string;
-  yAxisTitle: string;
+  unit?: string;
   chartOptions?: any;
 }
 
@@ -80,6 +80,11 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
       x: {
         format: 'dd MMM yyyy HH:mm',
       },
+      y: {
+        formatter: (value: number) => {
+          return `${value.toFixed(1)} ${props.unit}`;
+        },
+      },
     },
     stroke: {
       curve: 'smooth',
@@ -89,7 +94,7 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
     },
     colors: ['#009fe3'],
     title: {
-      text: props.yAxisTitle,
+      text: props.unit ? `${props.title} in ${props.unit}` : `${props.title}`,
       align: 'left',
     },
     yaxis: {

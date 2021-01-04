@@ -75,7 +75,7 @@ const OpenSenseMapComponent = () => {
                 id="temperature"
                 data={opensensemapData.data.temperature24}
                 title="Temperatur"
-                yAxisTitle="Temperatur in °C"
+                unit="°C"
               ></TimeSeriesChart>
             </Suspense>
           </ChartWrapper>
@@ -87,7 +87,7 @@ const OpenSenseMapComponent = () => {
                 id="humidity"
                 data={opensensemapData.data.humidity24}
                 title="rel. Luftfeuchte"
-                yAxisTitle="rel. Luftfeuchte in %"
+                unit="%"
                 chartOptions={{
                   yaxis: {
                     max: 100.001, // adding the .001 still shows the hover dot on the line
