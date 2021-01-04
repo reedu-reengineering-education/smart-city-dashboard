@@ -7,6 +7,9 @@ import { ReactComponent as CarParking } from '../resources/pictos/picto-06.svg';
 import { ReactComponent as Pedestrian } from '../resources/pictos/picto-07.svg';
 import { ReactComponent as Bicycle } from '../resources/pictos/picto-08.svg';
 
+import { ReactComponent as ChevronLeft } from '../resources/icons/chevron-left.svg';
+import { ReactComponent as ChevronRight } from '../resources/icons/chevron-right.svg';
+
 export {
   Temperature,
   Humidity,
@@ -16,4 +19,6 @@ export {
   CarParking,
   Pedestrian,
   Bicycle,
+  ChevronLeft,
+  ChevronRight,
 };

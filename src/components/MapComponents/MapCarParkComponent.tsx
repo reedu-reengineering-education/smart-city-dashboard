@@ -74,7 +74,7 @@ const MapCarParkComponent = React.memo(({ visible }: ICarParkMarkersProps) => {
             </CarParkMarker>
           </Marker>
         ))}
-      {_renderPopup()})
+      {_renderPopup()}
     </React.Fragment>
   );
 });

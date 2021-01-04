@@ -78,7 +78,7 @@ const MapPedestrianComponent = React.memo(
               </PedestrianMarker>
             </Marker>
           ))}
-        {_renderPopup()})
+        {_renderPopup()}
       </React.Fragment>
     );
   }

@@ -2,7 +2,7 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { updateFeaturesVisible, updateMapViewport } from '../actions/map';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -14,6 +14,8 @@ import {
   CarParking,
   Bicycle,
   Pedestrian,
+  ChevronLeft,
+  ChevronRight,
 } from '../components/Icons';
 import MapCarParkComponent from '../components/MapComponents/MapCarParkComponent';
 import MapPedestrianComponent from '../components/MapComponents/MapPedestrianComponent';
@@ -29,22 +31,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const Sidebar = styled.div`
-  position: absolute;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  color: white;
-  background-color: rgba(0, 159, 227, 0.8);
-  box-shadow: var(--scms-box-shadow);
-  padding-top: 1rem;
-`;
-
 interface IconLabelProps {
   active?: boolean;
 }
 
 const IconLabel = styled.p<IconLabelProps>`
+  min-height: 48px;
   font-weight: var(--scms-semi-bold);
   display: flex;
   flex-direction: row;
@@ -64,11 +56,32 @@ const IconLabel = styled.p<IconLabelProps>`
   }
 `;
 
+interface ISidebarProps {
+  collapsed: boolean;
+}
+
+const Sidebar = styled.div<ISidebarProps>`
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  color: white;
+  background-color: rgba(0, 159, 227, 0.8);
+  box-shadow: var(--scms-box-shadow);
+  padding-top: 1rem;
+
+  > ${IconLabel} {
+    padding-right: ${(props) => (props.collapsed ? '1rem' : '2rem')};
+  }
+`;
+
 function Map() {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
   const features = useSelector((state: RootStateOrAny) => state.map.features);
   // const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);
   const dispatch = useDispatch();
+
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const rasterStyle = {
     version: 8,
@@ -94,7 +107,7 @@ function Map() {
     <Wrapper>
       <ReactMapGL
         {...viewport}
-        mapStyle={rasterStyle} // flickering of layers due to raster layer
+        mapStyle={rasterStyle}
         width="100%"
         height="100%"
         onViewportChange={(nextViewport: any) => {
@@ -106,26 +119,42 @@ function Map() {
           visible={features.pedestrians}
         ></MapPedestrianComponent>
       </ReactMapGL>
-      <Sidebar>
+      <Sidebar collapsed={sidebarCollapsed}>
+        <IconLabel
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          style={{
+            marginBottom: '1rem',
+          }}
+        >
+          {/* Icons from FeatherIcons */}
+          {!sidebarCollapsed ? (
+            <>
+              <ChevronLeft />
+              <p>Minimieren</p>
+            </>
+          ) : (
+            <ChevronRight />
+          )}
+        </IconLabel>
         <IconLabel>
           <Temperature fill="#fff" />
-          Temperatur
+          {!sidebarCollapsed && <p>Temperatur</p>}
         </IconLabel>
         <IconLabel>
           <Humidity fill="#fff" />
-          rel. Luftfeuchte
+          {!sidebarCollapsed && <p>rel. Luftfeuchte</p>}
         </IconLabel>
         <IconLabel>
           <Pressure fill="#fff" />
-          Luftdruck
+          {!sidebarCollapsed && <p>Luftdruck</p>}
         </IconLabel>
         <IconLabel>
           <WaterTemperature fill="#fff" />
-          Wassertemperatur
+          {!sidebarCollapsed && <p>Wassertemperatur</p>}
         </IconLabel>
         <IconLabel>
           <PH fill="#fff" />
-          ph-Wert
+          {!sidebarCollapsed && <p>ph-Wert</p>}
         </IconLabel>
         <IconLabel
           active={features.parking}
@@ -139,7 +168,7 @@ function Map() {
           }
         >
           <CarParking fill="#fff" />
-          Parkhäuser
+          {!sidebarCollapsed && <p>Parkhäuser</p>}
         </IconLabel>
         <IconLabel
           active={features.pedestrians}
@@ -153,11 +182,11 @@ function Map() {
           }
         >
           <Pedestrian fill="#fff" />
-          Passanten
+          {!sidebarCollapsed && <p>Passanten</p>}
         </IconLabel>
         <IconLabel>
           <Bicycle fill="#fff" />
-          Fahrräder
+          {!sidebarCollapsed && <p>Fahrräder</p>}
         </IconLabel>
       </Sidebar>
     </Wrapper>
