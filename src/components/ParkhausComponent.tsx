@@ -3,7 +3,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Progress } from './Progress';
-import { ComponentWrapper, HeadingWrapper } from './styles';
+import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
@@ -33,18 +33,6 @@ const StatusGreen = styled.span`
 const StatusRed = styled.span`
   color: var(--scms-red);
   font-weight: bold;
-`;
-
-const FooterWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 1rem;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  > p > a {
-    color: inherit;
-  }
 `;
 
 const ParkhausComponent = () => {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MeasurementTile, Status } from './MeasurementTile';
-import { ComponentWrapper, HeadingWrapper } from './styles';
+import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
 
 const TilesWrapper = styled.div`
   display: flex;
@@ -64,6 +65,12 @@ const AaseeComponent = () => {
           status={Status.good}
         ></MeasurementTile>
       </TilesWrapper>
+      <FooterWrapper>
+        <p>
+          <Link to="/map">Karte öffnen</Link>
+        </p>
+        <p>Datenquelle</p>
+      </FooterWrapper>
     </ComponentWrapper>
   );
 };

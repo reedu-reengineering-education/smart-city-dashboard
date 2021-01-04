@@ -1,6 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MeasurementTile, Status } from './MeasurementTile';
-import { ComponentWrapper, HeadingWrapper, TilesWrapper } from './styles';
+import {
+  ComponentWrapper,
+  FooterWrapper,
+  HeadingWrapper,
+  TilesWrapper,
+} from './styles';
 
 const RadfahrerComponent = () => (
   <ComponentWrapper>
@@ -30,6 +36,12 @@ const RadfahrerComponent = () => (
         status={Status.dummy}
       ></MeasurementTile>
     </TilesWrapper>
+    <FooterWrapper>
+      <p>
+        <Link to="/map">Karte öffnen</Link>
+      </p>
+      <p>Datenquelle</p>
+    </FooterWrapper>
   </ComponentWrapper>
 );
 

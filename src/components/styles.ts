@@ -5,8 +5,13 @@ export const ComponentWrapper = styled.div`
   border-radius: 1rem;
   width: 100%;
   min-height: 250px;
-  padding: 1rem;
-  /* padding-bottom: 1rem; */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 export const HeadingWrapper = styled.div`
@@ -21,4 +26,21 @@ export const TilesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+`;
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  > p {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  > p > a {
+    color: inherit;
+  }
 `;

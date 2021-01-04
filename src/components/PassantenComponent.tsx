@@ -1,8 +1,9 @@
 import React from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MeasurementTile } from './MeasurementTile';
-import { ComponentWrapper } from './styles';
+import { ComponentWrapper, FooterWrapper } from './styles';
 
 const HeadingWrapper = styled.div`
   display: flex;
@@ -40,6 +41,12 @@ const PassantenComponent = () => {
             ></MeasurementTile>
           ))}
       </TilesWrapper>
+      <FooterWrapper>
+        <p>
+          <Link to="/map">Karte öffnen</Link>
+        </p>
+        <p>Datenquelle</p>
+      </FooterWrapper>
     </ComponentWrapper>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MeasurementTile } from './MeasurementTile';
-import { ComponentWrapper, HeadingWrapper } from './styles';
+import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
 
 const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
 
@@ -97,6 +98,12 @@ const OpenSenseMapComponent = () => {
           </ChartWrapper>
         )}
       </TilesWrapper>
+      <FooterWrapper>
+        <p>
+          <Link to="/map">Karte öffnen</Link>
+        </p>
+        <p>Datenquelle</p>
+      </FooterWrapper>
     </ComponentWrapper>
   );
 };
