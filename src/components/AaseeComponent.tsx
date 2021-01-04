@@ -53,6 +53,7 @@ const AaseeComponent = () => {
           header="Sauerstoff"
           value={oxygen}
           footer="in mg/L"
+          status={Status.warning}
         ></MeasurementTile>
         <MeasurementTile
           header="Temperatur"

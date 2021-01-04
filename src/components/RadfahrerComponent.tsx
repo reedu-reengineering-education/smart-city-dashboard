@@ -29,7 +29,7 @@ const RadfahrerComponent = () => (
         status={Status.dummy}
       ></MeasurementTile>
       <MeasurementTile
-        header="Wolbecker Straße"
+        header="Wolbecker Str."
         value={654}
         decimals={0}
         footer="letzte Stunde"
