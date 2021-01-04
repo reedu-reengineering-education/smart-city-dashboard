@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateFeaturesVisible } from '../actions/map';
-import { MeasurementTile, Status } from './MeasurementTile';
+import { Status } from './MeasurementTile';
 import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
+
+const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const TilesWrapper = styled.div`
   display: flex;
@@ -49,24 +52,30 @@ const AaseeComponent = () => {
         <p className="is-size-5">Wasserqualität Aasee</p>
       </HeadingWrapper>
       <TilesWrapper>
-        <MeasurementTile
-          header="Sauerstoff"
-          value={oxygen}
-          footer="in mg/L"
-          status={Status.warning}
-        ></MeasurementTile>
-        <MeasurementTile
-          header="Temperatur"
-          value={temperature}
-          footer="in °C"
-          status={Status.bad}
-        ></MeasurementTile>
-        <MeasurementTile
-          header="pH-Wert"
-          value={ph}
-          footer="pH"
-          status={Status.good}
-        ></MeasurementTile>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Sauerstoff"
+            value={oxygen}
+            footer="in mg/L"
+            status={Status.warning}
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Temperatur"
+            value={temperature}
+            footer="in °C"
+            status={Status.bad}
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="pH-Wert"
+            value={ph}
+            footer="pH"
+            status={Status.good}
+          ></MeasurementTile>
+        </Suspense>
       </TilesWrapper>
       <FooterWrapper>
         <p

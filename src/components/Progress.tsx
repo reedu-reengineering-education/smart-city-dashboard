@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+// @ts-ignore
+import NumberEasing from 'react-number-easing';
 
 interface ProgressProps {
   id: number;
@@ -122,7 +124,12 @@ export const Progress = (props: ProgressProps) => (
         <ProgressStart>P{props.id}</ProgressStart>
         <ProgressEnd>{props.value}</ProgressEnd>
         <ProgressStatus value={(1 - props.value / props.max) * 100}>
-          {props.max - props.value}
+          <NumberEasing
+            value={props.max - props.value}
+            speed={1000}
+            decimals={0}
+            ease="expoInOut"
+          />
         </ProgressStatus>
       </ProgressKnobs>
     </ProgressWrapper>

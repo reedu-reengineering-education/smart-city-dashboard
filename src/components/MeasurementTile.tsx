@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // @ts-ignore
-import AnimatedNumber from 'animated-number-react';
+import NumberEasing from 'react-number-easing';
 
 export enum Status {
   good,
@@ -66,18 +66,16 @@ const Value = styled.p`
   font-weight: var(--scms-semi-bold);
 `;
 
-export const MeasurementTile = (props: MeasurementTileProps) => {
+const MeasurementTile = (props: MeasurementTileProps) => {
   return (
     <MeasurementContainer status={props.status}>
       <TopText>{props.header}</TopText>
       <Value className="is-size-2">
-        <AnimatedNumber
-          value={props.value}
-          formatValue={(value: number) => {
-            if (props.decimals != null) return value.toFixed(props.decimals);
-
-            return value.toFixed(1);
-          }}
+        <NumberEasing
+          value={Number(props.value)}
+          speed={1000}
+          decimals={props.decimals != null ? props.decimals : 1}
+          ease="expoInOut"
         />
         <wbr />
         <span className="is-size-5">{props.unit}</span>
@@ -86,3 +84,5 @@ export const MeasurementTile = (props: MeasurementTileProps) => {
     </MeasurementContainer>
   );
 };
+
+export default MeasurementTile;

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateFeaturesVisible } from '../actions/map';
-import { MeasurementTile } from './MeasurementTile';
 import { ComponentWrapper, FooterWrapper } from './styles';
+
+const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const HeadingWrapper = styled.div`
   display: flex;
@@ -34,13 +36,18 @@ const PassantenComponent = () => {
       <TilesWrapper>
         {pedestrianData?.data.length > 0 &&
           pedestrianData.data.map((p: any) => (
-            <MeasurementTile
+            <Suspense
               key={p.id}
-              footer={'letzte Stunde'}
-              header={p.name}
-              value={p.statistics.timerange_count}
-              decimals={0}
-            ></MeasurementTile>
+              fallback={<Skeleton width="100%" height="100%" />}
+            >
+              <MeasurementTile
+                key={p.id}
+                footer={'letzte Stunde'}
+                header={p.name}
+                value={p.statistics.timerange_count}
+                decimals={0}
+              ></MeasurementTile>
+            </Suspense>
           ))}
       </TilesWrapper>
       <FooterWrapper>

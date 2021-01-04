@@ -3,8 +3,9 @@ import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MeasurementTile } from './MeasurementTile';
 import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
+
+const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
 
@@ -48,22 +49,28 @@ const OpenSenseMapComponent = () => {
         <p className="is-size-5">Wetter senseBox</p>
       </HeadingWrapper>
       <TilesWrapper>
-        <MeasurementTile
-          header="Temperatur"
-          value={temperature}
-          footer="in °C"
-        ></MeasurementTile>
-        <MeasurementTile
-          header="rel. Luftfeuchte"
-          value={humidity}
-          footer="in %"
-        ></MeasurementTile>
-        <MeasurementTile
-          header="Luftdruck"
-          value={pressure}
-          footer="in hPa"
-          decimals={0}
-        ></MeasurementTile>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Temperatur"
+            value={temperature}
+            footer="in °C"
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="rel. Luftfeuchte"
+            value={humidity}
+            footer="in %"
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Luftdruck"
+            value={pressure}
+            footer="in hPa"
+            decimals={0}
+          ></MeasurementTile>
+        </Suspense>
       </TilesWrapper>
       <TilesWrapper
         style={{ flexGrow: 1, maxHeight: '20rem', flexDirection: 'column' }}

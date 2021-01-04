@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
-import { MeasurementTile, Status } from './MeasurementTile';
+import { Status } from './MeasurementTile';
 import {
   ComponentWrapper,
   FooterWrapper,
@@ -8,33 +9,41 @@ import {
   TilesWrapper,
 } from './styles';
 
+const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
+
 const RadfahrerComponent = () => (
   <ComponentWrapper>
     <HeadingWrapper>
       <p className="is-size-5">Radfahrer</p>
     </HeadingWrapper>
     <TilesWrapper>
-      <MeasurementTile
-        header="Hammer Straße"
-        value={123}
-        decimals={0}
-        footer="letzte Stunde"
-        status={Status.dummy}
-      ></MeasurementTile>
-      <MeasurementTile
-        header="Neutor"
-        value={420}
-        decimals={0}
-        footer="letzte Stunde"
-        status={Status.dummy}
-      ></MeasurementTile>
-      <MeasurementTile
-        header="Wolbecker Str."
-        value={654}
-        decimals={0}
-        footer="letzte Stunde"
-        status={Status.dummy}
-      ></MeasurementTile>
+      <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+        <MeasurementTile
+          header="Hammer Straße"
+          value={123}
+          decimals={0}
+          footer="letzte Stunde"
+          status={Status.dummy}
+        ></MeasurementTile>
+      </Suspense>
+      <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+        <MeasurementTile
+          header="Neutor"
+          value={420}
+          decimals={0}
+          footer="letzte Stunde"
+          status={Status.dummy}
+        ></MeasurementTile>
+      </Suspense>
+      <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+        <MeasurementTile
+          header="Wolbecker Str."
+          value={654}
+          decimals={0}
+          footer="letzte Stunde"
+          status={Status.dummy}
+        ></MeasurementTile>
+      </Suspense>
     </TilesWrapper>
     <FooterWrapper>
       <p>
