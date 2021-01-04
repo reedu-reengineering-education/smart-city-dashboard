@@ -1,12 +1,14 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
+import { Bicycle } from './Icons';
 import { Status } from './MeasurementTile';
 import {
   ComponentWrapper,
   FooterWrapper,
   HeadingWrapper,
   TilesWrapper,
+  WidgetIcon,
 } from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
@@ -14,6 +16,9 @@ const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 const RadfahrerComponent = () => (
   <ComponentWrapper>
     <HeadingWrapper>
+      <WidgetIcon>
+        <Bicycle></Bicycle>
+      </WidgetIcon>
       <p className="is-size-5">Radfahrer</p>
     </HeadingWrapper>
     <TilesWrapper>

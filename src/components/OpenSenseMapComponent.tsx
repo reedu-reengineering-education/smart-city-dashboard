@@ -3,7 +3,13 @@ import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
+import { Pressure } from './Icons';
+import {
+  ComponentWrapper,
+  FooterWrapper,
+  HeadingWrapper,
+  WidgetIcon,
+} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
@@ -46,6 +52,9 @@ const OpenSenseMapComponent = () => {
   return (
     <ComponentWrapper style={{ display: 'flex', flexDirection: 'column' }}>
       <HeadingWrapper>
+        <WidgetIcon>
+          <Pressure></Pressure>
+        </WidgetIcon>
         <p className="is-size-5">Wetter senseBox</p>
       </HeadingWrapper>
       <TilesWrapper>

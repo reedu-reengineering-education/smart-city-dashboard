@@ -4,17 +4,15 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateFeaturesVisible } from '../actions/map';
-import { ComponentWrapper, FooterWrapper } from './styles';
+import { Pedestrian } from './Icons';
+import {
+  ComponentWrapper,
+  FooterWrapper,
+  WidgetIcon,
+  HeadingWrapper,
+} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
-
-const HeadingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
 
 const TilesWrapper = styled.div`
   display: flex;
@@ -31,6 +29,9 @@ const PassantenComponent = () => {
   return (
     <ComponentWrapper>
       <HeadingWrapper>
+        <WidgetIcon>
+          <Pedestrian></Pedestrian>
+        </WidgetIcon>
         <p className="is-size-5">Passanten</p>
       </HeadingWrapper>
       <TilesWrapper>

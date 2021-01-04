@@ -3,8 +3,14 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateFeaturesVisible } from '../actions/map';
+import { CarParking } from './Icons';
 import { Progress } from './Progress';
-import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
+import {
+  ComponentWrapper,
+  FooterWrapper,
+  HeadingWrapper,
+  WidgetIcon,
+} from './styles';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
@@ -15,8 +21,13 @@ const ParkhausProgressWrapper = styled.div`
   padding: 0 1rem;
 `;
 
-const HeadingTitle = styled.p`
-  @media only screen and (max-width: 440px) {
+const ParkhausHeadingWrapper = styled(HeadingWrapper)`
+  justify-content: space-between;
+`;
+
+const HeadingTitle = styled.div`
+  display: flex;
+  @media only screen and (max-width: 986px) {
     width: 100%;
   }
 `;
@@ -66,8 +77,13 @@ const ParkhausComponent = () => {
 
   return (
     <ComponentWrapper>
-      <HeadingWrapper>
-        <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
+      <ParkhausHeadingWrapper>
+        <HeadingTitle>
+          <WidgetIcon>
+            <CarParking></CarParking>
+          </WidgetIcon>
+          <p className="is-size-5">Parkhäuser</p>
+        </HeadingTitle>
         <StatsWrapper>
           <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
           <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
@@ -80,7 +96,7 @@ const ParkhausComponent = () => {
             Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
           </p>
         </StatsWrapper>
-      </HeadingWrapper>
+      </ParkhausHeadingWrapper>
       <ParkhausProgressWrapper>
         {parkhausData?.data?.features?.length > 0 &&
           parkhausData?.data?.features?.map((p: any) => (

@@ -4,8 +4,14 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { updateFeaturesVisible } from '../actions/map';
+import { Water } from './Icons';
 import { Status } from './MeasurementTile';
-import { ComponentWrapper, FooterWrapper, HeadingWrapper } from './styles';
+import {
+  ComponentWrapper,
+  FooterWrapper,
+  HeadingWrapper,
+  WidgetIcon,
+} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
@@ -49,6 +55,9 @@ const AaseeComponent = () => {
   return (
     <ComponentWrapper>
       <HeadingWrapper>
+        <WidgetIcon>
+          <Water></Water>
+        </WidgetIcon>
         <p className="is-size-5">Wasserqualität Aasee</p>
       </HeadingWrapper>
       <TilesWrapper>
