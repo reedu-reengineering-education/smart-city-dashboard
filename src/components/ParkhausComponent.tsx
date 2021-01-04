@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { updateFeaturesVisible } from '../actions/map';
+import BaseWidgetComponent from './BaseWidget';
 import { CarParking } from './Icons';
 import { Progress } from './Progress';
-import {
-  ComponentWrapper,
-  FooterWrapper,
-  HeadingWrapper,
-  WidgetIcon,
-} from './styles';
+import { HeadingWrapper, WidgetIcon } from './styles';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
@@ -51,7 +45,6 @@ const ParkhausComponent = () => {
   const parkhausData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.parkhaus
   );
-  const dispatch = useDispatch();
 
   const [parkingTotal, setParkingTotal] = useState(0);
   const [carParkTotal, setCarParkTotal] = useState(0);
@@ -76,27 +69,31 @@ const ParkhausComponent = () => {
   }, [parkhausData]);
 
   return (
-    <ComponentWrapper>
-      <ParkhausHeadingWrapper>
-        <HeadingTitle>
+    <BaseWidgetComponent
+      mapFeatureTag="parking"
+      dataSource="Hello World"
+      headerOverride={
+        <ParkhausHeadingWrapper>
           <WidgetIcon>
-            <CarParking></CarParking>
+            <CarParking />
           </WidgetIcon>
-          <p className="is-size-5">Parkhäuser</p>
-        </HeadingTitle>
-        <StatsWrapper>
-          <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
-          <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
-        </StatsWrapper>
-        <StatsWrapper>
-          <p className="is-size-7">
-            Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
-          </p>
-          <p className="is-size-7">
-            Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
-          </p>
-        </StatsWrapper>
-      </ParkhausHeadingWrapper>
+          <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
+
+          <StatsWrapper>
+            <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
+            <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
+          </StatsWrapper>
+          <StatsWrapper>
+            <p className="is-size-7">
+              Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
+            </p>
+            <p className="is-size-7">
+              Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
+            </p>
+          </StatsWrapper>
+        </ParkhausHeadingWrapper>
+      }
+    >
       <ParkhausProgressWrapper>
         {parkhausData?.data?.features?.length > 0 &&
           parkhausData?.data?.features?.map((p: any) => (
@@ -111,21 +108,7 @@ const ParkhausComponent = () => {
             ></Progress>
           ))}
       </ParkhausProgressWrapper>
-      <FooterWrapper>
-        <p
-          onClick={() =>
-            dispatch(
-              updateFeaturesVisible({
-                parking: true,
-              })
-            )
-          }
-        >
-          <Link to="/map">Karte öffnen</Link>
-        </p>
-        <p>Datenquelle</p>
-      </FooterWrapper>
-    </ComponentWrapper>
+    </BaseWidgetComponent>
   );
 };
 

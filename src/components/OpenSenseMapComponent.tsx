@@ -1,18 +1,11 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import BaseWidgetComponent from './BaseWidget';
 import { Pressure } from './Icons';
-import {
-  ComponentWrapper,
-  FooterWrapper,
-  HeadingWrapper,
-  WidgetIcon,
-} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
-
 const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
 
 const TilesWrapper = styled.div`
@@ -50,77 +43,76 @@ const OpenSenseMapComponent = () => {
   }, [opensensemapData]);
 
   return (
-    <ComponentWrapper style={{ display: 'flex', flexDirection: 'column' }}>
-      <HeadingWrapper>
-        <WidgetIcon>
-          <Pressure></Pressure>
-        </WidgetIcon>
-        <p className="is-size-5">Wetter senseBox</p>
-      </HeadingWrapper>
-      <TilesWrapper>
-        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-          <MeasurementTile
-            header="Temperatur"
-            value={temperature}
-            footer="in °C"
-          ></MeasurementTile>
-        </Suspense>
-        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-          <MeasurementTile
-            header="rel. Luftfeuchte"
-            value={humidity}
-            footer="in %"
-          ></MeasurementTile>
-        </Suspense>
-        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-          <MeasurementTile
-            header="Luftdruck"
-            value={pressure}
-            footer="in hPa"
-            decimals={0}
-          ></MeasurementTile>
-        </Suspense>
-      </TilesWrapper>
-      <TilesWrapper
-        style={{ flexGrow: 1, maxHeight: '20rem', flexDirection: 'column' }}
-      >
-        {opensensemapData.data.temperature24.length > 0 && (
-          <ChartWrapper>
-            <Suspense fallback={<Skeleton count={5} />}>
-              <TimeSeriesChart
-                id="temperature"
-                data={opensensemapData.data.temperature24}
-                title="Temperatur"
-                unit="°C"
-              ></TimeSeriesChart>
-            </Suspense>
-          </ChartWrapper>
-        )}
-        {opensensemapData.data.humidity24.length > 0 && (
-          <ChartWrapper>
-            <Suspense fallback={<Skeleton count={5} />}>
-              <TimeSeriesChart
-                id="humidity"
-                data={opensensemapData.data.humidity24}
-                title="rel. Luftfeuchte"
-                unit="%"
-                chartOptions={{
-                  yaxis: {
-                    max: 100.001, // adding the .001 still shows the hover dot on the line
-                  },
-                }}
-              ></TimeSeriesChart>
-            </Suspense>
-          </ChartWrapper>
-        )}
-      </TilesWrapper>
-      <FooterWrapper>
-        <p>
-          <Link to="/map">Karte öffnen</Link>
-        </p>
-        <p>Datenquelle</p>
-      </FooterWrapper>
-    </ComponentWrapper>
+    <BaseWidgetComponent
+      title="Wetter senseBox"
+      icon={<Pressure />}
+      mapFeatureTag="osem"
+      dataSource="Hello World"
+    >
+      <>
+        <TilesWrapper>
+          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+            <MeasurementTile
+              header="Temperatur"
+              value={temperature}
+              footer="in °C"
+            ></MeasurementTile>
+          </Suspense>
+          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+            <MeasurementTile
+              header="rel. Luftfeuchte"
+              value={humidity}
+              footer="in %"
+            ></MeasurementTile>
+          </Suspense>
+          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+            <MeasurementTile
+              header="Luftdruck"
+              value={pressure}
+              footer="in hPa"
+              decimals={0}
+            ></MeasurementTile>
+          </Suspense>
+        </TilesWrapper>
+        <TilesWrapper
+          style={{
+            flexGrow: 1,
+            maxHeight: '20rem',
+            flexDirection: 'column',
+          }}
+        >
+          {opensensemapData.data.temperature24.length > 0 && (
+            <ChartWrapper>
+              <Suspense fallback={<Skeleton count={5} />}>
+                <TimeSeriesChart
+                  id="temperature"
+                  data={opensensemapData.data.temperature24}
+                  title="Temperatur"
+                  unit="°C"
+                ></TimeSeriesChart>
+              </Suspense>
+            </ChartWrapper>
+          )}
+          {opensensemapData.data.humidity24.length > 0 && (
+            <ChartWrapper>
+              <Suspense fallback={<Skeleton count={5} />}>
+                <TimeSeriesChart
+                  id="humidity"
+                  data={opensensemapData.data.humidity24}
+                  title="rel. Luftfeuchte"
+                  unit="%"
+                  chartOptions={{
+                    yaxis: {
+                      max: 100.001, // adding the .001 still shows the hover dot on the line
+                    },
+                  }}
+                ></TimeSeriesChart>
+              </Suspense>
+            </ChartWrapper>
+          )}
+        </TilesWrapper>
+      </>
+    </BaseWidgetComponent>
   );
 };
 

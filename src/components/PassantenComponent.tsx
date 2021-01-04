@@ -1,16 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { updateFeaturesVisible } from '../actions/map';
+import BaseWidgetComponent from './BaseWidget';
 import { Pedestrian } from './Icons';
-import {
-  ComponentWrapper,
-  FooterWrapper,
-  WidgetIcon,
-  HeadingWrapper,
-} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
@@ -24,16 +17,14 @@ const PassantenComponent = () => {
   const pedestrianData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.passanten
   );
-  const dispatch = useDispatch();
 
   return (
-    <ComponentWrapper>
-      <HeadingWrapper>
-        <WidgetIcon>
-          <Pedestrian></Pedestrian>
-        </WidgetIcon>
-        <p className="is-size-5">Passanten</p>
-      </HeadingWrapper>
+    <BaseWidgetComponent
+      title="Passanten"
+      icon={<Pedestrian />}
+      mapFeatureTag="pedestrians"
+      dataSource="Hello World"
+    >
       <TilesWrapper>
         {pedestrianData?.data.length > 0 &&
           pedestrianData.data.map((p: any) => (
@@ -51,21 +42,7 @@ const PassantenComponent = () => {
             </Suspense>
           ))}
       </TilesWrapper>
-      <FooterWrapper>
-        <p
-          onClick={() =>
-            dispatch(
-              updateFeaturesVisible({
-                pedestrians: true,
-              })
-            )
-          }
-        >
-          <Link to="/map">Karte öffnen</Link>
-        </p>
-        <p>Datenquelle</p>
-      </FooterWrapper>
-    </ComponentWrapper>
+    </BaseWidgetComponent>
   );
 };
 

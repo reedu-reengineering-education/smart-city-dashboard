@@ -1,26 +1,19 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Link } from 'react-router-dom';
+import BaseWidgetComponent from './BaseWidget';
 import { Bicycle } from './Icons';
 import { Status } from './MeasurementTile';
-import {
-  ComponentWrapper,
-  FooterWrapper,
-  HeadingWrapper,
-  TilesWrapper,
-  WidgetIcon,
-} from './styles';
+import { TilesWrapper } from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const RadfahrerComponent = () => (
-  <ComponentWrapper>
-    <HeadingWrapper>
-      <WidgetIcon>
-        <Bicycle></Bicycle>
-      </WidgetIcon>
-      <p className="is-size-5">Radfahrer</p>
-    </HeadingWrapper>
+  <BaseWidgetComponent
+    title="Radfahrer"
+    icon={<Bicycle />}
+    mapFeatureTag="bicycle"
+    dataSource="Hello World"
+  >
     <TilesWrapper>
       <Suspense fallback={<Skeleton width="100%" height="100%" />}>
         <MeasurementTile
@@ -50,13 +43,7 @@ const RadfahrerComponent = () => (
         ></MeasurementTile>
       </Suspense>
     </TilesWrapper>
-    <FooterWrapper>
-      <p>
-        <Link to="/map">Karte öffnen</Link>
-      </p>
-      <p>Datenquelle</p>
-    </FooterWrapper>
-  </ComponentWrapper>
+  </BaseWidgetComponent>
 );
 
 export default RadfahrerComponent;

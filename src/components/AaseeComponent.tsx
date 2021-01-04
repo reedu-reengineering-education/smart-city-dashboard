@@ -1,17 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { updateFeaturesVisible } from '../actions/map';
+import BaseWidgetComponent from './BaseWidget';
 import { Water } from './Icons';
 import { Status } from './MeasurementTile';
-import {
-  ComponentWrapper,
-  FooterWrapper,
-  HeadingWrapper,
-  WidgetIcon,
-} from './styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
@@ -25,7 +18,6 @@ const AaseeComponent = () => {
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
   );
-  const dispatch = useDispatch();
 
   const [temperature, setTemperature] = useState(0);
   const [ph, setPh] = useState(0);
@@ -53,13 +45,20 @@ const AaseeComponent = () => {
   }, [aaseeData]);
 
   return (
-    <ComponentWrapper>
-      <HeadingWrapper>
-        <WidgetIcon>
-          <Water></Water>
-        </WidgetIcon>
-        <p className="is-size-5">Wasserqualität Aasee</p>
-      </HeadingWrapper>
+    <BaseWidgetComponent
+      title="Wasserqualität Aasee"
+      icon={<Water />}
+      mapFeatureTag="aasee"
+      dataSource={`
+# Hello World
+
+This is the **Source** of open _data_
+
+- hello
+- world
+
+`}
+    >
       <TilesWrapper>
         <Suspense fallback={<Skeleton width="100%" height="100%" />}>
           <MeasurementTile
@@ -86,21 +85,7 @@ const AaseeComponent = () => {
           ></MeasurementTile>
         </Suspense>
       </TilesWrapper>
-      <FooterWrapper>
-        <p
-          onClick={() =>
-            dispatch(
-              updateFeaturesVisible({
-                aasee: true,
-              })
-            )
-          }
-        >
-          <Link to="/map">Karte öffnen</Link>
-        </p>
-        <p>Datenquelle</p>
-      </FooterWrapper>
-    </ComponentWrapper>
+    </BaseWidgetComponent>
   );
 };
 

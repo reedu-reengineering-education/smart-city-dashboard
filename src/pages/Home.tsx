@@ -1,6 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
+import BaseWidgetComponent from '../components/BaseWidget';
+import { Water } from '../components/Icons';
+import MeasurementTile from '../components/MeasurementTile';
 
 const AaseeComponent = lazy(() => import('../components/AaseeComponent'));
 const DateTimeComponent = lazy(() => import('../components/DateTimeComponent'));

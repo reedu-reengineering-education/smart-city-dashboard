@@ -49,6 +49,7 @@ export const FooterWrapper = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
     margin-top: 0.5rem;
+    cursor: pointer;
   }
 
   > p > a {
