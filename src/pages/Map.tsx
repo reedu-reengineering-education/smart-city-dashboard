@@ -2,8 +2,9 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { updateFeaturesVisible, updateMapViewport } from '../actions/map';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useMediaQuery } from 'beautiful-react-hooks';
 
 import {
   Humidity,
@@ -35,7 +36,7 @@ interface IconLabelProps {
   active?: boolean;
 }
 
-const IconLabel = styled.p<IconLabelProps>`
+const IconLabel = styled.div<IconLabelProps>`
   min-height: 48px;
   font-weight: var(--scms-semi-bold);
   display: flex;
@@ -82,6 +83,12 @@ function Map() {
   const dispatch = useDispatch();
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const isSmall = useMediaQuery('(max-width: 48rem)');
+
+  useEffect(() => {
+    setSidebarCollapsed(isSmall);
+  }, [isSmall]);
 
   const rasterStyle = {
     version: 8,
