@@ -33,15 +33,6 @@ const RadfahrerComponent = () => (
           status={Status.dummy}
         ></MeasurementTile>
       </Suspense>
-      <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-        <MeasurementTile
-          header="Wolbecker Str."
-          value={654}
-          decimals={0}
-          footer="letzte Stunde"
-          status={Status.dummy}
-        ></MeasurementTile>
-      </Suspense>
     </TilesWrapper>
   </BaseWidgetComponent>
 );
