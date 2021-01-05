@@ -37,6 +37,8 @@ export const TilesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  height: 100%;
+  align-items: center;
 `;
 
 export const FooterWrapper = styled.div`
