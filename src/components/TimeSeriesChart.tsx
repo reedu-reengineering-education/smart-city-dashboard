@@ -1,4 +1,5 @@
 import Chart from 'react-apexcharts';
+import { ApexOptions } from 'apexcharts';
 import merge from 'lodash/merge';
 
 interface ITimeSeriesChartProps {
@@ -6,11 +7,11 @@ interface ITimeSeriesChartProps {
   data: [];
   title: string;
   unit?: string;
-  chartOptions?: any;
+  chartOptions?: ApexOptions;
 }
 
 const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
-  const baseOptions = {
+  const baseOptions: ApexOptions = {
     chart: {
       id: props.id,
       defaultLocale: 'de',
@@ -78,12 +79,16 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
     },
     tooltip: {
       x: {
-        format: 'dd MMM yyyy HH:mm',
+        show: false,
+        format: 'HH:mm',
       },
       y: {
         formatter: (value: number) => {
           return `${value.toFixed(1)} ${props.unit}`;
         },
+      },
+      marker: {
+        show: false,
       },
     },
     stroke: {
@@ -91,6 +96,9 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
     },
     xaxis: {
       type: 'datetime',
+      labels: {
+        datetimeUTC: false,
+      },
     },
     colors: ['#009fe3'],
     title: {

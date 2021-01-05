@@ -89,6 +89,20 @@ const OpenSenseMapComponent = () => {
                   data={opensensemapData.data.temperature24}
                   title="Temperatur"
                   unit="°C"
+                  chartOptions={{
+                    xaxis: {
+                      labels: {
+                        show: false,
+                      },
+                    },
+                    yaxis: {
+                      labels: {
+                        formatter: (value: number) => {
+                          return value.toFixed(1);
+                        },
+                      },
+                    },
+                  }}
                 ></TimeSeriesChart>
               </Suspense>
             </ChartWrapper>
