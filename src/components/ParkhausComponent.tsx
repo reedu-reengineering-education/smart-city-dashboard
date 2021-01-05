@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from './BaseWidget';
 import { CarParking } from './Icons';
