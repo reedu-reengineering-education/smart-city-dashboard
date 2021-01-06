@@ -23,6 +23,26 @@ interface IBaseWidgetProps {
 
 const WidgetContent = styled.div`
   height: 100%;
+  position: relative;
+`;
+
+interface IDataContentStyleProps {
+  blur: boolean;
+}
+const DataContent = styled.div<IDataContentStyleProps>`
+  transition: 0.5s;
+  filter: ${(props) => {
+    return props.blur ? 'blur(1rem) opacity(0.3)' : '';
+  }};
+`;
+
+const SourceContent = styled(ReactMarkdown)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
 `;
 
 const BaseWidgetComponent = (props: IBaseWidgetProps) => {
@@ -41,11 +61,8 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         </HeadingWrapper>
       )}
       <WidgetContent>
-        {!showSource ? (
-          props.children
-        ) : (
-          <ReactMarkdown>{props.dataSource}</ReactMarkdown>
-        )}
+        <DataContent blur={showSource}>{props.children}</DataContent>
+        {showSource && <SourceContent>{props.dataSource}</SourceContent>}
       </WidgetContent>
       <FooterWrapper>
         <p
@@ -59,7 +76,9 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         >
           <Link to="/map">Karte öffnen</Link>
         </p>
-        <p onClick={() => setShowSource(!showSource)}>Datenquelle</p>
+        <p onClick={() => setShowSource(!showSource)}>
+          {showSource ? <b>Schließen</b> : 'Datenquelle'}
+        </p>
       </FooterWrapper>
     </ComponentWrapper>
   );
