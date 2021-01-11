@@ -142,7 +142,7 @@ const MapAaseeComponent = React.memo(({ visible }: IAaseeMarkersProps) => {
           </Marker>
         </>
       )}
-      {_renderPopup()}
+      {aaseeData && aaseeData?.metadata?.online && _renderPopup()}
     </React.Fragment>
   );
 });
