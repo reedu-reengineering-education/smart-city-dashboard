@@ -46,7 +46,7 @@ const OpenSenseMapComponent = () => {
     <BaseWidgetComponent
       title="Wetter senseBox"
       icon={<Pressure />}
-      mapFeatureTag="osem"
+      mapFeatureTag="opensensemap"
       dataSource={`
 **Beschreibung**
 
