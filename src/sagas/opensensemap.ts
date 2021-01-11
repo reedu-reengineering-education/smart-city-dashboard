@@ -19,7 +19,7 @@ export function* fetchOsemDataPeriodically() {
 export function* fetchOsemData() {
   try {
     const endpoint =
-      'https://api.opensensemap.org/boxes/5d91f4bb5f3de0001ab6bb78/sensors';
+      'https://api.opensensemap.org/boxes/5d91f4bb5f3de0001ab6bb78';
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_OSEM_DATA, osem: data });

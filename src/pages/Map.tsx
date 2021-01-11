@@ -10,6 +10,7 @@ import MapCarParkComponent from '../components/MapComponents/MapCarParkComponent
 import MapPedestrianComponent from '../components/MapComponents/MapPedestrianComponent';
 import MapAaseeComponent from '../components/MapComponents/MapAaseeComponent';
 import SidebarComponent from '../components/MapComponents/SidebarComponent';
+import MapOsemComponent from '../components/MapComponents/MapOsemComponent';
 
 const Wrapper = styled.div`
   position: relative;
@@ -64,6 +65,7 @@ function Map() {
           visible={features.pedestrians}
         ></MapPedestrianComponent>
         <MapAaseeComponent visible={features.aasee}></MapAaseeComponent>
+        <MapOsemComponent visible={features.opensensemap}></MapOsemComponent>
       </ReactMapGL>
       <SidebarComponent></SidebarComponent>
     </Wrapper>

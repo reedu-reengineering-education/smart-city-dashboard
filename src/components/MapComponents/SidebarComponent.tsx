@@ -93,15 +93,45 @@ const SidebarComponent = () => {
           <ChevronRight />
         )}
       </IconLabel>
-      <IconLabel>
+      <IconLabel
+        active={features.opensensemap}
+        onClick={() =>
+          dispatch(
+            updateFeaturesVisible({
+              ...features,
+              opensensemap: !features.opensensemap,
+            })
+          )
+        }
+      >
         <Temperature fill="#fff" />
         {!sidebarCollapsed && <p>Temperatur</p>}
       </IconLabel>
-      <IconLabel>
+      <IconLabel
+        active={features.opensensemap}
+        onClick={() =>
+          dispatch(
+            updateFeaturesVisible({
+              ...features,
+              opensensemap: !features.opensensemap,
+            })
+          )
+        }
+      >
         <Humidity fill="#fff" />
         {!sidebarCollapsed && <p>rel. Luftfeuchte</p>}
       </IconLabel>
-      <IconLabel>
+      <IconLabel
+        active={features.opensensemap}
+        onClick={() =>
+          dispatch(
+            updateFeaturesVisible({
+              ...features,
+              opensensemap: !features.opensensemap,
+            })
+          )
+        }
+      >
         <Pressure fill="#fff" />
         {!sidebarCollapsed && <p>Luftdruck</p>}
       </IconLabel>
