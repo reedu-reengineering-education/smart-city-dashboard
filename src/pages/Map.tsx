@@ -17,9 +17,11 @@ import {
   Pedestrian,
   ChevronLeft,
   ChevronRight,
+  Water,
 } from '../components/Icons';
 import MapCarParkComponent from '../components/MapComponents/MapCarParkComponent';
 import MapPedestrianComponent from '../components/MapComponents/MapPedestrianComponent';
+import MapAaseeComponent from '../components/MapComponents/MapAaseeComponent';
 
 const Wrapper = styled.div`
   position: relative;
@@ -125,6 +127,7 @@ function Map() {
         <MapPedestrianComponent
           visible={features.pedestrians}
         ></MapPedestrianComponent>
+        <MapAaseeComponent visible={features.aasee}></MapAaseeComponent>
       </ReactMapGL>
       <Sidebar collapsed={sidebarCollapsed}>
         <IconLabel
@@ -155,13 +158,47 @@ function Map() {
           <Pressure fill="#fff" />
           {!sidebarCollapsed && <p>Luftdruck</p>}
         </IconLabel>
-        <IconLabel>
+        <IconLabel
+          active={features.aasee}
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                ...features,
+                aasee: !features.aasee,
+              })
+            )
+          }
+        >
           <WaterTemperature fill="#fff" />
           {!sidebarCollapsed && <p>Wassertemperatur</p>}
         </IconLabel>
-        <IconLabel>
+        <IconLabel
+          active={features.aasee}
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                ...features,
+                aasee: !features.aasee,
+              })
+            )
+          }
+        >
           <PH fill="#fff" />
           {!sidebarCollapsed && <p>ph-Wert</p>}
+        </IconLabel>
+        <IconLabel
+          active={features.aasee}
+          onClick={() =>
+            dispatch(
+              updateFeaturesVisible({
+                ...features,
+                aasee: !features.aasee,
+              })
+            )
+          }
+        >
+          <Water fill="#fff" />
+          {!sidebarCollapsed && <p>Sauerstoffgehalt</p>}
         </IconLabel>
         <IconLabel
           active={features.parking}
