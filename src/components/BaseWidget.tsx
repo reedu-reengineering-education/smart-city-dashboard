@@ -30,6 +30,7 @@ interface IDataContentStyleProps {
   blur: boolean;
 }
 const DataContent = styled.div<IDataContentStyleProps>`
+  height: 100%;
   transition: 0.5s;
   filter: ${(props) => {
     return props.blur ? 'blur(1rem) opacity(0.3)' : '';
@@ -42,7 +43,7 @@ const SourceContent = styled(ReactMarkdown)`
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const BaseWidgetComponent = (props: IBaseWidgetProps) => {
