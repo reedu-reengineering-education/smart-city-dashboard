@@ -16,8 +16,7 @@ export function* fetchAaseeDataPeriodically() {
 
 export function* fetchAaseeData() {
   try {
-    const endpoint =
-      'https://datahub.digital/api/device/832/packets?auth=D3C9FBF4-C2F2-4AE1-9D5C-056B4119B1DD';
+    const endpoint = `https://city-dashboard.felixerdmann.com/aasee`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_AASEE_DATA, aasee: data });
