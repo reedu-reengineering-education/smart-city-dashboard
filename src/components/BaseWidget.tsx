@@ -78,7 +78,7 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
           <Link to="/map">Karte öffnen</Link>
         </p>
         <p onClick={() => setShowSource(!showSource)}>
-          {showSource ? <b>Schließen</b> : 'Datenquelle'}
+          {showSource ? <b>Schließen</b> : 'Hintergrund'}
         </p>
       </FooterWrapper>
     </ComponentWrapper>

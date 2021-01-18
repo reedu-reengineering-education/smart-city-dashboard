@@ -9,7 +9,7 @@ const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const RadfahrerComponent = () => (
   <BaseWidgetComponent
-    title="Radfahrer"
+    title="Radfahrende"
     icon={<Bicycle />}
     mapFeatureTag="bicycle"
     dataSource={`
