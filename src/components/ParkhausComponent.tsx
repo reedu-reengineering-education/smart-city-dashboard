@@ -26,6 +26,29 @@ const HeadingTitle = styled.div`
   }
 `;
 
+const FreeSpots = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+
+  > * {
+    font-weight: bold;
+    font-size: smaller;
+  }
+
+  > .blue {
+    color: var(--scms-primary-blue);
+  }
+
+  > .red {
+    color: var(--scms-red);
+  }
+
+  > .green {
+    color: var(--scms-green);
+  }
+`;
+
 const StatsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -109,20 +132,27 @@ Stadt Münster - Smart City
         </ParkhausHeadingWrapper>
       }
     >
-      <ParkhausProgressWrapper>
-        {parkhausData?.data?.features?.length > 0 &&
-          parkhausData?.data?.features?.map((p: any) => (
-            <Progress
-              key={p.properties.LFDNR}
-              id={p.properties.LFDNR}
-              title={p.properties.NAME.replace('Parkhaus ', '')
-                .replace('Parkplatz ', '')
-                .replace('PH ', '')} // replace text we don't really need
-              value={p.properties.parkingFree}
-              max={p.properties.parkingTotal}
-            ></Progress>
-          ))}
-      </ParkhausProgressWrapper>
+      <>
+        <FreeSpots>
+          <p className="blue">Parkhaus</p>
+          <p className="red">Belegte Plätze</p>
+          <p className="green">Freie Plätze</p>
+        </FreeSpots>
+        <ParkhausProgressWrapper>
+          {parkhausData?.data?.features?.length > 0 &&
+            parkhausData?.data?.features?.map((p: any) => (
+              <Progress
+                key={p.properties.LFDNR}
+                id={p.properties.LFDNR}
+                title={p.properties.NAME.replace('Parkhaus ', '')
+                  .replace('Parkplatz ', '')
+                  .replace('PH ', '')} // replace text we don't really need
+                value={p.properties.parkingFree}
+                max={p.properties.parkingTotal}
+              ></Progress>
+            ))}
+        </ParkhausProgressWrapper>
+      </>
     </BaseWidgetComponent>
   );
 };
