@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import logo from './../resources/smart-city-ms-logo.jpg';
+import logo from './../resources/smart-city-ms-logo.png';
 
 const Nav = styled.nav`
   .navbar-brand > .navbar-item {
@@ -19,6 +19,10 @@ const Nav = styled.nav`
   }
 `;
 
+const Logo = styled.img`
+  padding: 0.75rem;
+`;
+
 const Navbar = () => {
   const [mobileNav, toggleMobileNav] = useState(false);
 
@@ -26,7 +30,7 @@ const Navbar = () => {
     <Nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
-          <img alt="logo" src={logo} height="50px" />
+          <Logo alt="logo" src={logo} height="50px" />
         </Link>
 
         <div

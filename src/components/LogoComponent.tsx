@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ComponentWrapper } from './styles';
 
-import msLogo from '../resources/rathauslogo.svg';
+import logo from './../resources/clouds-white.jpg';
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const Container = styled.div`
 const LogoContainer = styled.div`
   background-color: var(--scms-primary-blue);
   margin: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   border-radius: 1rem;
   width: 9rem;
@@ -34,9 +34,9 @@ const Logo = styled.img`
 const LogoComponent = () => (
   <ComponentWrapper>
     <Container>
-      <p className="is-size-5">Stadt</p>
+      <p className="is-size-5">Smart City</p>
       <LogoContainer>
-        <Logo src={msLogo}></Logo>
+        <Logo src={logo}></Logo>
       </LogoContainer>
       <p>Münster</p>
     </Container>
