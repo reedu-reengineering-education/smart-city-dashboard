@@ -72,7 +72,6 @@ Stadt Münster - Smart City
             header="Sauerstoff"
             value={oxygen}
             footer="in mg/L"
-            status={Status.warning}
           ></MeasurementTile>
         </Suspense>
         <Suspense fallback={<Skeleton width="100%" height="100%" />}>
@@ -80,7 +79,6 @@ Stadt Münster - Smart City
             header="Temperatur"
             value={temperature}
             footer="in °C"
-            status={Status.bad}
           ></MeasurementTile>
         </Suspense>
         <Suspense fallback={<Skeleton width="100%" height="100%" />}>
@@ -88,7 +86,6 @@ Stadt Münster - Smart City
             header="pH-Wert"
             value={ph}
             footer="pH"
-            status={Status.good}
           ></MeasurementTile>
         </Suspense>
       </TilesWrapper>
