@@ -1,28 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Marker, Popup } from 'react-map-gl';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import styled from 'styled-components';
 
 import { PH, Water, WaterTemperature } from '../Icons';
 
-const AaseeMarker = styled.div`
-  background-color: var(--scms-primary-blue);
-  border-radius: 0.25rem;
-  border: 1px solid white;
-  width: 2rem;
-  height: 2rem;
-  color: white;
-  box-shadow: var(--scms-box-shadow);
-  font-weight: var(--scms-semi-bold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: smaller;
-
-  > svg {
-    width: 2rem;
-  }
-`;
+const MapMarker = lazy(() => import('./MapMarker'));
 
 interface IAaseeMarkersProps {
   visible: boolean;
@@ -48,101 +30,53 @@ const MapAaseeComponent = React.memo(({ visible }: IAaseeMarkersProps) => {
     setOxygenSensorData(oxygenSensor);
   }, [aaseeData]);
 
-  const [popupInfo, setPopupInfo] = useState<any>(undefined);
-
-  const _renderPopup = () => {
-    const myInfo: any = popupInfo;
-
-    const latitude = aaseeData.data.metadata.location.latitude;
-    const longitude = aaseeData.data.metadata.location.longitude;
-
-    return (
-      popupInfo && (
-        <Popup
-          tipSize={5}
-          anchor="bottom"
-          longitude={
-            myInfo.offset ? longitude + myInfo.offset * 0.0005 : longitude
-          }
-          latitude={
-            myInfo.offset ? latitude - myInfo.offset * 0.0005 : latitude
-          }
-          onClose={() => setPopupInfo(undefined)}
-          offsetTop={-16}
-        >
-          <div style={{ padding: '1rem' }}>
-            <p>
-              <b>{myInfo.text}</b>
-            </p>
-          </div>
-        </Popup>
-      )
-    );
-  };
-
   return (
     <React.Fragment>
       {visible && (
         <>
-          <Marker
-            longitude={aaseeData.data.metadata.location.longitude}
-            latitude={aaseeData.data.metadata.location.latitude}
-            offsetTop={-16}
-            offsetLeft={-16}
-          >
-            <AaseeMarker
-              onClick={() =>
-                setPopupInfo({
-                  text: `Temperatur: ${sensorData.parsed?.water_temperature.toFixed(
-                    2
-                  )} °C`,
-                })
+          <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
+            <MapMarker
+              color="blue"
+              icon={<WaterTemperature fill="#fff" />}
+              longitude={aaseeData.data.metadata.location.longitude}
+              latitude={aaseeData.data.metadata.location.latitude}
+              title={'Wassertemperatur'}
+              details={`${sensorData.parsed?.water_temperature.toFixed(2)} °C`}
+              popup={
+                <b>{`Temperatur: ${sensorData.parsed?.water_temperature.toFixed(
+                  2
+                )} °C`}</b>
               }
-            >
-              <WaterTemperature fill="#fff" />
-            </AaseeMarker>
-          </Marker>
-          <Marker
-            // addding slight offset to location
-            longitude={aaseeData.data.metadata.location.longitude + 0.0005}
-            latitude={aaseeData.data.metadata.location.latitude - 0.0005}
-            offsetTop={-16}
-            offsetLeft={-16}
-          >
-            <AaseeMarker
-              onClick={() =>
-                setPopupInfo({
-                  text: `PH Wert: ${sensorData.parsed?.pH.toFixed(2)}`,
-                  offset: 1,
-                })
+            ></MapMarker>
+            <MapMarker
+              color="blue"
+              icon={<PH fill="#fff" />}
+              // addding slight offset to location
+              longitude={aaseeData.data.metadata.location.longitude + 0.0005}
+              latitude={aaseeData.data.metadata.location.latitude - 0.0005}
+              title={'PH'}
+              details={`${sensorData.parsed?.pH.toFixed(2)}`}
+              popup={<b>{`PH Wert: ${sensorData.parsed?.pH.toFixed(2)}`}</b>}
+            ></MapMarker>
+            <MapMarker
+              color="blue"
+              icon={<Water fill="#fff" />}
+              // addding slight offset to location
+              longitude={aaseeData.data.metadata.location.longitude + 0.001}
+              latitude={aaseeData.data.metadata.location.latitude - 0.001}
+              title={'Sauerstoffgehalt'}
+              details={`${oxygenSensorData.parsed?.dissolved_oxygen.toFixed(
+                2
+              )} mg/L`}
+              popup={
+                <b>{`Sauerstoffgehalt: ${oxygenSensorData.parsed?.dissolved_oxygen.toFixed(
+                  2
+                )} mg/L`}</b>
               }
-            >
-              <PH fill="#fff" />
-            </AaseeMarker>
-          </Marker>
-          <Marker
-            // addding slight offset to location
-            longitude={aaseeData.data.metadata.location.longitude + 0.001}
-            latitude={aaseeData.data.metadata.location.latitude - 0.001}
-            offsetTop={-16}
-            offsetLeft={-16}
-          >
-            <AaseeMarker
-              onClick={() =>
-                setPopupInfo({
-                  text: `Sauerstoffgehalt: ${oxygenSensorData.parsed?.dissolved_oxygen.toFixed(
-                    2
-                  )} mg/L`,
-                  offset: 2,
-                })
-              }
-            >
-              <Water fill="#fff" />
-            </AaseeMarker>
-          </Marker>
+            ></MapMarker>
+          </Suspense>
         </>
       )}
-      {aaseeData && aaseeData?.metadata?.online && _renderPopup()}
     </React.Fragment>
   );
 });

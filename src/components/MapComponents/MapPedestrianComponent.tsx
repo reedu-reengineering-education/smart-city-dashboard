@@ -1,27 +1,9 @@
-import React, { useState } from 'react';
-import { Marker, Popup } from 'react-map-gl';
+import React, { lazy, Suspense, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import styled from 'styled-components';
 import { Pedestrian } from '../Icons';
 
-const PedestrianMarker = styled.div`
-  background-color: var(--scms-primary-blue);
-  border-radius: 0.25rem;
-  border: 1px solid white;
-  width: 2rem;
-  height: 2rem;
-  color: white;
-  box-shadow: var(--scms-box-shadow);
-  font-weight: var(--scms-semi-bold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: smaller;
-
-  > svg {
-    width: 2rem;
-  }
-`;
+const MapMarker = lazy(() => import('./MapMarker'));
 
 interface IPedestrianMarkersProps {
   visible: boolean;
@@ -33,30 +15,19 @@ const MapPedestrianComponent = React.memo(
       (state: RootStateOrAny) => state.passanten
     );
 
-    const [popupInfo, setPopupInfo] = useState(undefined);
-
-    const _renderPopup = () => {
-      const myInfo: any = popupInfo;
+    const Popup = (pedestrianSensor: any) => {
       return (
-        popupInfo && (
-          <Popup
-            tipSize={5}
-            anchor="bottom"
-            longitude={myInfo.metadata.location.longitude}
-            latitude={myInfo.metadata.location.latitude}
-            onClose={() => setPopupInfo(undefined)}
-            offsetTop={-16}
-          >
-            <div style={{ padding: '1rem' }}>
-              <p>
-                <b>{myInfo.name}</b>
-              </p>
-              <p>
-                Passanten letzte Stunde: {myInfo.statistics.timerange_count}
-              </p>
-              <p>Passanten heute: {myInfo.statistics.today_count}</p>
-            </div>
-          </Popup>
+        pedestrianSensor && (
+          <div style={{ padding: '1rem' }}>
+            <p>
+              <b>{pedestrianSensor.name}</b>
+            </p>
+            <p>
+              Passanten letzte Stunde:{' '}
+              {pedestrianSensor.statistics.timerange_count}
+            </p>
+            <p>Passanten heute: {pedestrianSensor.statistics.today_count}</p>
+          </div>
         )
       );
     };
@@ -66,19 +37,18 @@ const MapPedestrianComponent = React.memo(
         {visible &&
           pedestrianData?.data?.length > 0 &&
           pedestrianData.data.map((pedestrianSensor: any) => (
-            <Marker
-              key={pedestrianSensor.id}
-              longitude={pedestrianSensor.metadata.location.longitude}
-              latitude={pedestrianSensor.metadata.location.latitude}
-              offsetTop={-16}
-              offsetLeft={-16}
-            >
-              <PedestrianMarker onClick={() => setPopupInfo(pedestrianSensor)}>
-                <Pedestrian fill="#fff" />
-              </PedestrianMarker>
-            </Marker>
+            <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
+              <MapMarker
+                color="blue"
+                icon={<Pedestrian fill="#fff" />}
+                longitude={pedestrianSensor.metadata.location.longitude}
+                latitude={pedestrianSensor.metadata.location.latitude}
+                title={pedestrianSensor.name}
+                details={`${pedestrianSensor.statistics.timerange_count} letzte Stunde`}
+                popup={Popup(pedestrianSensor)}
+              ></MapMarker>
+            </Suspense>
           ))}
-        {_renderPopup()}
       </React.Fragment>
     );
   }
