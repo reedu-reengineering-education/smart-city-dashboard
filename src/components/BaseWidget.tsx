@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -61,6 +61,17 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
 
   const [showSource, setShowSource] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+
+  useEffect(() => {
+    if (showSource) {
+      setShowDetails(false);
+    }
+  }, [showSource]);
+  useEffect(() => {
+    if (showDetails) {
+      setShowSource(false);
+    }
+  }, [showDetails]);
 
   return (
     <ComponentWrapper>
