@@ -58,13 +58,21 @@ Die Passantenfrequenzen in Münster stellt Ihnen hystreet.com in Kooperation mit
                 };
               })}
               title="Passanten"
-              unit="der letzter Stunde"
               type={'line'}
               chartOptions={{
                 colors: ['#009fe3', '#86bc25', '#fdc300'],
-                xaxis: {
+                yaxis: {
                   labels: {
-                    show: false,
+                    formatter: (value: number) => {
+                      return value.toFixed(0);
+                    },
+                  },
+                },
+                tooltip: {
+                  y: {
+                    formatter: (value: number) => {
+                      return `${value.toFixed(0)}`;
+                    },
                   },
                 },
               }}
