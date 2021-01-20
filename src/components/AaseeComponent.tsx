@@ -4,7 +4,6 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from './BaseWidget';
 import { Water } from './Icons';
-import { Status } from './MeasurementTile';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 

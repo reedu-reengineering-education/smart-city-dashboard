@@ -18,7 +18,10 @@ const MapOsemComponent = React.memo(({ visible }: IOsemMarkersProps) => {
       {visible &&
         osemData?.data?.live?.sensors?.length > 0 &&
         osemData?.data?.live?.sensors.map((sensor: any, index: number) => (
-          <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
+          <Suspense
+            key={index}
+            fallback={<Skeleton width="2rem" height="2rem" />}
+          >
             <MapMarker
               color="blue"
               icon={

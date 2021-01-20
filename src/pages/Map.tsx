@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { updateMapViewport } from '../actions/map';
+import { setActivePopup, updateMapViewport } from '../actions/map';
 
 import MapCarParkComponent from '../components/MapComponents/MapCarParkComponent';
 import MapPedestrianComponent from '../components/MapComponents/MapPedestrianComponent';
@@ -26,6 +26,9 @@ const Wrapper = styled.div`
 function Map() {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
   const features = useSelector((state: RootStateOrAny) => state.map.features);
+  const popup: JSX.Element | undefined = useSelector(
+    (state: RootStateOrAny) => state.map.popup
+  );
   // const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);
   const dispatch = useDispatch();
 
@@ -59,6 +62,7 @@ function Map() {
         onViewportChange={(nextViewport: any) => {
           dispatch(updateMapViewport(nextViewport));
         }}
+        onClick={() => dispatch(setActivePopup(undefined))}
       >
         <MapCarParkComponent visible={features.parking}></MapCarParkComponent>
         <MapPedestrianComponent
@@ -66,6 +70,7 @@ function Map() {
         ></MapPedestrianComponent>
         <MapAaseeComponent visible={features.aasee}></MapAaseeComponent>
         <MapOsemComponent visible={features.opensensemap}></MapOsemComponent>
+        {popup}
       </ReactMapGL>
       <SidebarComponent></SidebarComponent>
     </Wrapper>

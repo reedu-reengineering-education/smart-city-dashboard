@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Marker, Popup } from 'react-map-gl';
-import { RootStateOrAny, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { setActivePopup } from '../../actions/map';
 
 interface MapMarkerProps {
   latitude: number;
@@ -59,24 +60,25 @@ const MarkerSideCard = styled(BaseMarkerCard)`
 const MapMarker = (props: MapMarkerProps) => {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
 
-  const [popupVisible, setPopupVisible] = useState(false);
+  const dispatch = useDispatch();
 
-  const _renderPopup = () => {
-    return (
-      props.popup && (
+  const [popup, setPopup] = useState<JSX.Element>();
+  useEffect(() => {
+    if (props.popup) {
+      setPopup(
         <Popup
           tipSize={5}
           anchor="bottom"
           longitude={props.longitude}
           latitude={props.latitude}
-          onClose={() => setPopupVisible(false)}
+          onClose={() => dispatch(setActivePopup(undefined))}
           offsetTop={-16}
         >
           {props.popup}
         </Popup>
-      )
-    );
-  };
+      );
+    }
+  }, [dispatch, props]);
 
   return (
     <>
@@ -86,7 +88,11 @@ const MapMarker = (props: MapMarkerProps) => {
         offsetTop={-16}
         offsetLeft={-16}
       >
-        <CarParkMarker onClick={() => setPopupVisible(true)}>
+        <CarParkMarker
+          onClick={() => {
+            if (props.popup) dispatch(setActivePopup(popup));
+          }}
+        >
           {props.icon}
           <>
             <MarkerTitleCard
@@ -102,7 +108,6 @@ const MapMarker = (props: MapMarkerProps) => {
           </>
         </CarParkMarker>
       </Marker>
-      {popupVisible && _renderPopup()}
     </>
   );
 };

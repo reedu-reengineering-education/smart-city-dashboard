@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { Pedestrian } from '../Icons';
@@ -37,7 +37,10 @@ const MapPedestrianComponent = React.memo(
         {visible &&
           pedestrianData?.data?.length > 0 &&
           pedestrianData.data.map((pedestrianSensor: any) => (
-            <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
+            <Suspense
+              key={pedestrianSensor.id}
+              fallback={<Skeleton width="2rem" height="2rem" />}
+            >
               <MapMarker
                 color="blue"
                 icon={<Pedestrian fill="#fff" />}

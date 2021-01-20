@@ -33,7 +33,10 @@ const MapCarParkComponent = React.memo(({ visible }: ICarParkMarkersProps) => {
       {visible &&
         parkhausData?.data?.features?.length > 0 &&
         parkhausData.data.features.map((carPark: any) => (
-          <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
+          <Suspense
+            key={carPark.properties.LFDNR}
+            fallback={<Skeleton width="2rem" height="2rem" />}
+          >
             <MapMarker
               color="blue"
               icon={<CarParking fill="#fff" />}
