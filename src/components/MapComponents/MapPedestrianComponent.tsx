@@ -24,7 +24,11 @@ const MapPedestrianComponent = React.memo(
             </p>
             <p>
               Passanten letzte Stunde:{' '}
-              {pedestrianSensor.statistics.timerange_count}
+              {
+                pedestrianSensor.measurements[
+                  pedestrianSensor.measurements.length - 2
+                ].pedestrians_count
+              }
             </p>
             <p>Passanten heute: {pedestrianSensor.statistics.today_count}</p>
           </div>
@@ -47,7 +51,11 @@ const MapPedestrianComponent = React.memo(
                 longitude={pedestrianSensor.metadata.location.longitude}
                 latitude={pedestrianSensor.metadata.location.latitude}
                 title={pedestrianSensor.name}
-                details={`${pedestrianSensor.statistics.timerange_count} letzte Stunde`}
+                details={`${
+                  pedestrianSensor.measurements[
+                    pedestrianSensor.measurements.length - 2
+                  ].pedestrians_count
+                } letzte Stunde`}
                 popup={Popup(pedestrianSensor)}
               ></MapMarker>
             </Suspense>
