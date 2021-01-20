@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 import { loadParkhausData } from './actions/parkhaus';
 import { loadAaseeData } from './actions/aasee';
 import { loadOsemData } from './actions/opensensemap';
