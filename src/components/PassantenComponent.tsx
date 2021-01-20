@@ -6,11 +6,17 @@ import BaseWidgetComponent from './BaseWidget';
 import { Pedestrian } from './Icons';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
+const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
 
 const TilesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+`;
+
+const ChartWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const PassantenComponent = () => {
@@ -35,10 +41,37 @@ tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
 **Datenquelle**
 
-![Smart City Münster Logo](https://smartcity.ms/wp-content/uploads/2020/12/Smart-City-Mu%CC%88nster_Logo_20201210_RGB_240x62.png)
-
-Stadt Münster - Smart City
+Die Passantenfrequenzen in Münster stellt Ihnen hystreet.com in Kooperation mit der Wirtschaftsförderung Münster GmbH zur Verfügung.
 `}
+      details={
+        <ChartWrapper>
+          <Suspense fallback={<Skeleton count={5} />}>
+            <TimeSeriesChart
+              id="temperature"
+              series={pedestrianData.data.map((sensor: any) => {
+                return {
+                  name: sensor.name,
+                  data: sensor.measurements.map((m: any) => ({
+                    x: m.timestamp,
+                    y: m.pedestrians_count,
+                  })),
+                };
+              })}
+              title="Passanten"
+              unit="der letzter Stunde"
+              type={'line'}
+              chartOptions={{
+                colors: ['#009fe3', '#86bc25', '#fdc300'],
+                xaxis: {
+                  labels: {
+                    show: false,
+                  },
+                },
+              }}
+            ></TimeSeriesChart>
+          </Suspense>
+        </ChartWrapper>
+      }
     >
       <TilesWrapper>
         {pedestrianData?.data.length > 0 &&
@@ -51,7 +84,9 @@ Stadt Münster - Smart City
                 key={p.id}
                 footer={'letzte Stunde'}
                 header={p.name}
-                value={p.statistics.timerange_count}
+                value={
+                  p.measurements[p.measurements.length - 2].pedestrians_count
+                }
                 decimals={0}
               ></MeasurementTile>
             </Suspense>

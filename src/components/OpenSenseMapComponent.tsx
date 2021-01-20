@@ -101,7 +101,12 @@ Stadt Münster - Smart City
               <Suspense fallback={<Skeleton count={5} />}>
                 <TimeSeriesChart
                   id="temperature"
-                  data={opensensemapData.data.temperature24}
+                  series={[
+                    {
+                      name: 'Temperatur',
+                      data: opensensemapData.data.temperature24,
+                    },
+                  ]}
                   title="Temperatur"
                   unit="°C"
                   chartOptions={{
@@ -127,7 +132,12 @@ Stadt Münster - Smart City
               <Suspense fallback={<Skeleton count={5} />}>
                 <TimeSeriesChart
                   id="humidity"
-                  data={opensensemapData.data.humidity24}
+                  series={[
+                    {
+                      name: 'rel. Luftfeuchte',
+                      data: opensensemapData.data.humidity24,
+                    },
+                  ]}
                   title="rel. Luftfeuchte"
                   unit="%"
                   chartOptions={{

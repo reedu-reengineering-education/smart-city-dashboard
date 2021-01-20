@@ -19,6 +19,7 @@ interface IBaseWidgetProps {
   children: JSX.Element;
   dataSource: string;
   headerOverride?: JSX.Element;
+  details?: JSX.Element;
 }
 
 const WidgetContent = styled.div`
@@ -46,10 +47,20 @@ const SourceContent = styled(ReactMarkdown)`
   overflow-y: scroll;
 `;
 
+const DetailContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: visible;
+`;
+
 const BaseWidgetComponent = (props: IBaseWidgetProps) => {
   const dispatch = useDispatch();
 
   const [showSource, setShowSource] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <ComponentWrapper>
@@ -62,8 +73,11 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         </HeadingWrapper>
       )}
       <WidgetContent>
-        <DataContent blur={showSource}>{props.children}</DataContent>
+        <DataContent blur={showSource || showDetails}>
+          {props.children}
+        </DataContent>
         {showSource && <SourceContent>{props.dataSource}</SourceContent>}
+        {showDetails && <DetailContent>{props.details}</DetailContent>}
       </WidgetContent>
       <FooterWrapper>
         <p
@@ -77,6 +91,11 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         >
           <Link to="/map">Karte öffnen</Link>
         </p>
+        {props.details && (
+          <p onClick={() => setShowDetails(!showDetails)}>
+            {showDetails ? <b>Schließen</b> : 'Details'}
+          </p>
+        )}
         <p onClick={() => setShowSource(!showSource)}>
           {showSource ? <b>Schließen</b> : 'Hintergrund'}
         </p>

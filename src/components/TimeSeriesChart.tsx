@@ -4,10 +4,25 @@ import merge from 'lodash/merge';
 
 interface ITimeSeriesChartProps {
   id: string;
-  data: [];
+  series: any[];
   title: string;
   unit?: string;
   chartOptions?: ApexOptions;
+  type?:
+    | 'area'
+    | 'line'
+    | 'bar'
+    | 'histogram'
+    | 'pie'
+    | 'donut'
+    | 'rangeBar'
+    | 'radialBar'
+    | 'scatter'
+    | 'bubble'
+    | 'heatmap'
+    | 'candlestick'
+    | 'radar'
+    | 'polarArea';
 }
 
 const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
@@ -118,13 +133,8 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
   return (
     <Chart
       options={merge(baseOptions, props.chartOptions)}
-      series={[
-        {
-          name: props.title,
-          data: props.data,
-        },
-      ]}
-      type="area"
+      series={props.series}
+      type={props.type || 'area'}
       height="100%"
     />
   );

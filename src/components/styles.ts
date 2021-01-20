@@ -5,10 +5,7 @@ export const ComponentWrapper = styled.div`
   border-radius: 1rem;
   width: 100%;
   min-height: 250px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

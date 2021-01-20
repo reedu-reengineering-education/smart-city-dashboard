@@ -12,7 +12,7 @@ const ParkhausProgressWrapper = styled.div`
   align-items: center;
   max-height: 10rem;
   overflow-y: scroll;
-  padding: 0 1rem;
+  padding: 0.5rem;
 `;
 
 const ParkhausHeadingWrapper = styled(HeadingWrapper)`
@@ -26,7 +26,7 @@ const HeadingTitle = styled.div`
   }
 `;
 
-const FreeSpots = styled.div`
+const ProgressLegend = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0.5rem;
@@ -133,11 +133,11 @@ Stadt Münster - Smart City
       }
     >
       <>
-        <FreeSpots>
+        <ProgressLegend>
           <p className="blue">Parkhaus</p>
           <p className="red">Belegte Plätze</p>
           <p className="green">Freie Plätze</p>
-        </FreeSpots>
+        </ProgressLegend>
         <ParkhausProgressWrapper>
           {parkhausData?.data?.features?.length > 0 &&
             parkhausData?.data?.features?.map((p: any) => (
