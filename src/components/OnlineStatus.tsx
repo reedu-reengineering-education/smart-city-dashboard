@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 interface OnlineStatusProps {
   online: boolean;
@@ -17,10 +16,6 @@ const Dot = styled.span<OnlineStatusProps>`
 
 const OnlineStatus = (props: OnlineStatusProps) => {
   return <Dot online={props.online}></Dot>;
-};
-
-OnlineStatus.propTypes = {
-  online: PropTypes.bool,
 };
 
 export default OnlineStatus;
