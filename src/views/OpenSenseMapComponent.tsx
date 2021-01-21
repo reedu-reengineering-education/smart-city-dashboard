@@ -2,11 +2,11 @@ import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import BaseWidgetComponent from './BaseWidget';
-import { Pressure } from './Icons';
+import BaseWidgetComponent from '../components/BaseWidget';
+import { Pressure } from '../components/Icons';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
-const TimeSeriesChart = lazy(() => import('./TimeSeriesChart'));
+const TimeSeriesChart = lazy(() => import('../components/TimeSeriesChart'));
 
 const TilesWrapper = styled.div`
   display: flex;

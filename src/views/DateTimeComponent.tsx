@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ComponentWrapper } from './styles';
+import { ComponentWrapper } from '../components/styles';
 
 const Container = styled.div`
   display: flex;

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
-// @ts-ignore
-import NumberEasing from 'react-number-easing';
+
+const AnimatedNumber = lazy(() => import('./AnimatedNumber'));
 
 interface ProgressProps {
   id: number;
@@ -114,23 +115,28 @@ export const Progress = (props: ProgressProps) => (
   <ProgressComponentWrapper>
     <Title>{props.title}</Title>
     <ProgressWrapper>
+      {/* This is the horizontal line displaying the progress */}
       <ProgressBar>
         <ProgressDone
           value={(1 - props.value / props.max) * 100}
         ></ProgressDone>
       </ProgressBar>
+      {/* Here are the knobs / buttons in the progress bar */}
       <ProgressKnobs>
-        <ProgressKnobHidden></ProgressKnobHidden>
-        <ProgressStart>P{props.id}</ProgressStart>
-        <ProgressEnd>{props.value}</ProgressEnd>
-        <ProgressStatus value={(1 - props.value / props.max) * 100}>
-          <NumberEasing
-            value={props.max - props.value}
-            speed={1000}
-            decimals={0}
-            ease="expoInOut"
-          />
-        </ProgressStatus>
+        <Suspense fallback={<Skeleton></Skeleton>}>
+          {/* We need this knob for correct layout idk */}
+          <ProgressKnobHidden></ProgressKnobHidden>
+          {/* This is the square knob at the start */}
+          <ProgressStart>P{props.id}</ProgressStart>
+          {/* This is the circular knob at the end */}
+          <ProgressEnd>
+            <AnimatedNumber value={props.value}></AnimatedNumber>
+          </ProgressEnd>
+          {/* This is the circular knob sliding in the progress bar */}
+          <ProgressStatus value={(1 - props.value / props.max) * 100}>
+            <AnimatedNumber value={props.max - props.value}></AnimatedNumber>
+          </ProgressStatus>
+        </Suspense>
       </ProgressKnobs>
     </ProgressWrapper>
   </ProgressComponentWrapper>

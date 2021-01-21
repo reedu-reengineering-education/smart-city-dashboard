@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ComponentWrapper } from './styles';
+import { ComponentWrapper } from '../components/styles';
 
 import logo from './../resources/clouds-white.jpg';
 

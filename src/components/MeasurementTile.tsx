@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
-// @ts-ignore
-import NumberEasing from 'react-number-easing';
+
+const AnimatedNumber = lazy(() => import('./AnimatedNumber'));
 
 export enum Status {
   good,
@@ -71,12 +71,12 @@ const MeasurementTile = (props: MeasurementTileProps) => {
     <MeasurementContainer status={props.status}>
       <TopText>{props.header}</TopText>
       <Value className="is-size-2">
-        <NumberEasing
-          value={Number(props.value)}
-          speed={1000}
-          decimals={props.decimals != null ? props.decimals : 1}
-          ease="expoInOut"
-        />
+        <Suspense fallback={<span>0</span>}>
+          <AnimatedNumber
+            value={Number(props.value)}
+            decimals={props.decimals != null ? props.decimals : 1}
+          />
+        </Suspense>
         <wbr />
         <span className="is-size-5">{props.unit}</span>
       </Value>

@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import BaseWidgetComponent from './BaseWidget';
-import { Bicycle } from './Icons';
-import { Status } from './MeasurementTile';
-import { TilesWrapper } from './styles';
+import BaseWidgetComponent from '../components/BaseWidget';
+import { Bicycle } from '../components/Icons';
+import { Status } from '../components/MeasurementTile';
+import { TilesWrapper } from '../components/styles';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 

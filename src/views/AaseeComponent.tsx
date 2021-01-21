@@ -2,8 +2,8 @@ import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import BaseWidgetComponent from './BaseWidget';
-import { Water } from './Icons';
+import BaseWidgetComponent from '../components/BaseWidget';
+import { Water } from '../components/Icons';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 

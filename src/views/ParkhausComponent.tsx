@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import BaseWidgetComponent from './BaseWidget';
-import { CarParking } from './Icons';
-import { Progress } from './Progress';
-import { HeadingWrapper, WidgetIcon } from './styles';
+import BaseWidgetComponent from '../components/BaseWidget';
+import { CarParking } from '../components/Icons';
+import { Progress } from '../components/Progress';
+import { HeadingWrapper, WidgetIcon } from '../components/styles';
+import { IParkingState } from '../reducers/parkhaus';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ const StatusRed = styled.span`
 `;
 
 const ParkhausComponent = () => {
-  const parkhausData: ServiceState = useSelector(
+  const parkhausData: IParkingState = useSelector(
     (state: RootStateOrAny) => state.parkhaus
   );
 

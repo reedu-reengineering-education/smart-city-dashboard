@@ -2,19 +2,15 @@ import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 
-const AaseeComponent = lazy(() => import('../components/AaseeComponent'));
-const DateTimeComponent = lazy(() => import('../components/DateTimeComponent'));
-const LogoComponent = lazy(() => import('../components/LogoComponent'));
+const AaseeComponent = lazy(() => import('../views/AaseeComponent'));
+const DateTimeComponent = lazy(() => import('../views/DateTimeComponent'));
+const LogoComponent = lazy(() => import('../views/LogoComponent'));
 const OpenSenseMapComponent = lazy(
-  () => import('../components/OpenSenseMapComponent')
+  () => import('../views/OpenSenseMapComponent')
 );
-const ParkhausComponent = lazy(() => import('../components/ParkhausComponent'));
-const PassantenComponent = lazy(
-  () => import('../components/PassantenComponent')
-);
-const RadfahrerComponent = lazy(
-  () => import('../components/RadfahrerComponent')
-);
+const ParkhausComponent = lazy(() => import('../views/ParkhausComponent'));
+const PassantenComponent = lazy(() => import('../views/PassantenComponent'));
+const RadfahrerComponent = lazy(() => import('../views/RadfahrerComponent'));
 
 const Container = styled.div`
   max-width: 1632px !important;
