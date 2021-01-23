@@ -96,12 +96,12 @@ const MapMarker = (props: MapMarkerProps) => {
           {props.icon}
           <>
             <MarkerTitleCard
-              visible={viewport.zoom > (props.titleVisibleTreshold || 15)}
+              visible={viewport.zoom > (props.titleVisibleTreshold ?? 14)}
             >
               {props.title}
             </MarkerTitleCard>
             <MarkerSideCard
-              visible={viewport.zoom > (props.detailsVisibleTreshold || 16)}
+              visible={viewport.zoom > (props.detailsVisibleTreshold ?? 15)}
             >
               {props.details}
             </MarkerSideCard>
