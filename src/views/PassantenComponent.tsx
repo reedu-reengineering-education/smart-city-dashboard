@@ -48,7 +48,7 @@ Die Passantenfrequenzen in Münster stellt Ihnen hystreet.com in Kooperation mit
           <Suspense fallback={<Skeleton count={5} />}>
             <TimeSeriesChart
               id="temperature"
-              series={pedestrianData.data.map((sensor: any) => {
+              series={pedestrianData.data?.map((sensor: any) => {
                 return {
                   name: sensor.name,
                   data: sensor.measurements.map((m: any) => ({
@@ -82,8 +82,8 @@ Die Passantenfrequenzen in Münster stellt Ihnen hystreet.com in Kooperation mit
       }
     >
       <TilesWrapper>
-        {pedestrianData?.data.length > 0 &&
-          pedestrianData.data.map((p: any) => (
+        {pedestrianData.data?.length > 0 &&
+          pedestrianData.data?.map((p: any) => (
             <Suspense
               key={p.id}
               fallback={<Skeleton width="100%" height="100%" />}
