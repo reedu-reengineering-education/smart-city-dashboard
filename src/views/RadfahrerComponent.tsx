@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import BaseWidgetComponent from '../components/BaseWidget';
-import { Bicycle } from '../components/Icons';
+import Bicycle from '../resources/animated/Bicycle';
 import { Status } from '../components/MeasurementTile';
 import { TilesWrapper } from '../components/styles';
 
