@@ -6,6 +6,7 @@ import { CarParking } from '../components/Icons';
 import { Progress } from '../components/Progress';
 import { HeadingWrapper, WidgetIcon } from '../components/styles';
 import { IParkingState } from '../reducers/parkhaus';
+import Parking from '../resources/animated/Parking';
 
 const ParkhausProgressWrapper = styled.div`
   display: flex;
@@ -95,6 +96,8 @@ const ParkhausComponent = () => {
   return (
     <BaseWidgetComponent
       mapFeatureTag="parking"
+      icon={Parking}
+      title="Parkhäuser"
       dataSource={`
 **Beschreibung**
 
@@ -111,27 +114,25 @@ tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
 Stadt Münster - Smart City
 `}
-      headerOverride={
-        <ParkhausHeadingWrapper>
-          <WidgetIcon>
-            <CarParking />
-          </WidgetIcon>
-          <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
+      // headerOverride={
+      //   <ParkhausHeadingWrapper>
+      //     <WidgetIcon>{/* <CarParking /> */}</WidgetIcon>
+      //     <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
 
-          <StatsWrapper>
-            <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
-            <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
-          </StatsWrapper>
-          <StatsWrapper>
-            <p className="is-size-7">
-              Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
-            </p>
-            <p className="is-size-7">
-              Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
-            </p>
-          </StatsWrapper>
-        </ParkhausHeadingWrapper>
-      }
+      //     <StatsWrapper>
+      //       <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
+      //       <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
+      //     </StatsWrapper>
+      //     <StatsWrapper>
+      //       <p className="is-size-7">
+      //         Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
+      //       </p>
+      //       <p className="is-size-7">
+      //         Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
+      //       </p>
+      //     </StatsWrapper>
+      //   </ParkhausHeadingWrapper>
+      // }
     >
       <>
         <ProgressLegend>

@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
-import { Water } from '../components/Icons';
+import Water from '../resources/animated/Water';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
@@ -46,7 +46,7 @@ const AaseeComponent = () => {
   return (
     <BaseWidgetComponent
       title="Wasserqualität Aasee"
-      icon={<Water />}
+      icon={Water}
       mapFeatureTag="aasee"
       dataSource={`
 **Beschreibung**

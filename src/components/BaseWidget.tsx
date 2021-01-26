@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 interface IBaseWidgetProps {
-  icon?: JSX.Element;
+  icon?: any;
   title?: string;
   mapFeatureTag: string;
   children: JSX.Element;
@@ -62,6 +62,8 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
   const [showSource, setShowSource] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
+  const [animateIcon, setAnimateIcon] = useState(false);
+
   useEffect(() => {
     if (showSource) {
       setShowDetails(false);
@@ -73,13 +75,28 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
     }
   }, [showDetails]);
 
+  useEffect(() => {
+    setAnimateIcon(true);
+  }, [props.children]);
+  useEffect(() => {
+    if (animateIcon) {
+      setAnimateIcon(false);
+    }
+  }, [animateIcon]);
+
+  const Icon = props.icon;
+
   return (
     <ComponentWrapper>
       {props.headerOverride ? (
         props.headerOverride
       ) : (
         <HeadingWrapper>
-          {props.icon && <WidgetIcon>{props.icon}</WidgetIcon>}
+          {props.icon && (
+            <WidgetIcon>
+              <Icon start={animateIcon}></Icon>
+            </WidgetIcon>
+          )}
           {props.title && <p className="is-size-5">{props.title}</p>}
         </HeadingWrapper>
       )}

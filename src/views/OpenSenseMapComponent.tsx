@@ -4,6 +4,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
 import { Pressure } from '../components/Icons';
+import Cloud from '../resources/animated/Cloud';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 const TimeSeriesChart = lazy(() => import('../components/TimeSeriesChart'));
@@ -45,7 +46,7 @@ const OpenSenseMapComponent = () => {
   return (
     <BaseWidgetComponent
       title="Wetter senseBox"
-      icon={<Pressure />}
+      icon={Cloud}
       mapFeatureTag="opensensemap"
       dataSource={`
 **Beschreibung**
