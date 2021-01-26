@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ComponentWrapper = styled.div`
-  background: linear-gradient(135deg, transparent, #f0f0f0);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0), #f0f0f0);
   border-radius: 1rem;
   width: 100%;
   min-height: 250px;

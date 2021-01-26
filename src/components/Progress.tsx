@@ -18,6 +18,7 @@ interface ProgressBarProps {
 const ProgressComponentWrapper = styled.div`
   display: flex;
   width: 100%;
+  min-height: 32px; // this is a safari fix
   margin-bottom: 1rem;
   align-items: center;
 `;
