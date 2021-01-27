@@ -28,6 +28,7 @@ export const HeadingWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const TilesWrapper = styled.div`

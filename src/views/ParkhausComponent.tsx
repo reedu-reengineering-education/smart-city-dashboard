@@ -54,6 +54,7 @@ const ProgressLegend = styled.div`
 const StatsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 1rem;
 `;
 
 const StatusGreen = styled.span`
@@ -114,25 +115,22 @@ tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
 Stadt Münster - Smart City
 `}
-      // headerOverride={
-      //   <ParkhausHeadingWrapper>
-      //     <WidgetIcon>{/* <CarParking /> */}</WidgetIcon>
-      //     <HeadingTitle className="is-size-5">Parkhäuser</HeadingTitle>
-
-      //     <StatsWrapper>
-      //       <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
-      //       <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
-      //     </StatsWrapper>
-      //     <StatsWrapper>
-      //       <p className="is-size-7">
-      //         Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
-      //       </p>
-      //       <p className="is-size-7">
-      //         Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
-      //       </p>
-      //     </StatsWrapper>
-      //   </ParkhausHeadingWrapper>
-      // }
+      headerOverride={
+        <ParkhausHeadingWrapper>
+          <StatsWrapper>
+            <p className="is-size-7">Parkplätze gesamt: {parkingTotal}</p>
+            <p className="is-size-7">Parkhäuser gesamt: {carParkTotal}</p>
+          </StatsWrapper>
+          <StatsWrapper>
+            <p className="is-size-7">
+              Frei gesamt: <StatusGreen>{freeTotal}</StatusGreen>
+            </p>
+            <p className="is-size-7">
+              Belegt gesamt: <StatusRed>{parkingTotal - freeTotal}</StatusRed>
+            </p>
+          </StatsWrapper>
+        </ParkhausHeadingWrapper>
+      }
     >
       <>
         <ProgressLegend>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import { StyledComponent } from 'styled-components';
 
 interface IAnimatedIconProps {
   start: boolean;
@@ -26,7 +26,7 @@ const BaseAnimatedIcon = (props: IAnimatedIconProps) => {
     setTimeout(() => {
       setAnimate(false);
     }, ANIMATION_DURATION);
-  }, [animate]);
+  }, [animate, ANIMATION_DURATION]);
 
   useEffect(() => {
     if (props.start) {

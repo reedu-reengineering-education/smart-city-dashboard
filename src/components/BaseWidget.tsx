@@ -38,6 +38,11 @@ const DataContent = styled.div<IDataContentStyleProps>`
   }};
 `;
 
+const IconTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const SourceContent = styled(ReactMarkdown)`
   position: absolute;
   top: 0;
@@ -88,18 +93,18 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
 
   return (
     <ComponentWrapper>
-      {props.headerOverride ? (
-        props.headerOverride
-      ) : (
-        <HeadingWrapper>
+      <HeadingWrapper>
+        <IconTitleWrapper>
           {props.icon && (
             <WidgetIcon>
               <Icon start={animateIcon}></Icon>
             </WidgetIcon>
           )}
           {props.title && <p className="is-size-5">{props.title}</p>}
-        </HeadingWrapper>
-      )}
+        </IconTitleWrapper>
+        {props.headerOverride && props.headerOverride}
+      </HeadingWrapper>
+
       <WidgetContent>
         <DataContent blur={showSource || showDetails}>
           {props.children}
