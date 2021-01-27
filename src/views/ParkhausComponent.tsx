@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
-import { CarParking } from '../components/Icons';
 import { Progress } from '../components/Progress';
-import { HeadingWrapper, WidgetIcon } from '../components/styles';
+import { HeadingWrapper } from '../components/styles';
 import { IParkingState } from '../reducers/parkhaus';
 import Parking from '../resources/animated/Parking';
 
@@ -19,13 +18,6 @@ const ParkhausProgressWrapper = styled.div`
 
 const ParkhausHeadingWrapper = styled(HeadingWrapper)`
   justify-content: space-between;
-`;
-
-const HeadingTitle = styled.div`
-  display: flex;
-  @media only screen and (max-width: 986px) {
-    width: 100%;
-  }
 `;
 
 const ProgressLegend = styled.div`

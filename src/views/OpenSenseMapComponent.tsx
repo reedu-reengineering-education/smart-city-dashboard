@@ -3,7 +3,6 @@ import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
-import { Pressure } from '../components/Icons';
 import Cloud from '../resources/animated/Cloud';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));

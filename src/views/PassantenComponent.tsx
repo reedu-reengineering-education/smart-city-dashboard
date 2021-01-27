@@ -3,7 +3,6 @@ import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
-import BaseAnimatedIcon from '../resources/animated/BaseAnimatedIcon';
 import Pedestrian from '../resources/animated/Pedestrian';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
