@@ -3,6 +3,7 @@ import { loadParkhausData } from './parkhaus';
 import { loadAaseeData } from './aasee';
 import { loadOsemData } from './opensensemap';
 import { loadPedestrianData } from './passanten';
+import { loadBicycleData, loadBicycleStationData } from './bicycle';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,7 @@ export default function* rootSaga() {
     loadParkhausData(),
     loadOsemData(),
     loadPedestrianData(),
+    loadBicycleData(),
+    loadBicycleStationData(),
   ]);
 }

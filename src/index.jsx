@@ -11,6 +11,8 @@ import { loadParkhausData } from './actions/parkhaus';
 import { loadAaseeData } from './actions/aasee';
 import { loadOsemData } from './actions/opensensemap';
 import { loadPedestrianData } from './actions/passanten';
+import { loadBicycleData } from './actions/bicycle';
+
 import mainReducer from './reducers';
 import rootSaga from './sagas';
 
@@ -32,6 +34,7 @@ store.dispatch(loadParkhausData());
 store.dispatch(loadAaseeData());
 store.dispatch(loadOsemData());
 store.dispatch(loadPedestrianData());
+store.dispatch(loadBicycleData());
 
 ReactDOM.render(
   <Provider store={store}>

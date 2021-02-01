@@ -11,6 +11,7 @@ import MapPedestrianComponent from '../components/MapComponents/MapPedestrianCom
 import MapAaseeComponent from '../components/MapComponents/MapAaseeComponent';
 import SidebarComponent from '../components/MapComponents/SidebarComponent';
 import MapOsemComponent from '../components/MapComponents/MapOsemComponent';
+import MapBicycleComponent from '../components/MapComponents/MapBicycleComponent';
 
 const Wrapper = styled.div`
   position: relative;
@@ -70,6 +71,7 @@ function Map() {
         ></MapPedestrianComponent>
         <MapAaseeComponent visible={features.aasee}></MapAaseeComponent>
         <MapOsemComponent visible={features.opensensemap}></MapOsemComponent>
+        <MapBicycleComponent visible={features.bicycle}></MapBicycleComponent>
         {popup}
       </ReactMapGL>
       <SidebarComponent></SidebarComponent>

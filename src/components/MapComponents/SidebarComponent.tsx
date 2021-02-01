@@ -205,7 +205,17 @@ const SidebarComponent = () => {
         <Pedestrian fill="#fff" />
         {!sidebarCollapsed && <p>Passanten</p>}
       </IconLabel>
-      <IconLabel>
+      <IconLabel
+        active={features.bicycle}
+        onClick={() =>
+          dispatch(
+            updateFeaturesVisible({
+              ...features,
+              bicycle: !features.bicycle,
+            })
+          )
+        }
+      >
         <Bicycle fill="#fff" />
         {!sidebarCollapsed && <p>Fahrräder</p>}
       </IconLabel>
