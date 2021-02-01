@@ -122,15 +122,15 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
             )
           }
         >
-          <Link to="/map">Karte öffnen</Link>
+          <Link to="/map">Karte</Link>
         </p>
         {props.details && (
           <p onClick={() => setShowDetails(!showDetails)}>
-            {showDetails ? <b>Schließen</b> : 'Details'}
+            {showDetails ? <b>Schließen</b> : 'Zeitverlauf'}
           </p>
         )}
         <p onClick={() => setShowSource(!showSource)}>
-          {showSource ? <b>Schließen</b> : 'Hintergrund'}
+          {showSource ? <b>Schließen</b> : 'Über die Daten'}
         </p>
       </FooterWrapper>
     </ComponentWrapper>

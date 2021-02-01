@@ -24,9 +24,9 @@ const BicycleTilesWrapper = styled(TilesWrapper)`
 `;
 
 const bicycleStations = [
-  100034980, // Hammer Str
-  100035541, // Neutor
   100031297, // Promenade
+  100035541, // Neutor
+  100034980, // Hammer Str
   100034978, // Gartenstr
 ];
 
