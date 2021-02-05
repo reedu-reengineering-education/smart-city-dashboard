@@ -1,5 +1,4 @@
 import React from 'react';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import SidebarComponent from '../components/MapComponents/SidebarComponent';
@@ -11,11 +10,6 @@ const Wrapper = styled.div`
   position: relative;
   height: calc(100% - 64px); // 100% minus navbar height
   width: 100%;
-
-  .mapboxgl-popup {
-    z-index: 1;
-    pointer-events: none;
-  }
 `;
 
 function Map() {
