@@ -15,10 +15,3 @@ export function updateFeaturesVisible(features: any) {
     features,
   };
 }
-
-export function setActivePopup(popup: JSX.Element | undefined) {
-  return {
-    type: SET_ACTIVE_POPUP,
-    popup,
-  };
-}

@@ -1,42 +1,57 @@
-import { useEffect } from 'react';
+import React from 'react';
 import L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-import { useMap } from 'react-leaflet';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
+import styled from 'styled-components';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+import AaseeMarker from './AaseeMarker';
+import { useSelector, RootStateOrAny } from 'react-redux';
+import BicycleMarker from './BicycleMarker';
+import ParkingMarker from './ParkingMarker';
+import PedestrianMarker from './PedestrianMarker';
+import WeatherMarker from './WeatherMarker';
 
-// @ts-ignore
-const mcg = L.markerClusterGroup();
+const DefaultMapMarker = styled.div`
+  background-color: var(--scms-primary-blue);
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 2rem;
+  height: 2rem;
+  color: white;
+  box-shadow: var(--scms-box-shadow);
+  font-weight: var(--scms-semi-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-// @ts-ignore
-const MarkerCluster = ({ markers }) => {
-  // @ts-ignore
-  const map = useMap();
+const createClusterCustomIcon = function (cluster: any) {
+  return L.divIcon({
+    html: renderToStaticMarkup(
+      <DefaultMapMarker>{cluster.getChildCount()}</DefaultMapMarker>
+    ),
+    className: '',
+    iconSize: L.point(40, 40, true),
+  });
+};
 
-  useEffect(() => {
-    mcg.clearLayers();
-    if (markers?.length > 0) {
-      // @ts-ignore
-      markers.forEach(({ position, text, html }) => {
-        const customMarker = L.divIcon({
-          html: renderToStaticMarkup(html),
-          iconAnchor: [18, 30],
-        });
+const MarkerCluster = () => {
+  const features = useSelector((state: RootStateOrAny) => state.map.features);
 
-        return L.marker(new L.LatLng(position[1], position[0]), {
-          icon: customMarker,
-        })
-          .addTo(mcg)
-          .bindPopup(text);
-      });
-    }
-
-    // // add the marker cluster group to the map
-    map.addLayer(mcg);
-  }, [markers, map]);
-
-  return null;
+  return (
+    <MarkerClusterGroup
+      spiderfyDistanceMultiplier={3}
+      iconCreateFunction={createClusterCustomIcon}
+    >
+      {features.opensensemap && <WeatherMarker></WeatherMarker>}
+      {features.aasee && <AaseeMarker></AaseeMarker>}
+      {features.bicycle && <BicycleMarker></BicycleMarker>}
+      {features.parking && <ParkingMarker></ParkingMarker>}
+      {features.pedestrians && <PedestrianMarker></PedestrianMarker>}
+    </MarkerClusterGroup>
+  );
 };
 
 export default MarkerCluster;
