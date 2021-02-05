@@ -36,7 +36,7 @@ const LogoComponent = () => (
     <Container>
       <p className="is-size-5">Smart City</p>
       <LogoContainer>
-        <Logo src={logo}></Logo>
+        <Logo src={logo} alt="Smart City Münster Logo"></Logo>
       </LogoContainer>
       <p>Münster</p>
     </Container>
