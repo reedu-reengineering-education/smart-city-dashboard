@@ -50,7 +50,7 @@ const MapBicycleComponent = React.memo(({ visible }: IBicycleMarkersProps) => {
             series={[
               {
                 name: bicycleStation.name,
-                data: bicycleStation.data.map((m: any) => ({
+                data: bicycleStation.data?.map((m: any) => ({
                   x: m.date,
                   y: m.counts,
                 })),
@@ -112,7 +112,9 @@ const MapBicycleComponent = React.memo(({ visible }: IBicycleMarkersProps) => {
                 longitude={bicycleStation.longitude}
                 title={bicycleStation.name}
                 details={`gestern ${
-                  bicycleStation.data[bicycleStation.data.length - 1].counts
+                  bicycleStation.data?.length > 0
+                    ? bicycleStation.data[bicycleStation.data.length - 1].counts
+                    : 0
                 } Fahrräder`}
                 popup={Popup(bicycleStation)}
               ></MapMarker>

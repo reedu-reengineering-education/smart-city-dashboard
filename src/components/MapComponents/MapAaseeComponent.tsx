@@ -32,7 +32,7 @@ const MapAaseeComponent = React.memo(({ visible }: IAaseeMarkersProps) => {
 
   return (
     <React.Fragment>
-      {visible && (
+      {visible && sensorData && oxygenSensorData && (
         <>
           <Suspense fallback={<Skeleton width="2rem" height="2rem" />}>
             <MapMarker
