@@ -1,8 +1,4 @@
-import {
-  UPDATE_MAP_VIEWPORT,
-  UPDATE_FEATURES_VISIBLE,
-  SET_ACTIVE_POPUP,
-} from '../actions/map';
+import { UPDATE_MAP_VIEWPORT, UPDATE_FEATURES_VISIBLE } from '../actions/map';
 
 interface MapState {
   viewport: any;
@@ -14,7 +10,6 @@ interface MapState {
     pedestrians: boolean;
     bicycles: boolean;
   };
-  popup: JSX.Element | undefined;
 }
 
 const initialState: MapState = {
@@ -25,8 +20,8 @@ const initialState: MapState = {
     maxZoom: 17,
   },
   bbox: [
-    [7.486414, 51.857632],
-    [7.763585, 52.081687],
+    [51.857632, 7.486414],
+    [52.081687, 7.763585],
   ],
   features: {
     opensensemap: false,
@@ -35,7 +30,6 @@ const initialState: MapState = {
     pedestrians: false,
     bicycles: false,
   },
-  popup: undefined,
 };
 
 export default function map(state = initialState, action: any) {
@@ -49,11 +43,6 @@ export default function map(state = initialState, action: any) {
       return {
         ...state,
         features: action.features,
-      };
-    case SET_ACTIVE_POPUP:
-      return {
-        ...state,
-        popup: action.popup,
       };
     default:
       return state;

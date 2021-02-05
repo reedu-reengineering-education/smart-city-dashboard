@@ -7,10 +7,6 @@ import { updateFeaturesVisible } from '../../actions/map';
 
 import {
   Humidity,
-  Pressure,
-  Temperature,
-  WaterTemperature,
-  PH,
   CarParking,
   Bicycle,
   Pedestrian,
@@ -51,7 +47,7 @@ interface ISidebarProps {
 const Sidebar = styled.div<ISidebarProps>`
   position: absolute;
   height: 100%;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   color: white;
   background-color: rgba(0, 159, 227, 0.8);
@@ -104,64 +100,8 @@ const SidebarComponent = () => {
           )
         }
       >
-        <Temperature fill="#fff" />
-        {!sidebarCollapsed && <p>Temperatur</p>}
-      </IconLabel>
-      <IconLabel
-        active={features.opensensemap}
-        onClick={() =>
-          dispatch(
-            updateFeaturesVisible({
-              ...features,
-              opensensemap: !features.opensensemap,
-            })
-          )
-        }
-      >
         <Humidity fill="#fff" />
-        {!sidebarCollapsed && <p>rel. Luftfeuchte</p>}
-      </IconLabel>
-      <IconLabel
-        active={features.opensensemap}
-        onClick={() =>
-          dispatch(
-            updateFeaturesVisible({
-              ...features,
-              opensensemap: !features.opensensemap,
-            })
-          )
-        }
-      >
-        <Pressure fill="#fff" />
-        {!sidebarCollapsed && <p>Luftdruck</p>}
-      </IconLabel>
-      <IconLabel
-        active={features.aasee}
-        onClick={() =>
-          dispatch(
-            updateFeaturesVisible({
-              ...features,
-              aasee: !features.aasee,
-            })
-          )
-        }
-      >
-        <WaterTemperature fill="#fff" />
-        {!sidebarCollapsed && <p>Wassertemperatur</p>}
-      </IconLabel>
-      <IconLabel
-        active={features.aasee}
-        onClick={() =>
-          dispatch(
-            updateFeaturesVisible({
-              ...features,
-              aasee: !features.aasee,
-            })
-          )
-        }
-      >
-        <PH fill="#fff" />
-        {!sidebarCollapsed && <p>ph-Wert</p>}
+        {!sidebarCollapsed && <p>Wetter</p>}
       </IconLabel>
       <IconLabel
         active={features.aasee}
@@ -175,7 +115,7 @@ const SidebarComponent = () => {
         }
       >
         <Water fill="#fff" />
-        {!sidebarCollapsed && <p>Sauerstoffgehalt</p>}
+        {!sidebarCollapsed && <p>Wasserqualität Aasee</p>}
       </IconLabel>
       <IconLabel
         active={features.parking}

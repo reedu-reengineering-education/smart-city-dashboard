@@ -1,24 +1,17 @@
 import styled from 'styled-components';
-import { Marker, Popup } from 'react-map-gl';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { setActivePopup } from '../../actions/map';
+import React from 'react';
 
 interface MapMarkerProps {
-  latitude: number;
-  longitude: number;
   color: 'blue' | 'green' | 'orange' | 'red';
   icon: JSX.Element;
   title?: string;
   details?: string;
-  titleVisibleTreshold?: number;
-  detailsVisibleTreshold?: number;
-  popup?: JSX.Element;
 }
 
-const CarParkMarker = styled.div`
+const BaseMapMarker = styled.div`
   background-color: var(--scms-primary-blue);
-  border-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
   border: 1px solid white;
   width: 2rem;
   height: 2rem;
@@ -28,7 +21,7 @@ const CarParkMarker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: smaller;
+  font-size: small;
 
   > svg {
     width: 2rem;
@@ -48,67 +41,19 @@ const BaseMarkerCard = styled.div<{ visible: boolean }>`
 
 const MarkerTitleCard = styled(BaseMarkerCard)`
   bottom: 100%;
-`;
-
-const MarkerSideCard = styled(BaseMarkerCard)`
-  left: 100%;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-left: none;
+  text-align: center;
 `;
 
 const MapMarker = (props: MapMarkerProps) => {
-  const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
-
-  const dispatch = useDispatch();
-
-  const [popup, setPopup] = useState<JSX.Element>();
-  useEffect(() => {
-    if (props.popup) {
-      setPopup(
-        <Popup
-          tipSize={5}
-          anchor="bottom"
-          longitude={props.longitude}
-          latitude={props.latitude}
-          onClose={() => dispatch(setActivePopup(undefined))}
-          offsetTop={-16}
-        >
-          {props.popup}
-        </Popup>
-      );
-    }
-  }, [dispatch, props]);
-
   return (
-    <>
-      <Marker
-        longitude={props.longitude}
-        latitude={props.latitude}
-        offsetTop={-16}
-        offsetLeft={-16}
-      >
-        <CarParkMarker
-          onClick={() => {
-            if (props.popup) dispatch(setActivePopup(popup));
-          }}
-        >
-          {props.icon}
-          <>
-            <MarkerTitleCard
-              visible={viewport.zoom > (props.titleVisibleTreshold ?? 14)}
-            >
-              {props.title}
-            </MarkerTitleCard>
-            <MarkerSideCard
-              visible={viewport.zoom > (props.detailsVisibleTreshold ?? 15)}
-            >
-              {props.details}
-            </MarkerSideCard>
-          </>
-        </CarParkMarker>
-      </Marker>
-    </>
+    <BaseMapMarker>
+      {props.icon}
+      <MarkerTitleCard visible={true}>
+        {props.title}
+        <br />
+        {props.details}
+      </MarkerTitleCard>
+    </BaseMapMarker>
   );
 };
 
