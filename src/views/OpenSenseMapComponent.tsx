@@ -20,7 +20,9 @@ const TilesWrapper = styled.div`
 
 const ChartWrapper = styled.div`
   width: 100%;
-  height: 9rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const OpenSenseMapComponent = () => {
@@ -63,6 +65,64 @@ tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
 Stadt Münster - Smart City
 `}
+      details={
+        <ChartWrapper>
+          {opensensemapData.data.temperature24.length > 0 &&
+            opensensemapData.data.humidity24.length > 0 && (
+              <Suspense fallback={<Skeleton count={5} />}>
+                <TimeSeriesChart
+                  id="weather"
+                  type="line"
+                  series={[
+                    {
+                      name: 'Temperatur',
+                      data: opensensemapData.data.temperature24,
+                    },
+                    {
+                      name: 'rel. Luftfeuchte',
+                      data: opensensemapData.data.humidity24,
+                    },
+                  ]}
+                  chartOptions={{
+                    colors: ['#f28c00', '#009fe3'],
+                    xaxis: {
+                      labels: {
+                        show: false,
+                      },
+                    },
+                    yaxis: [
+                      {
+                        title: {
+                          text: 'Temperatur in °C',
+                        },
+                        labels: {
+                          formatter: (value: number) => {
+                            return value.toFixed(1);
+                          },
+                        },
+                      },
+                      {
+                        opposite: true,
+                        title: {
+                          text: 'rel. Luftfeuchte in %',
+                        },
+                        // max: 100.001, // adding the .001 still shows the hover dot on the line
+                      },
+                    ],
+                    tooltip: {
+                      y: {
+                        formatter: (value: number, { seriesIndex }) => {
+                          const unit = seriesIndex === 0 ? '°C' : '%';
+                          return `${value.toFixed(1)} ${unit}`;
+                        },
+                      },
+                    },
+                  }}
+                ></TimeSeriesChart>
+              </Suspense>
+            )}
+        </ChartWrapper>
+      }
     >
       <>
         <TilesWrapper>
@@ -88,67 +148,6 @@ Stadt Münster - Smart City
               decimals={0}
             ></MeasurementTile>
           </Suspense>
-        </TilesWrapper>
-        <TilesWrapper
-          style={{
-            flexGrow: 1,
-            maxHeight: '20rem',
-            flexDirection: 'column',
-          }}
-        >
-          {opensensemapData.data.temperature24.length > 0 && (
-            <ChartWrapper>
-              <Suspense fallback={<Skeleton count={5} />}>
-                <TimeSeriesChart
-                  id="temperature"
-                  series={[
-                    {
-                      name: 'Temperatur',
-                      data: opensensemapData.data.temperature24,
-                    },
-                  ]}
-                  title="Temperatur"
-                  unit="°C"
-                  chartOptions={{
-                    xaxis: {
-                      labels: {
-                        show: false,
-                      },
-                    },
-                    yaxis: {
-                      labels: {
-                        formatter: (value: number) => {
-                          return value.toFixed(1);
-                        },
-                      },
-                    },
-                  }}
-                ></TimeSeriesChart>
-              </Suspense>
-            </ChartWrapper>
-          )}
-          {opensensemapData.data.humidity24.length > 0 && (
-            <ChartWrapper>
-              <Suspense fallback={<Skeleton count={5} />}>
-                <TimeSeriesChart
-                  id="humidity"
-                  series={[
-                    {
-                      name: 'rel. Luftfeuchte',
-                      data: opensensemapData.data.humidity24,
-                    },
-                  ]}
-                  title="rel. Luftfeuchte"
-                  unit="%"
-                  chartOptions={{
-                    yaxis: {
-                      max: 100.001, // adding the .001 still shows the hover dot on the line
-                    },
-                  }}
-                ></TimeSeriesChart>
-              </Suspense>
-            </ChartWrapper>
-          )}
         </TilesWrapper>
       </>
     </BaseWidgetComponent>

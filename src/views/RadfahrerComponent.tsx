@@ -17,7 +17,7 @@ const ChartWrapper = styled.div`
 
 const BicycleTilesWrapper = styled(TilesWrapper)`
   > div {
-    flex: 1 0 35%;
+    flex: 1 0 25%;
     display: flex;
     justify-content: center;
   }
@@ -28,6 +28,8 @@ const bicycleStations = [
   100035541, // Neutor
   100034980, // Hammer Str
   100034978, // Gartenstr
+  100034983, // Warendorfer
+  100020113, // Wolbecker
 ];
 
 const RadfahrerComponent = () => {
@@ -85,7 +87,14 @@ Stadt Münster - Smart City
               title="Fahrräder letzte Woche"
               type={'line'}
               chartOptions={{
-                colors: ['#009fe3', '#86bc25', '#fdc300', '#323232'],
+                colors: [
+                  '#009fe3',
+                  '#86bc25',
+                  '#fdc300',
+                  '#323232',
+                  '#f28c00',
+                  '#ea4f3d',
+                ],
                 yaxis: {
                   labels: {
                     formatter: (value: number) => {
@@ -110,6 +119,13 @@ Stadt Münster - Smart City
                   y: {
                     formatter: (value: number) => {
                       return `${value.toFixed(0)}`;
+                    },
+                  },
+                },
+                chart: {
+                  animations: {
+                    animateGradually: {
+                      enabled: false,
                     },
                   },
                 },

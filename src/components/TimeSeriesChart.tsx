@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 interface ITimeSeriesChartProps {
   id: string;
   series: any[];
-  title: string;
+  title?: string;
   unit?: string;
   chartOptions?: ApexOptions;
   type?:
@@ -117,7 +117,11 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
     },
     colors: ['#009fe3'],
     title: {
-      text: props.unit ? `${props.title} in ${props.unit}` : `${props.title}`,
+      text: props.title
+        ? props.unit
+          ? `${props.title} in ${props.unit}`
+          : `${props.title}`
+        : undefined,
       align: 'left',
     },
     yaxis: {

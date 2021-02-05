@@ -42,14 +42,14 @@ function Home() {
           </div>
         </div>
         <div className="tile">
-          <div className="tile is-vertical is-4">
-            <div className="tile">
-              <div className="tile is-parent">
-                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-                  <AaseeComponent></AaseeComponent>
-                </Suspense>
-              </div>
+          <div className="tile is-vertical is-5">
+            <div className="tile is-parent">
+              <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                <RadfahrerComponent></RadfahrerComponent>
+              </Suspense>
             </div>
+          </div>
+          <div className="tile is-vertical is-2">
             <div className="tile">
               <div className="tile is-parent">
                 <Suspense fallback={<Skeleton width="100%" height="100%" />}>
@@ -58,18 +58,19 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="tile is-vertical is-4">
-            <div className="tile is-parent">
-              <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-                <RadfahrerComponent></RadfahrerComponent>
-              </Suspense>
-            </div>
-          </div>
-          <div className="tile is-vertical is-4">
+
+          <div className="tile is-vertical is-5">
             <div className="tile is-parent">
               <Suspense fallback={<Skeleton width="100%" height="100%" />}>
                 <OpenSenseMapComponent></OpenSenseMapComponent>
               </Suspense>
+            </div>
+            <div className="tile">
+              <div className="tile is-parent">
+                <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+                  <AaseeComponent></AaseeComponent>
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
