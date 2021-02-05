@@ -39,6 +39,11 @@ export const TilesWrapper = styled.div`
   align-items: center;
 `;
 
+export const ChartWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const FooterWrapper = styled.div`
   display: flex;
   flex-direction: row;

@@ -1,17 +1,11 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
+import { TilesWrapper } from '../components/styles';
 import Water from '../resources/animated/Water';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
-
-const TilesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
 
 const AaseeComponent = () => {
   const aaseeData: ServiceState = useSelector(

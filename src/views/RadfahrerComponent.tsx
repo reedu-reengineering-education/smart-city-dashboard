@@ -2,18 +2,13 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import BaseWidgetComponent from '../components/BaseWidget';
 import Bicycle from '../resources/animated/Bicycle';
-import { TilesWrapper } from '../components/styles';
+import { TilesWrapper, ChartWrapper } from '../components/styles';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { loadBicycleStationData } from '../actions/bicycle';
 import styled from 'styled-components';
 import TimeSeriesChart from '../components/TimeSeriesChart';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
-
-const ChartWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 const BicycleTilesWrapper = styled(TilesWrapper)`
   > div {
@@ -25,11 +20,11 @@ const BicycleTilesWrapper = styled(TilesWrapper)`
 
 const bicycleStations = [
   100031297, // Promenade
-  100035541, // Neutor
-  100034980, // Hammer Str
-  100034978, // Gartenstr
-  100034983, // Warendorfer
   100020113, // Wolbecker
+  100034980, // Hammer Str
+  100034983, // Warendorfer
+  100035541, // Neutor
+  100034978, // Gartenstr
 ];
 
 const RadfahrerComponent = () => {

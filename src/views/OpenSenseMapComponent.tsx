@@ -1,29 +1,12 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { RootStateOrAny, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import BaseWidgetComponent from '../components/BaseWidget';
+import { TilesWrapper, ChartWrapper } from '../components/styles';
 import Cloud from '../resources/animated/Cloud';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 const TimeSeriesChart = lazy(() => import('../components/TimeSeriesChart'));
-
-const TilesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-  > div[type='area'] {
-    width: 100% !important;
-  }
-`;
-
-const ChartWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
 
 const OpenSenseMapComponent = () => {
   const opensensemapData: ServiceState = useSelector(
@@ -124,32 +107,30 @@ Stadt Münster - Smart City
         </ChartWrapper>
       }
     >
-      <>
-        <TilesWrapper>
-          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-            <MeasurementTile
-              header="Temperatur"
-              value={temperature}
-              footer="in °C"
-            ></MeasurementTile>
-          </Suspense>
-          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-            <MeasurementTile
-              header="rel. Luftfeuchte"
-              value={humidity}
-              footer="in %"
-            ></MeasurementTile>
-          </Suspense>
-          <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-            <MeasurementTile
-              header="Luftdruck"
-              value={pressure}
-              footer="in hPa"
-              decimals={0}
-            ></MeasurementTile>
-          </Suspense>
-        </TilesWrapper>
-      </>
+      <TilesWrapper>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Temperatur"
+            value={temperature}
+            footer="in °C"
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="rel. Luftfeuchte"
+            value={humidity}
+            footer="in %"
+          ></MeasurementTile>
+        </Suspense>
+        <Suspense fallback={<Skeleton width="100%" height="100%" />}>
+          <MeasurementTile
+            header="Luftdruck"
+            value={pressure}
+            footer="in hPa"
+            decimals={0}
+          ></MeasurementTile>
+        </Suspense>
+      </TilesWrapper>
     </BaseWidgetComponent>
   );
 };
