@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useSelector, RootStateOrAny } from 'react-redux';

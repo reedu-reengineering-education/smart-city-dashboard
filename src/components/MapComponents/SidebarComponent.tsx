@@ -51,7 +51,7 @@ interface ISidebarProps {
 const Sidebar = styled.div<ISidebarProps>`
   position: absolute;
   height: 100%;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   color: white;
   background-color: rgba(0, 159, 227, 0.8);

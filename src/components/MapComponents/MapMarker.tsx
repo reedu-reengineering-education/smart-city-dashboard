@@ -1,19 +1,15 @@
 import styled from 'styled-components';
 import { Marker, Popup } from 'react-map-gl';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { setActivePopup } from '../../actions/map';
+import React from 'react';
 
 interface MapMarkerProps {
-  latitude: number;
-  longitude: number;
   color: 'blue' | 'green' | 'orange' | 'red';
   icon: JSX.Element;
   title?: string;
   details?: string;
-  titleVisibleTreshold?: number;
-  detailsVisibleTreshold?: number;
-  popup?: JSX.Element;
 }
 
 const CarParkMarker = styled.div`
@@ -58,58 +54,70 @@ const MarkerSideCard = styled(BaseMarkerCard)`
 `;
 
 const MapMarker = (props: MapMarkerProps) => {
-  const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
+  // const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const [popup, setPopup] = useState<JSX.Element>();
-  useEffect(() => {
-    if (props.popup) {
-      setPopup(
-        <Popup
-          tipSize={5}
-          anchor="bottom"
-          longitude={props.longitude}
-          latitude={props.latitude}
-          onClose={() => dispatch(setActivePopup(undefined))}
-          offsetTop={-16}
-        >
-          {props.popup}
-        </Popup>
-      );
-    }
-  }, [dispatch, props]);
+  // const [popup, setPopup] = useState<JSX.Element>();
+  // useEffect(() => {
+  //   if (props.popup) {
+  //     setPopup(
+  //       <Popup
+  //         tipSize={5}
+  //         anchor="bottom"
+  //         longitude={props.longitude}
+  //         latitude={props.latitude}
+  //         onClose={() => dispatch(setActivePopup(undefined))}
+  //         offsetTop={-16}
+  //       >
+  //         {props.popup}
+  //       </Popup>
+  //     );
+  //   }
+  // }, [dispatch, props]);
 
-  return (
+  return React.createElement(
+    CarParkMarker,
+    null,
     <>
-      <Marker
-        longitude={props.longitude}
-        latitude={props.latitude}
-        offsetTop={-16}
-        offsetLeft={-16}
+      {props.icon}
+      <MarkerTitleCard
+        // visible={viewport.zoom > (props.titleVisibleTreshold ?? 14)}
+        visible={true}
       >
-        <CarParkMarker
-          onClick={() => {
-            if (props.popup) dispatch(setActivePopup(popup));
-          }}
-        >
-          {props.icon}
-          <>
-            <MarkerTitleCard
-              visible={viewport.zoom > (props.titleVisibleTreshold ?? 14)}
-            >
-              {props.title}
-            </MarkerTitleCard>
-            <MarkerSideCard
-              visible={viewport.zoom > (props.detailsVisibleTreshold ?? 15)}
-            >
-              {props.details}
-            </MarkerSideCard>
-          </>
-        </CarParkMarker>
-      </Marker>
+        {props.title}
+      </MarkerTitleCard>
+      <MarkerSideCard
+        // visible={viewport.zoom > (props.detailsVisibleTreshold ?? 15)}
+        visible={true}
+      >
+        {props.details}
+      </MarkerSideCard>
     </>
   );
+  // return (
+  //   <CarParkMarker
+  //   // onClick={() => {
+  //   //   if (props.popup) dispatch(setActivePopup(popup));
+  //   // }}
+  //   >
+  //     {props.icon}
+  //     <>
+  //       <MarkerTitleCard
+  //         // visible={viewport.zoom > (props.titleVisibleTreshold ?? 14)}
+  //         visible={true}
+  //       >
+  //         {props.title}
+  //       </MarkerTitleCard>
+  //       <MarkerSideCard
+  //         // visible={viewport.zoom > (props.detailsVisibleTreshold ?? 15)}
+  //         visible={true}
+  //       >
+  //         {props.details}
+  //       </MarkerSideCard>
+  //     </>
+  //   </CarParkMarker>
+  // );
 };
 
 export default MapMarker;
