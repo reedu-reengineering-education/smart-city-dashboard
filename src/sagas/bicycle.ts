@@ -19,7 +19,7 @@ export function* fetchBicycleDataPeriodically() {
 
 export function* fetchBicycleData() {
   try {
-    const endpoint = `https://city-dashboard.felixerdmann.com/bicycle/`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/bicycle/`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_BICYCLE_DATA, bicycle: data });
@@ -42,7 +42,7 @@ export function* fetchBicycleStationDataPeriodically(action: any) {
 
 export function* fetchBicycleStationData(action: any) {
   try {
-    const endpoint = `https://city-dashboard.felixerdmann.com/bicycle/${action.stationId}`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/bicycle/${action.stationId}`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({

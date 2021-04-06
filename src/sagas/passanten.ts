@@ -16,7 +16,7 @@ export function* fetchPedestrianDataPeriodically() {
 
 export function* fetchPedestrianData() {
   try {
-    const endpoint = 'https://city-dashboard.felixerdmann.com/pedestrian';
+    const endpoint = `${process.env.REACT_APP_API_URL}/pedestrian`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_PEDESTRIAN_DATA, pedestrian: data });

@@ -28,7 +28,7 @@ export function* fetchOsemData() {
   }
 
   try {
-    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapTemperature24`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/opensensemapTemperature24`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_TEMPERATURE_24_DATA, data: data });
@@ -37,7 +37,7 @@ export function* fetchOsemData() {
   }
 
   try {
-    const endpoint = `https://city-dashboard.felixerdmann.com/opensensemapHumidity24`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/opensensemapHumidity24`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_HUMIDITY_24_DATA, data: data });
