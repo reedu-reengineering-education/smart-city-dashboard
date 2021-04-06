@@ -12,7 +12,11 @@ const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const BicycleTilesWrapper = styled(TilesWrapper)`
   > div {
-    flex: 1 0 25%;
+    @media screen and (min-width: 1539px) {
+      /* add margin so that chart has has more space */
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
     display: flex;
     justify-content: center;
   }

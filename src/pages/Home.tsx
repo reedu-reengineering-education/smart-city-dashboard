@@ -23,17 +23,17 @@ function Home() {
         <div className="tile">
           <div className="tile is-vertical">
             <div className="tile">
-              <div className="tile is-3 is-parent is-horizontal">
+              <div className="tile is-2 is-parent is-horizontal">
                 <Suspense fallback={<Skeleton width="100%" height="100%" />}>
                   <LogoComponent></LogoComponent>
                 </Suspense>
               </div>
-              <div className="tile is-6 is-parent">
+              <div className="tile is-8 is-parent">
                 <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-                  <ParkhausComponent></ParkhausComponent>
+                  <RadfahrerComponent></RadfahrerComponent>
                 </Suspense>
               </div>
-              <div className="tile is-3 is-parent">
+              <div className="tile is-2 is-parent">
                 <Suspense fallback={<Skeleton width="100%" height="100%" />}>
                   <DateTimeComponent></DateTimeComponent>
                 </Suspense>
@@ -45,7 +45,7 @@ function Home() {
           <div className="tile is-vertical is-4">
             <div className="tile is-parent">
               <Suspense fallback={<Skeleton width="100%" height="100%" />}>
-                <RadfahrerComponent></RadfahrerComponent>
+                <ParkhausComponent></ParkhausComponent>
               </Suspense>
             </div>
           </div>
