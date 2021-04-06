@@ -20,6 +20,7 @@ interface IBaseWidgetProps {
   dataSource: string;
   headerOverride?: JSX.Element;
   details?: JSX.Element;
+  detailsDefault?: boolean;
 }
 
 const WidgetContent = styled.div`
@@ -65,7 +66,7 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
   const dispatch = useDispatch();
 
   const [showSource, setShowSource] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(props.detailsDefault ?? false);
 
   const [animateIcon, setAnimateIcon] = useState(false);
 

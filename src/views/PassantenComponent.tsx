@@ -31,6 +31,7 @@ Die Passantenfrequenzen in Münster stellt Ihnen die Wirtschaftsförderung Müns
 
 ![WFM](https://www.wfm-muenster.de/wp-content/themes/wfm/images/logo_wfm.svg)
 `}
+      detailsDefault={true}
       details={
         <ChartWrapper>
           <Suspense fallback={<Skeleton count={5} />}>
