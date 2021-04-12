@@ -14,7 +14,7 @@ export function* fetchAaseeDataPeriodically() {
   }
 }
 
-export function* fetchAaseeData() {
+export function* fetchAaseeData(): any {
   try {
     const endpoint = `${process.env.REACT_APP_API_URL}/aasee`;
     const response = yield call(fetch, endpoint);

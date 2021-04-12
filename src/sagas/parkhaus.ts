@@ -14,9 +14,9 @@ export function* fetchParkhausDataPeriodically() {
   }
 }
 
-export function* fetchParkhausData() {
+export function* fetchParkhausData(): any {
   try {
-    const endpoint = `${process.env.REACT_APP_API_URL}/parkhaus`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/parking`;
     const response: Response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_PARKHAUS_DATA, parkhaus: data });

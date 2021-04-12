@@ -1,7 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import {
+  loadPedestrianData,
+  loadPedestrianTimeseriesData,
+} from '../actions/passanten';
 import BaseWidgetComponent from '../components/BaseWidget';
 import { TilesWrapper } from '../components/styles';
 import Pedestrian from '../resources/animated/Pedestrian';
@@ -14,15 +18,29 @@ const ChartWrapper = styled.div`
   height: 100%;
 `;
 
+const timeRange = (timestamp: string) => {
+  const date = new Date(timestamp);
+
+  return `${date.getHours()} - ${date.getHours() + 1} Uhr`;
+};
+
 const PassantenComponent = () => {
   const pedestrianData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.passanten
   );
 
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(false);
+  }, [pedestrianData]);
+
+  const dispatch = useDispatch();
+
   return (
     <BaseWidgetComponent
       title="Passanten"
       icon={Pedestrian}
+      loading={loading}
       mapFeatureTag="pedestrians"
       dataSource={`
 **Datenquelle**
@@ -31,6 +49,26 @@ Die Passantenfrequenzen in Münster stellt Ihnen die Wirtschaftsförderung Müns
 
 ![WFM](https://www.wfm-muenster.de/wp-content/themes/wfm/images/logo_wfm.svg)
 `}
+      show24h={() => {
+        setLoading(true);
+        dispatch(loadPedestrianData());
+      }}
+      show7d={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setDate(from.getDate() - 7);
+        const to = new Date();
+
+        dispatch(loadPedestrianTimeseriesData(from, to));
+      }}
+      show1m={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setMonth(from.getMonth() - 1);
+        const to = new Date();
+
+        dispatch(loadPedestrianTimeseriesData(from, to));
+      }}
       detailsDefault={true}
       details={
         <ChartWrapper>
@@ -49,7 +87,6 @@ Die Passantenfrequenzen in Münster stellt Ihnen die Wirtschaftsförderung Müns
                   };
                 })
               }
-              title="Passanten"
               type={'line'}
               chartOptions={{
                 colors: ['#009fe3', '#86bc25', '#fdc300'],
@@ -90,7 +127,9 @@ Die Passantenfrequenzen in Münster stellt Ihnen die Wirtschaftsförderung Müns
             >
               <MeasurementTile
                 key={p.id}
-                footer={'letzte Stunde'}
+                footer={timeRange(
+                  p.measurements[p.measurements.length - 2].timestamp
+                )}
                 header={p.name}
                 value={
                   p.measurements[p.measurements.length - 2].pedestrians_count

@@ -21,6 +21,10 @@ interface IBaseWidgetProps {
   headerOverride?: JSX.Element;
   details?: JSX.Element;
   detailsDefault?: boolean;
+  show24h?: Function;
+  show7d?: Function;
+  show1m?: Function;
+  loading?: boolean;
 }
 
 const WidgetContent = styled.div`
@@ -60,6 +64,38 @@ const DetailContent = styled.div`
   bottom: 0;
   right: 0;
   overflow: visible;
+`;
+
+const FooterButton = styled.button`
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(189, 189, 189, 0.15);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  outline: none;
+
+  > a {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: rgba(189, 189, 189, 0.5);
+  }
+`;
+
+const HighlightedFooterButton = styled(FooterButton)`
+  background-color: rgba(0, 159, 227, 0.15);
+
+  &:hover {
+    background-color: rgba(0, 159, 227, 0.25);
+  }
 `;
 
 const BaseWidgetComponent = (props: IBaseWidgetProps) => {
@@ -114,7 +150,7 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         {showDetails && <DetailContent>{props.details}</DetailContent>}
       </WidgetContent>
       <FooterWrapper>
-        <p
+        <FooterButton
           onClick={() =>
             dispatch(
               updateFeaturesVisible({
@@ -124,15 +160,58 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
           }
         >
           <Link to="/map">Karte</Link>
-        </p>
+        </FooterButton>
         {props.details && (
-          <p onClick={() => setShowDetails(!showDetails)}>
+          <FooterButton onClick={() => setShowDetails(!showDetails)}>
             {showDetails ? <b>Schließen</b> : 'Zeitverlauf'}
-          </p>
+          </FooterButton>
         )}
-        <p onClick={() => setShowSource(!showSource)}>
+        {showDetails && (
+          <FooterWrapper>
+            {props.show24h && (
+              <HighlightedFooterButton
+                disabled={props.loading}
+                onClick={() => {
+                  if (props.show24h) {
+                    props.show24h();
+                  }
+                  setAnimateIcon(true);
+                }}
+              >
+                24h
+              </HighlightedFooterButton>
+            )}
+            {props.show7d && (
+              <HighlightedFooterButton
+                disabled={props.loading}
+                onClick={() => {
+                  if (props.show7d) {
+                    props.show7d();
+                  }
+                  setAnimateIcon(true);
+                }}
+              >
+                7 Tage
+              </HighlightedFooterButton>
+            )}
+            {props.show1m && (
+              <HighlightedFooterButton
+                disabled={props.loading}
+                onClick={() => {
+                  if (props.show1m) {
+                    props.show1m();
+                  }
+                  setAnimateIcon(true);
+                }}
+              >
+                1 Monat
+              </HighlightedFooterButton>
+            )}
+          </FooterWrapper>
+        )}
+        <FooterButton onClick={() => setShowSource(!showSource)}>
           {showSource ? <b>Schließen</b> : 'Über die Daten'}
-        </p>
+        </FooterButton>
       </FooterWrapper>
     </ComponentWrapper>
   );
