@@ -1,10 +1,14 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import BaseWidgetComponent from '../components/BaseWidget';
 import Bicycle from '../resources/animated/Bicycle';
 import { TilesWrapper, ChartWrapper } from '../components/styles';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { loadBicycleStationData } from '../actions/bicycle';
+import {
+  loadBicycleData,
+  loadBicycleStationData,
+  loadBicycleTimeseriesData,
+} from '../actions/bicycle';
 import styled from 'styled-components';
 import TimeSeriesChart from '../components/TimeSeriesChart';
 
@@ -12,7 +16,11 @@ const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
 const BicycleTilesWrapper = styled(TilesWrapper)`
   > div {
-    flex: 1 0 25%;
+    @media screen and (min-width: 1539px) {
+      /* add margin so that chart has has more space */
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
     display: flex;
     justify-content: center;
   }
@@ -33,17 +41,38 @@ const RadfahrerComponent = () => {
   );
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(false);
+  }, [bicycleData]);
+
+  // this is just a trigger for the useEffect hook to load latest bicycle station data
+  const [loadDefaultData, setLoadDefaultData] = useState<Date>(new Date());
   useEffect(() => {
     bicycleStations.forEach((id: number) => {
       dispatch(loadBicycleStationData(id));
     });
-  }, [dispatch]);
+  }, [dispatch, loadDefaultData]);
 
   return (
     <BaseWidgetComponent
       title="Fahrräder"
       icon={Bicycle}
       mapFeatureTag="bicycle"
+      loading={loading}
+      show7d={() => {
+        setLoading(true);
+        setLoadDefaultData(new Date());
+        dispatch(loadBicycleData());
+      }}
+      show1m={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setMonth(from.getMonth() - 1);
+        const to = new Date();
+
+        dispatch(loadBicycleTimeseriesData(from, to));
+      }}
       dataSource={`
 **Beschreibung**
 
@@ -79,7 +108,6 @@ Stadt Münster - Smart City
                     };
                   })
               }
-              title="Fahrräder letzte Woche"
               type={'line'}
               chartOptions={{
                 colors: [
@@ -122,6 +150,7 @@ Stadt Münster - Smart City
                     animateGradually: {
                       enabled: false,
                     },
+                    speed: 100,
                   },
                 },
               }}

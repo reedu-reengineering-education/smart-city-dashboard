@@ -70,6 +70,10 @@ const ProgressKnob = styled.div`
   font-size: smaller;
   box-shadow: var(--scms-box-shadow-small);
   font-weight: var(--scms-semi-bold);
+
+  &:hover {
+    z-index: 10;
+  }
 `;
 
 const ProgressKnobHidden = styled(ProgressKnob)`

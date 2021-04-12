@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { loadOsemData, loadOsemTimeseriesData } from '../actions/opensensemap';
 import BaseWidgetComponent from '../components/BaseWidget';
 import { TilesWrapper, ChartWrapper } from '../components/styles';
 import Cloud from '../resources/animated/Cloud';
@@ -12,6 +13,13 @@ const OpenSenseMapComponent = () => {
   const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
+
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(false);
+  }, [opensensemapData]);
 
   const [temperature, setTemperature] = useState(0);
   const [humidity, setHumidity] = useState(0);
@@ -31,7 +39,20 @@ const OpenSenseMapComponent = () => {
     <BaseWidgetComponent
       title="Wetter senseBox"
       icon={Cloud}
+      loading={loading}
       mapFeatureTag="opensensemap"
+      show24h={() => {
+        setLoading(true);
+        dispatch(loadOsemData());
+      }}
+      show7d={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setDate(from.getDate() - 7);
+        const to = new Date();
+
+        dispatch(loadOsemTimeseriesData(from, to));
+      }}
       dataSource={`
 **Beschreibung**
 
@@ -71,6 +92,11 @@ Stadt Münster - Smart City
                     xaxis: {
                       labels: {
                         show: false,
+                        formatter: (value: string) => {
+                          const date = new Date(value);
+
+                          return `${date.toLocaleString()} Uhr`;
+                        },
                       },
                     },
                     yaxis: [

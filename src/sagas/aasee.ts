@@ -14,9 +14,9 @@ export function* fetchAaseeDataPeriodically() {
   }
 }
 
-export function* fetchAaseeData() {
+export function* fetchAaseeData(): any {
   try {
-    const endpoint = `https://city-dashboard.felixerdmann.com/aasee`;
+    const endpoint = `${process.env.REACT_APP_API_URL}/aasee`;
     const response = yield call(fetch, endpoint);
     const data = yield response.json();
     yield put({ type: RENDER_AASEE_DATA, aasee: data });

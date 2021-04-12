@@ -49,15 +49,4 @@ export const FooterWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-
-  > p {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 0.5rem;
-    cursor: pointer;
-  }
-
-  > p > a {
-    color: inherit;
-  }
 `;

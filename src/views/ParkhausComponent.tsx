@@ -11,7 +11,10 @@ const ParkhausProgressWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 10rem;
+  max-height: 25rem;
+  @media screen and (min-width: 788px) and (max-width: 1290px) {
+    max-height: 42rem;
+  }
   overflow-y: scroll;
   padding: 0.5rem;
 `;
