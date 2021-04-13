@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import { loadParkhausData } from './parkhaus';
-import { loadAaseeData } from './aasee';
+import { loadAaseeData, loadAaseeTimeseriesData } from './aasee';
 import { loadOsemData, loadOsemTimeseriesData } from './opensensemap';
 import { loadPedestrianData, loadPedestrianTimeseriesData } from './passanten';
 import {
@@ -12,6 +12,7 @@ import {
 export default function* rootSaga() {
   yield all([
     loadAaseeData(),
+    loadAaseeTimeseriesData(),
     loadParkhausData(),
     loadOsemData(),
     loadOsemTimeseriesData(),
