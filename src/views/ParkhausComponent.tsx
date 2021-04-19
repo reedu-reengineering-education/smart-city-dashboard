@@ -95,20 +95,15 @@ const ParkhausComponent = () => {
       icon={Parking}
       title="Parkhäuser"
       dataSource={`
-**Beschreibung**
+Die Stadt Münster verfügt über ca. 6.100 Stellplätze für Autos in der Altstadt und dem Bahnhofsbereich. Zur besseren Orientierung und zur Vermeidung von Parksuchverkehren verfügt die Stadt Münster über ein modernes, dynamisches Parkleitsystem. Dort finden Sie Auskünfte über die genaue Lage der größeren öffentlich zugänglichen Parkplätze und Parkhäuser, die Ausstattung und die aktuelle Stellplatzkapazität: [http://www.stadt-muenster.de/tiefbauamt/parkleitsystem](http://www.stadt-muenster.de/tiefbauamt/parkleitsystem)
+Weitere Informationen zu den Parkhäusern und Parkplätzen in Münster finden Sie auf [den Seiten des Amtes für Mobilität und Tiefbau der Stadt Münster](https://www.stadt-muenster.de/tiefbauamt/strassen/parken-in-muenster.html), sowie [auf der Homepage der Westfälische Bauindustrie GmbH (WBI)](https://www.wbi-muenster.de/parken-in-muenster/uebersicht.php)
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
-tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Datenquelle: Amt für Mobilität und Tiefbau, Stadt Münster
+Kontakt für inhaltliche Fragen:
+Andreas Pott, [pott@stadt-muenster.de](mailto:pott@stadt-muenster.de)
 
-**Datenquelle**
-
-![Smart City Münster Logo](https://smartcity.ms/wp-content/uploads/2020/12/Smart-City-Mu%CC%88nster_Logo_20201210_RGB_240x62.png)
-
-Stadt Münster - Smart City
+**Daten im Open-Data-Portal:**
+- [Aktuelle Parkhausbelegung](https://opendata.stadt-muenster.de/dataset/parkleitsystem-parkhausbelegung-aktuell)
 `}
       headerOverride={
         <ParkhausHeadingWrapper>

@@ -54,20 +54,19 @@ const OpenSenseMapComponent = () => {
         dispatch(loadOsemTimeseriesData(from, to));
       }}
       dataSource={`
-**Beschreibung**
+Hier sind Umweltdaten der senseBox der Smart City Münster zu sehen. Bei der senseBox handelt es sich um eine kleine Umweltmessstation für Zuhause: Man kann im Baukastensystem verschiedene Sensoren und Module anschließen. Die senseBox eignet sich einerseits für Schüler und Schülerinnen, aber auch für interessierte Bürger und Bürgerinnen, die sich einen eigenen Umweltsensor basteln möchten. Und all das ist komplett Open Source, liefert Open Data und kommt aus Münster!
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
-tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Die senseBox der Smart City Münster ist, ganz im Sinne der Allianz Smart City Münster, auf dem Dach der benachbarten Stadtwerke Münster installiert. Gemeinsam Daten sammeln für eine smartere Stadt!
 
-**Datenquelle**
+Die Daten werden von der Plattform ["OpenSenseMap"](https://opensensemap.org/explore/5f7ddc9f692773001c7da31c) abgerufen. Dort findet man viele weitere Sensoren im Stadtgebiet Münster, sowie weltweit. Die OpenSenseMap ist eine offene Plattform für offene Sensordaten, an der jeder teilnehmen kann. Das Projekt entstand 2015 am Institut für Geoinformatik in Münster.
 
-![Smart City Münster Logo](https://smartcity.ms/wp-content/uploads/2020/12/Smart-City-Mu%CC%88nster_Logo_20201210_RGB_240x62.png)
+Weitere Informationen unter: [https://sensebox.de](https://sensebox.de )
 
-Stadt Münster - Smart City
+Datenquelle: Stabsstelle Smart City, Stadt Münster / opensensemap.org
+Kontakt für inhaltliche Fragen: [smartcity@stadt-muenster.de](smartcity@stadt-muenster.de)
+
+Daten im Open-Data-Portal:
+- [Umweltsensordaten im Stadtgebiet](https://opendata.stadt-muenster.de/dataset/umweltsensordaten-im-stadtgebiet)
 `}
       details={
         <ChartWrapper>

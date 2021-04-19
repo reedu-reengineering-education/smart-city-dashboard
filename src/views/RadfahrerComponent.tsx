@@ -74,20 +74,25 @@ const RadfahrerComponent = () => {
         dispatch(loadBicycleTimeseriesData(from, to));
       }}
       dataSource={`
-**Beschreibung**
+Anlässlich des nationalen Radverkehrskongresses im Jahr 2013 in Münster wurde erstmals eine Pilotzählstelle am Neutor mit automatischen Zählgeräten eingerichtet. Die Zählergebnisse der Pilotzählstelle sind überraschend und beeindruckend zugleich: An einigen Juni-/Julitagen wurden Spitzenwerte von 23.000 Radfahrten binnen 24 Stunden registriert. Insgesamt passierten seit 2014 jährlich jeweils über 4 Millionen Radfahrerinnen und Radfahrer die Zählstelle am Neutor.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
-tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Die Daten dienen nicht nur dazu, infrastrukturelle Investitionen zu begründen und Prioritäten für Maßnahmen zu benennen, sondern unter anderem auch dazu, um ein genaueres Abbild des täglichen Radverkehrsgeschehens zu erhalten, saisonale Schwankungen zu erfassen und Trends zu erkennen.
 
-**Datenquelle**
+Weitere neun Dauerzählstellen (jeweils in Richtung und Gegenrichtung) wurden seit 2015 im Stadtgebiet installiert.
 
-![Smart City Münster Logo](https://smartcity.ms/wp-content/uploads/2020/12/Smart-City-Mu%CC%88nster_Logo_20201210_RGB_240x62.png)
+Weitere Informationen zu den Radverkehrszählstellen in Münster finden Sie auf [den Seiten des Amtes für Mobilität und Tiefbau der Stadt Münster](https://www.stadt-muenster.de/verkehrsplanung/verkehr-in-zahlen/radverkehrszaehlungen).
 
-Stadt Münster - Smart City
+Datenquelle: Fahrradbüro, Amt für Mobilität und Tiefbau, Stadt Münster
+
+Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrradbuero@stadt-muenster.de)
+
+**Daten im Open-Data-Portal:**
+- [Tagesaktuelle Daten](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-tagesaktuelle-daten)
+- [Kanalpromenade](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-daten-der-z%C3%A4hlstellen-m%C3%BCnster-kanalpromenade)
+- [Schlossbezirk](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-daten-der-z%C3%A4hlstellen-m%C3%BCnster-schlo%C3%9Fbezirk)
+- [Josefsviertel](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-daten-der-z%C3%A4hlstellen-m%C3%BCnster-josefsviertel)
+- [Bahnhofsviertel](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-daten-der-z%C3%A4hlstellen-m%C3%BCnster-bahnhofsviertel)
+- [Schlachthofviertel](https://opendata.stadt-muenster.de/dataset/verkehrsz%C3%A4hlung-fahrradverkehr-daten-der-z%C3%A4hlstellen-m%C3%BCnster-schlachthofviertel)
 `}
       details={
         <ChartWrapper>

@@ -43,11 +43,17 @@ const PassantenComponent = () => {
       loading={loading}
       mapFeatureTag="pedestrians"
       dataSource={`
-**Datenquelle**
+Die Passantenfrequenz ist ein wichtiger Indikator für die Attraktivität einer Innenstadt. Egal ob Einzelhändler, Investor, Stadt-, Verkehrsplaner, Handelsforscher oder Innenstadtbesucher, verschiedenste Akteure profitieren von Passantenfrequenzdaten. Die automatische Zählung geschieht in der Innenstadt von Münster tagesaktuell an drei Standorten: Alter Fischmarkt, Ludgeristraße und Rothenburg.
 
-Die Passantenfrequenzen in Münster stellt Ihnen die Wirtschaftsförderung Münster GmbH in Kooperation mit hystreet.com zur Verfügung.
+Die Daten werden anonymisiert per Laserscanner erhoben. Die Messung geschieht 24 Stunden pro Tag, 7 Tage in der Woche.
 
-![WFM](https://www.wfm-muenster.de/wp-content/themes/wfm/images/logo_wfm.svg)
+Neben den automatisch erhobenen Daten werden in unregelmäßigen Abständen im Auftrag der Wirtschaftsförderung Münster weitere Zählungen durchgeführt. Beispielhafte Auswertungen dieser Zahlen finden Sie auf dem Open-Data-Portal. Wenn Sie darüber hinausgehend Interesse an Daten zu Passantenzählungen in der Stadt Münster haben, wenden Sie sich bitte an die Wirtschaftsförderung Münster GmbH.
+
+Datenquelle: Wirtschaftsförderung Münster GmbH in Zusammenarbeit mit hystreet.com
+Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpartner/](https://www.wfm-muenster.de/die-wfm/ansprechpartner/)
+
+**Daten im Open-Data-Portal:**
+- [Passantenfrequenzen](https://opendata.stadt-muenster.de/dataset/tagesaktuelle-passantenfrequenzen-einzelhandelslagen-der-innenstadt-m%C3%BCnster)
 `}
       show24h={() => {
         setLoading(true);

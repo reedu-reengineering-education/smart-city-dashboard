@@ -51,20 +51,14 @@ const AaseeComponent = () => {
         dispatch(loadAaseeTimeseriesData(from));
       }}
       dataSource={`
-**Beschreibung**
+Der Aasee ist Münsters zentralstes Naherholungsgebiet. Der 2.300 m lange See ist nur 15 Fußminuten vom berühmten Prinzipalmarkt entfernt und für Bewohner:innen und Touristen eine blau-grüne Oase im Stadtbild von Münster. Im Hitzesommer 2018 sank der Sauerstoffgehalt des Aasees soweit, dass es zu einem großen Fischsterben kam. Der Rückgang des Sauerstoffgehalts blieb damals lange unentdeckt.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
-tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Über Sensoren in Messtonnen bzw. Bojen im Aasee, wird nun seit dem Sommer 2020 die Wasserqualität des innerstädtischen Gewässers fortlaufend gemessen. Die gewonnenen Daten werden über das LoRaWAN-Netz der Stadtwerke Münster in Echtzeit an die zuständigen Ämter übermittelt. Auf diese Weise können Maßnahmen zur Verbesserung der Wasserqualität frühzeitig ergriffen werden. Dieses Projekt entstand als Projektidee im Münsterhack 2018, wurde von der Stadtverwaltung aufgegriffen und in Kooperation mit den Stadtwerken Münster umgesetzt. Zudem werden die digitalen Messdaten mit regelmäßigen analogen Gewässerproben abgeglichen. Den nächsten heißen Sommern blickt Münster damit etwas entspannter entgegen.
 
-**Datenquelle**
+Weitere Informationen: [https://smartcity.ms/aaseemonitoring/](https://smartcity.ms/aaseemonitoring/)
 
-![Smart City Münster Logo](https://smartcity.ms/wp-content/uploads/2020/12/Smart-City-Mu%CC%88nster_Logo_20201210_RGB_240x62.png)
-
-Stadt Münster - Smart City
+Datenquelle: Abteilung Planung Wasserwirtschaft, Amt für Mobilität und Tiefbau, Stadt Münster
+Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mailto:bergerd@stadt-muenster.de)
 `}
       details={
         <ChartWrapper>
