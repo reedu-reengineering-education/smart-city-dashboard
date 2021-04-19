@@ -7,7 +7,10 @@ import createSagaMiddleware from 'redux-saga';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import reportWebVitals from './reportWebVitals';
-import { loadParkhausData } from './actions/parkhaus';
+import {
+  loadParkhausData,
+  loadParkhausTimeseriesData,
+} from './actions/parkhaus';
 import { loadAaseeData } from './actions/aasee';
 import { loadOsemData } from './actions/opensensemap';
 import { loadPedestrianData } from './actions/passanten';
@@ -31,6 +34,9 @@ sagaMiddleware.run(rootSaga);
 
 // we might want to run that somewhere else
 store.dispatch(loadParkhausData());
+let from = new Date();
+from.setDate(from.getDate() - 1);
+store.dispatch(loadParkhausTimeseriesData(from, new Date()));
 store.dispatch(loadAaseeData());
 store.dispatch(loadOsemData());
 store.dispatch(loadPedestrianData());
