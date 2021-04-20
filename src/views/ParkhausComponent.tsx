@@ -211,8 +211,8 @@ Die Stadt Münster verfügt über ca. 6.100 Stellplätze für Autos in der Altst
 Weitere Informationen zu den Parkhäusern und Parkplätzen in Münster finden Sie auf [den Seiten des Amtes für Mobilität und Tiefbau der Stadt Münster](https://www.stadt-muenster.de/tiefbauamt/strassen/parken-in-muenster.html), sowie [auf der Homepage der Westfälische Bauindustrie GmbH (WBI)](https://www.wbi-muenster.de/parken-in-muenster/uebersicht.php)
 
 Datenquelle: Amt für Mobilität und Tiefbau, Stadt Münster
-Kontakt für inhaltliche Fragen:
-Andreas Pott, [pott@stadt-muenster.de](mailto:pott@stadt-muenster.de)
+
+Kontakt für inhaltliche Fragen: Andreas Pott, [pott@stadt-muenster.de](mailto:pott@stadt-muenster.de)
 
 **Daten im Open-Data-Portal:**
 - [Aktuelle Parkhausbelegung](https://opendata.stadt-muenster.de/dataset/parkleitsystem-parkhausbelegung-aktuell)

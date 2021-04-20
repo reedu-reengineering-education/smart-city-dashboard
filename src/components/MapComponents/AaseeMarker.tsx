@@ -12,24 +12,21 @@ const AaseeMarker = () => {
     (state: RootStateOrAny) => state.aasee
   );
 
-  const [sensorData, setSensorData] = useState<any>();
-  const [oxygenSensorData, setOxygenSensorData] = useState<any>();
+  const [temperature, setTemperature] = useState(0);
+  const [ph, setPh] = useState(0);
+  const [oxygen, setOxygen] = useState(0);
 
   useEffect(() => {
-    const sensor = aaseeData.data.data?.packets?.filter(
-      (p: any) => 'water_temperature' in p.parsed
-    )[0];
-    setSensorData(sensor);
-
-    const oxygenSensor = aaseeData.data.data?.packets?.filter(
-      (p: any) => 'dissolved_oxygen' in p.parsed
-    )[0];
-    setOxygenSensorData(oxygenSensor);
+    if (aaseeData.data.data) {
+      setTemperature(aaseeData.data.data.water_temperature[0].value);
+      setPh(aaseeData.data.data.pH[0].value);
+      setOxygen(aaseeData.data.data.dissolved_oxygen[0].value);
+    }
   }, [aaseeData]);
 
   return (
     <>
-      {aaseeData?.data?.metadata && sensorData?.parsed?.water_temperature && (
+      {aaseeData?.data?.metadata && temperature && (
         <Marker
           position={[
             aaseeData?.data?.metadata?.location?.latitude,
@@ -42,9 +39,7 @@ const AaseeMarker = () => {
                 color="blue"
                 icon={<WaterTemperature fill="#fff" />}
                 title={'Wassertemperatur'}
-                details={`${sensorData?.parsed?.water_temperature.toFixed(
-                  2
-                )} °C`}
+                details={`${temperature.toFixed(2)} °C`}
               ></MapMarker>
             ),
             iconSize: [32, 32],
@@ -52,7 +47,7 @@ const AaseeMarker = () => {
           })}
         ></Marker>
       )}
-      {aaseeData?.data?.metadata && sensorData?.parsed.pH && (
+      {aaseeData?.data?.metadata && ph && (
         <Marker
           position={[
             aaseeData?.data?.metadata?.location?.latitude,
@@ -65,7 +60,7 @@ const AaseeMarker = () => {
                 color="blue"
                 icon={<PH fill="#fff" />}
                 title={'PH Wert'}
-                details={`${sensorData?.parsed?.pH.toFixed(2)}`}
+                details={`${ph.toFixed(2)}`}
               ></MapMarker>
             ),
             iconSize: [32, 32],
@@ -73,7 +68,7 @@ const AaseeMarker = () => {
           })}
         ></Marker>
       )}
-      {aaseeData?.data?.metadata && oxygenSensorData?.parsed?.dissolved_oxygen && (
+      {aaseeData?.data?.metadata && oxygen && (
         <Marker
           position={[
             aaseeData?.data?.metadata?.location?.latitude,
@@ -86,9 +81,7 @@ const AaseeMarker = () => {
                 color="blue"
                 icon={<Water fill="#fff" />}
                 title={'Sauerstoffgehalt'}
-                details={`${oxygenSensorData?.parsed?.dissolved_oxygen.toFixed(
-                  2
-                )} mg/L`}
+                details={`${oxygen.toFixed(2)} mg/L`}
               ></MapMarker>
             ),
             iconSize: [32, 32],

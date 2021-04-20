@@ -50,6 +50,7 @@ Die Daten werden anonymisiert per Laserscanner erhoben. Die Messung geschieht 24
 Neben den automatisch erhobenen Daten werden in unregelmäßigen Abständen im Auftrag der Wirtschaftsförderung Münster weitere Zählungen durchgeführt. Beispielhafte Auswertungen dieser Zahlen finden Sie auf dem Open-Data-Portal. Wenn Sie darüber hinausgehend Interesse an Daten zu Passantenzählungen in der Stadt Münster haben, wenden Sie sich bitte an die Wirtschaftsförderung Münster GmbH.
 
 Datenquelle: Wirtschaftsförderung Münster GmbH in Zusammenarbeit mit hystreet.com
+
 Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpartner/](https://www.wfm-muenster.de/die-wfm/ansprechpartner/)
 
 **Daten im Open-Data-Portal:**
@@ -76,6 +77,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
         dispatch(loadPedestrianTimeseriesData(from, to));
       }}
       detailsDefault={true}
+      mode={'24h'}
       details={
         <ChartWrapper>
           <Suspense fallback={<Skeleton count={5} />}>
@@ -97,6 +99,9 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
               chartOptions={{
                 colors: ['#009fe3', '#86bc25', '#fdc300'],
                 yaxis: {
+                  title: {
+                    text: 'Passanten pro Stunde',
+                  },
                   labels: {
                     formatter: (value: number) => {
                       return value.toFixed(0);

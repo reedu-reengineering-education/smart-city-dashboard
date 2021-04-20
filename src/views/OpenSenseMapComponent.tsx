@@ -63,6 +63,7 @@ Die Daten werden von der Plattform ["OpenSenseMap"](https://opensensemap.org/exp
 Weitere Informationen unter: [https://sensebox.de](https://sensebox.de )
 
 Datenquelle: Stabsstelle Smart City, Stadt Münster / opensensemap.org
+
 Kontakt für inhaltliche Fragen: [smartcity@stadt-muenster.de](smartcity@stadt-muenster.de)
 
 Daten im Open-Data-Portal:
@@ -88,16 +89,6 @@ Daten im Open-Data-Portal:
                   ]}
                   chartOptions={{
                     colors: ['#f28c00', '#009fe3'],
-                    xaxis: {
-                      labels: {
-                        show: false,
-                        formatter: (value: string) => {
-                          const date = new Date(value);
-
-                          return `${date.toLocaleString()} Uhr`;
-                        },
-                      },
-                    },
                     yaxis: [
                       {
                         title: {
@@ -118,6 +109,14 @@ Daten im Open-Data-Portal:
                       },
                     ],
                     tooltip: {
+                      x: {
+                        show: false,
+                        formatter: (value: number) => {
+                          const date = new Date(value);
+
+                          return `${date.toLocaleString()} Uhr`;
+                        },
+                      },
                       y: {
                         formatter: (value: number, { seriesIndex }) => {
                           const unit = seriesIndex === 0 ? '°C' : '%';

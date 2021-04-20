@@ -11,6 +11,7 @@ import {
   HeadingWrapper,
   WidgetIcon,
 } from './styles';
+import LoadingDots from './LoadingDots';
 
 interface IBaseWidgetProps {
   icon?: any;
@@ -25,6 +26,7 @@ interface IBaseWidgetProps {
   show7d?: Function;
   show1m?: Function;
   loading?: boolean;
+  mode?: '24h' | '7d' | '1m';
 }
 
 const WidgetContent = styled.div`
@@ -94,8 +96,10 @@ const FooterButton = styled.button`
   }
 `;
 
-const HighlightedFooterButton = styled(FooterButton)`
+const HighlightedFooterButton = styled(FooterButton)<{ bold?: boolean }>`
   background-color: rgba(0, 159, 227, 0.15);
+
+  font-weight: ${(props) => (props.bold ? '600' : '')};
 
   &:hover {
     background-color: rgba(0, 159, 227, 0.25);
@@ -109,6 +113,12 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
   const [showDetails, setShowDetails] = useState(props.detailsDefault ?? false);
 
   const [animateIcon, setAnimateIcon] = useState(false);
+
+  const [mode, setMode] = useState<'24h' | '7d' | '1m'>();
+
+  useEffect(() => {
+    if (props.mode) setMode(props.mode);
+  }, [props.mode]);
 
   useEffect(() => {
     if (showSource) {
@@ -151,7 +161,12 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
           {props.children}
         </DataContent>
         {showSource && <SourceContent>{props.dataSource}</SourceContent>}
-        {showDetails && <DetailContent>{props.details}</DetailContent>}
+        {showDetails && (
+          <DetailContent>
+            {props.loading && <LoadingDots></LoadingDots>}
+            {!props.loading && props.details}
+          </DetailContent>
+        )}
       </WidgetContent>
       <FooterWrapper>
         <FooterButton
@@ -167,7 +182,7 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
         </FooterButton>
         {props.details && (
           <FooterButton onClick={() => setShowDetails(!showDetails)}>
-            {showDetails ? <b>Schließen</b> : 'Zeitverlauf'}
+            {showDetails ? <b>Aktuell</b> : 'Zeitverlauf'}
           </FooterButton>
         )}
         {showDetails && (
@@ -178,9 +193,11 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
                 onClick={() => {
                   if (props.show24h) {
                     props.show24h();
+                    setMode('24h');
                   }
                   setAnimateIcon(true);
                 }}
+                bold={mode === '24h'}
               >
                 24h
               </HighlightedFooterButton>
@@ -191,9 +208,11 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
                 onClick={() => {
                   if (props.show7d) {
                     props.show7d();
+                    setMode('7d');
                   }
                   setAnimateIcon(true);
                 }}
+                bold={mode === '7d'}
               >
                 7 Tage
               </HighlightedFooterButton>
@@ -204,9 +223,11 @@ const BaseWidgetComponent = (props: IBaseWidgetProps) => {
                 onClick={() => {
                   if (props.show1m) {
                     props.show1m();
+                    setMode('1m');
                   }
                   setAnimateIcon(true);
                 }}
+                bold={mode === '1m'}
               >
                 1 Monat
               </HighlightedFooterButton>

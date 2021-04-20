@@ -124,6 +124,9 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
                   '#ea4f3d',
                 ],
                 yaxis: {
+                  title: {
+                    text: 'Fahrräder pro Tag',
+                  },
                   labels: {
                     formatter: (value: number) => {
                       return value.toFixed(0);
@@ -175,7 +178,7 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
               >
                 <div>
                   <MeasurementTile
-                    header={bicycleStation.name}
+                    header={bicycleStation.name.replace('Straße', 'Str')}
                     value={
                       bicycleStation.data?.length > 0 &&
                       bicycleStation.data[bicycleStation.data.length - 1].counts

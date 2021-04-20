@@ -39,6 +39,7 @@ const AaseeComponent = () => {
       mapFeatureTag="aasee"
       loading={loading}
       detailsDefault={true}
+      mode={'24h'}
       show24h={() => {
         setLoading(true);
         dispatch(loadAaseeData());
@@ -58,6 +59,7 @@ Der Aasee ist Münsters zentralstes Naherholungsgebiet. Der 2.300 m lange See is
 Weitere Informationen: [https://smartcity.ms/aaseemonitoring/](https://smartcity.ms/aaseemonitoring/)
 
 Datenquelle: Abteilung Planung Wasserwirtschaft, Amt für Mobilität und Tiefbau, Stadt Münster
+
 Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mailto:bergerd@stadt-muenster.de)
 `}
       details={
