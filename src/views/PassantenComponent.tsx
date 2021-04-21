@@ -88,7 +88,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                 pedestrianData.data?.map((sensor: any) => {
                   return {
                     name: sensor.name,
-                    data: sensor.measurements.slice(0, -1).map((m: any) => ({
+                    data: sensor.measurements?.slice(0, -1).map((m: any) => ({
                       x: m.timestamp,
                       y: m.pedestrians_count,
                     })),
@@ -97,7 +97,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
               }
               type={'line'}
               chartOptions={{
-                colors: ['#009fe3', '#86bc25', '#fdc300'],
+                colors: ['#009fe3', '#86bc25', '#fdc300', '#ea4f3d'],
                 yaxis: {
                   title: {
                     text: 'Passanten pro Stunde',
@@ -141,7 +141,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                 footer={timeRange(
                   p.measurements[p.measurements.length - 2].timestamp
                 )}
-                header={p.name}
+                header={p.name.replace('(West)', '')}
                 value={
                   p.measurements[p.measurements.length - 2].pedestrians_count
                 }
