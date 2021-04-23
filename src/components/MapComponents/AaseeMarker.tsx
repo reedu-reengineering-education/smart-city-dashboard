@@ -1,11 +1,13 @@
 import L from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Marker } from 'react-leaflet';
+import { Marker, Popup } from 'react-leaflet';
 import { useSelector, RootStateOrAny } from 'react-redux';
 
 import { PH, Water, WaterTemperature } from '../Icons';
+import TimeSeriesChart from '../TimeSeriesChart';
 import MapMarker from './MapMarker';
+import { PopupContent } from './styles';
 
 const AaseeMarker = () => {
   const aaseeData: ServiceState = useSelector(
@@ -45,7 +47,65 @@ const AaseeMarker = () => {
             iconSize: [32, 32],
             iconAnchor: [16, 16],
           })}
-        ></Marker>
+        >
+          <Popup closeButton={false}>
+            <PopupContent>
+              <TimeSeriesChart
+                id="aasee"
+                title="Wassertemperatur"
+                width={250}
+                height={200}
+                series={[
+                  {
+                    name: 'Wassertemperatur',
+                    data: aaseeData?.data?.data?.water_temperature.map(
+                      (measurement: any) => {
+                        return {
+                          x: measurement.time,
+                          y: measurement.value,
+                        };
+                      }
+                    ),
+                  },
+                ]}
+                type={'line'}
+                chartOptions={{
+                  colors: ['#f28c00'],
+                  yaxis: {
+                    labels: {
+                      formatter: (value: number) => {
+                        return value.toFixed(1);
+                      },
+                    },
+                  },
+                  tooltip: {
+                    x: {
+                      show: false,
+                      formatter: (value: number) => {
+                        const date = new Date(value);
+
+                        return `${date.toLocaleString()} Uhr`;
+                      },
+                    },
+                    y: {
+                      formatter: (value: number) => {
+                        return `${value.toFixed(1)} '°C'`;
+                      },
+                    },
+                  },
+                  chart: {
+                    animations: {
+                      animateGradually: {
+                        enabled: false,
+                      },
+                      speed: 100,
+                    },
+                  },
+                }}
+              ></TimeSeriesChart>
+            </PopupContent>
+          </Popup>
+        </Marker>
       )}
       {aaseeData?.data?.metadata && ph && (
         <Marker
@@ -66,7 +126,63 @@ const AaseeMarker = () => {
             iconSize: [32, 32],
             iconAnchor: [16, 16],
           })}
-        ></Marker>
+        >
+          <Popup closeButton={false}>
+            <PopupContent>
+              <TimeSeriesChart
+                id="aasee"
+                title="pH-Wert"
+                width={250}
+                height={200}
+                series={[
+                  {
+                    name: 'pH-Wert',
+                    data: aaseeData?.data?.data?.pH.map((measurement: any) => {
+                      return {
+                        x: measurement.time,
+                        y: measurement.value,
+                      };
+                    }),
+                  },
+                ]}
+                type={'line'}
+                chartOptions={{
+                  colors: ['#86bc25'],
+                  yaxis: {
+                    labels: {
+                      formatter: (value: number) => {
+                        return value.toFixed(1);
+                      },
+                    },
+                  },
+                  tooltip: {
+                    x: {
+                      show: false,
+                      formatter: (value: number) => {
+                        const date = new Date(value);
+
+                        return `${date.toLocaleString()} Uhr`;
+                      },
+                    },
+                    y: {
+                      formatter: (value: number) => {
+                        return `${value.toFixed(1)}`;
+                      },
+                    },
+                  },
+                  chart: {
+                    animations: {
+                      animateGradually: {
+                        enabled: false,
+                      },
+                      speed: 100,
+                    },
+                  },
+                }}
+              ></TimeSeriesChart>
+            </PopupContent>
+          </Popup>
+        </Marker>
       )}
       {aaseeData?.data?.metadata && oxygen && (
         <Marker
@@ -87,7 +203,65 @@ const AaseeMarker = () => {
             iconSize: [32, 32],
             iconAnchor: [16, 16],
           })}
-        ></Marker>
+        >
+          <Popup closeButton={false}>
+            <PopupContent>
+              <TimeSeriesChart
+                id="aasee"
+                title="Sauerstoffgehalt"
+                width={250}
+                height={200}
+                series={[
+                  {
+                    name: 'Sauerstoff',
+                    data: aaseeData?.data?.data?.dissolved_oxygen.map(
+                      (measurement: any) => {
+                        return {
+                          x: measurement.time,
+                          y: measurement.value,
+                        };
+                      }
+                    ),
+                  },
+                ]}
+                type={'line'}
+                chartOptions={{
+                  colors: ['#009fe3'],
+                  yaxis: {
+                    labels: {
+                      formatter: (value: number) => {
+                        return value.toFixed(1);
+                      },
+                    },
+                  },
+                  tooltip: {
+                    x: {
+                      show: false,
+                      formatter: (value: number) => {
+                        const date = new Date(value);
+
+                        return `${date.toLocaleString()} Uhr`;
+                      },
+                    },
+                    y: {
+                      formatter: (value: number) => {
+                        return `${value.toFixed(1)} mg/L`;
+                      },
+                    },
+                  },
+                  chart: {
+                    animations: {
+                      animateGradually: {
+                        enabled: false,
+                      },
+                      speed: 100,
+                    },
+                  },
+                }}
+              ></TimeSeriesChart>
+            </PopupContent>
+          </Popup>
+        </Marker>
       )}
     </>
   );

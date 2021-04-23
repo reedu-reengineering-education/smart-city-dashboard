@@ -5,6 +5,8 @@ import merge from 'lodash/merge';
 interface ITimeSeriesChartProps {
   id: string;
   series: any[];
+  height?: number | string;
+  width?: number | string;
   title?: string;
   unit?: string;
   chartOptions?: ApexOptions;
@@ -139,7 +141,8 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
       options={merge(baseOptions, props.chartOptions)}
       series={props.series}
       type={props.type || 'area'}
-      height="100%"
+      height={props.height || '100%'}
+      width={props.width || '100%'}
     />
   );
 };
