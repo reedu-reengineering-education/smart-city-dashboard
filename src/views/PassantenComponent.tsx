@@ -34,6 +34,8 @@ const PassantenComponent = () => {
     setLoading(false);
   }, [pedestrianData]);
 
+  const [mode, setMode] = useState<'24h' | '7d' | '1m'>('24h');
+
   const dispatch = useDispatch();
 
   return (
@@ -59,6 +61,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
       show24h={() => {
         setLoading(true);
         dispatch(loadPedestrianData());
+        setMode('24h');
       }}
       show7d={() => {
         setLoading(true);
@@ -67,6 +70,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
         const to = new Date();
 
         dispatch(loadPedestrianTimeseriesData(from, to));
+        setMode('7d');
       }}
       show1m={() => {
         setLoading(true);
@@ -75,6 +79,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
         const to = new Date();
 
         dispatch(loadPedestrianTimeseriesData(from, to));
+        setMode('1m');
       }}
       detailsDefault={true}
       mode={'24h'}
@@ -115,6 +120,22 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                     formatter: (value: number) => {
                       if (!value) return '';
                       const date = new Date(value);
+
+                      if (mode === '1m')
+                        return date.toLocaleDateString('de-DE', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        });
+
+                      if (mode === '7d')
+                        return `${date.toLocaleDateString('de-DE', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })} ${date.getHours()} - ${date.getHours() + 1} Uhr`;
 
                       return `${date.getHours()} - ${date.getHours() + 1} Uhr`;
                     },
