@@ -9,6 +9,7 @@ import { Marker, Popup } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import MapMarker from './MapMarker';
+import { PopupContent } from './styles';
 
 const bicycleStations = [
   100035541, // Neutor
@@ -64,55 +65,59 @@ const BicycleMarker = () => {
                 iconAnchor: [16, 16],
               })}
             >
-              <Popup minWidth={250} minHeight={250} closeButton={false}>
-                <TimeSeriesChart
-                  id="bicycles"
-                  series={[
-                    {
-                      name: bicycleStation.name,
-                      data: bicycleStation.data?.map((m: any) => ({
-                        x: m.date,
-                        y: m.counts,
-                      })),
-                    },
-                  ]}
-                  title="Fahrräder"
-                  type={'line'}
-                  chartOptions={{
-                    colors: ['#009fe3'],
-                    yaxis: {
-                      labels: {
-                        formatter: (value: number) => {
-                          if (!value) return '';
-                          return value.toFixed(0);
+              <Popup closeButton={false}>
+                <PopupContent>
+                  <TimeSeriesChart
+                    id="bicycles"
+                    width={250}
+                    height={200}
+                    series={[
+                      {
+                        name: bicycleStation.name,
+                        data: bicycleStation.data?.map((m: any) => ({
+                          x: m.date,
+                          y: m.counts,
+                        })),
+                      },
+                    ]}
+                    title="Fahrräder"
+                    type={'line'}
+                    chartOptions={{
+                      colors: ['#009fe3'],
+                      yaxis: {
+                        labels: {
+                          formatter: (value: number) => {
+                            if (!value) return '';
+                            return value.toFixed(0);
+                          },
                         },
                       },
-                    },
-                    tooltip: {
-                      x: {
-                        show: false,
-                        formatter: (value: number) => {
-                          if (!value) return '';
+                      tooltip: {
+                        x: {
+                          show: false,
+                          formatter: (value: number) => {
+                            if (!value) return '';
 
-                          const date = new Date(value);
+                            const date = new Date(value);
 
-                          return date.toLocaleDateString('de-DE', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          });
+                            return date.toLocaleDateString('de-DE', {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            });
+                          },
+                        },
+                        y: {
+                          formatter: (value: number) => {
+                            if (!value) return '';
+                            return `${value.toFixed(0)}`;
+                          },
                         },
                       },
-                      y: {
-                        formatter: (value: number) => {
-                          if (!value) return '';
-                          return `${value.toFixed(0)}`;
-                        },
-                      },
-                    },
-                  }}
-                ></TimeSeriesChart>
+                    }}
+                  ></TimeSeriesChart>
+                </PopupContent>
               </Popup>
             </Marker>
           ))}

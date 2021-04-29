@@ -36,7 +36,7 @@ const IconLabel = styled.div<IconLabelProps>`
   }
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.35);
   }
 `;
 
