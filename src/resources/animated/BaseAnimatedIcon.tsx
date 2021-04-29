@@ -23,9 +23,13 @@ const BaseAnimatedIcon = (props: IAnimatedIconProps) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timerID = setTimeout(() => {
       setAnimate(false);
     }, ANIMATION_DURATION);
+
+    return () => {
+      clearTimeout(timerID);
+    };
   }, [animate, ANIMATION_DURATION]);
 
   useEffect(() => {
