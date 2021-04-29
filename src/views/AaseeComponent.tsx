@@ -106,6 +106,7 @@ Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mail
                 yaxis: {
                   labels: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return value.toFixed(1);
                     },
                   },
@@ -114,6 +115,7 @@ Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mail
                   x: {
                     show: false,
                     formatter: (value: number) => {
+                      if (!value) return '';
                       const date = new Date(value);
 
                       return `${date.toLocaleString()} Uhr`;
@@ -121,6 +123,8 @@ Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mail
                   },
                   y: {
                     formatter: (value: number, { seriesIndex }) => {
+                      if (!value) return '';
+
                       const units = ['°C', 'mg/L', ''];
                       const unit = units[seriesIndex];
                       return `${value.toFixed(1)} ${unit}`;

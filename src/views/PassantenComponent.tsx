@@ -104,6 +104,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                   },
                   labels: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return value.toFixed(0);
                     },
                   },
@@ -112,6 +113,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                   x: {
                     show: false,
                     formatter: (value: number) => {
+                      if (!value) return '';
                       const date = new Date(value);
 
                       return `${date.getHours()} - ${date.getHours() + 1} Uhr`;
@@ -119,6 +121,7 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                   },
                   y: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return `${value.toFixed(0)}`;
                     },
                   },

@@ -185,6 +185,7 @@ const ParkhausComponent = () => {
                   },
                   labels: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return value.toFixed(0);
                     },
                   },
@@ -192,6 +193,7 @@ const ParkhausComponent = () => {
                 tooltip: {
                   y: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return `${value.toFixed(0)}`;
                     },
                   },

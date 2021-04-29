@@ -101,6 +101,7 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
       },
       y: {
         formatter: (value: number) => {
+          if (!value) return '';
           return `${value.toFixed(1)} ${props.unit}`;
         },
       },
@@ -130,6 +131,7 @@ const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
       tickAmount: 3,
       labels: {
         formatter: (value: number) => {
+          if (!value) return '';
           return value.toFixed(0);
         },
       },

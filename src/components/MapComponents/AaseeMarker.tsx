@@ -74,6 +74,7 @@ const AaseeMarker = () => {
                   yaxis: {
                     labels: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return value.toFixed(1);
                       },
                     },
@@ -82,6 +83,8 @@ const AaseeMarker = () => {
                     x: {
                       show: false,
                       formatter: (value: number) => {
+                        if (!value) return '';
+
                         const date = new Date(value);
 
                         return `${date.toLocaleString()} Uhr`;
@@ -89,6 +92,7 @@ const AaseeMarker = () => {
                     },
                     y: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return `${value.toFixed(1)} '°C'`;
                       },
                     },
@@ -151,6 +155,7 @@ const AaseeMarker = () => {
                   yaxis: {
                     labels: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return value.toFixed(1);
                       },
                     },
@@ -159,6 +164,8 @@ const AaseeMarker = () => {
                     x: {
                       show: false,
                       formatter: (value: number) => {
+                        if (!value) return '';
+
                         const date = new Date(value);
 
                         return `${date.toLocaleString()} Uhr`;
@@ -166,6 +173,7 @@ const AaseeMarker = () => {
                     },
                     y: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return `${value.toFixed(1)}`;
                       },
                     },
@@ -230,6 +238,7 @@ const AaseeMarker = () => {
                   yaxis: {
                     labels: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return value.toFixed(1);
                       },
                     },
@@ -238,6 +247,8 @@ const AaseeMarker = () => {
                     x: {
                       show: false,
                       formatter: (value: number) => {
+                        if (!value) return '';
+
                         const date = new Date(value);
 
                         return `${date.toLocaleString()} Uhr`;
@@ -245,6 +256,7 @@ const AaseeMarker = () => {
                     },
                     y: {
                       formatter: (value: number) => {
+                        if (!value) return '';
                         return `${value.toFixed(1)} mg/L`;
                       },
                     },

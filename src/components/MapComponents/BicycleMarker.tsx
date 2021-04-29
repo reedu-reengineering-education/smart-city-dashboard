@@ -83,6 +83,7 @@ const BicycleMarker = () => {
                     yaxis: {
                       labels: {
                         formatter: (value: number) => {
+                          if (!value) return '';
                           return value.toFixed(0);
                         },
                       },
@@ -91,6 +92,8 @@ const BicycleMarker = () => {
                       x: {
                         show: false,
                         formatter: (value: number) => {
+                          if (!value) return '';
+
                           const date = new Date(value);
 
                           return date.toLocaleDateString('de-DE', {
@@ -103,6 +106,7 @@ const BicycleMarker = () => {
                       },
                       y: {
                         formatter: (value: number) => {
+                          if (!value) return '';
                           return `${value.toFixed(0)}`;
                         },
                       },

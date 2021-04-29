@@ -129,6 +129,7 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
                   },
                   labels: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return value.toFixed(0);
                     },
                   },
@@ -137,6 +138,8 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
                   x: {
                     show: false,
                     formatter: (value: number) => {
+                      if (!value) return '';
+
                       const date = new Date(value);
 
                       return date.toLocaleDateString('de-DE', {
@@ -149,6 +152,7 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
                   },
                   y: {
                     formatter: (value: number) => {
+                      if (!value) return '';
                       return `${value.toFixed(0)}`;
                     },
                   },

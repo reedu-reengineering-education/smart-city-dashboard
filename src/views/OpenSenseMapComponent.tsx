@@ -96,6 +96,7 @@ Daten im Open-Data-Portal:
                         },
                         labels: {
                           formatter: (value: number) => {
+                            if (!value) return '';
                             return value.toFixed(1);
                           },
                         },
@@ -112,6 +113,8 @@ Daten im Open-Data-Portal:
                       x: {
                         show: false,
                         formatter: (value: number) => {
+                          if (!value) return '';
+
                           const date = new Date(value);
 
                           return `${date.toLocaleString()} Uhr`;
@@ -119,6 +122,8 @@ Daten im Open-Data-Portal:
                       },
                       y: {
                         formatter: (value: number, { seriesIndex }) => {
+                          if (!value) return '';
+
                           const unit = seriesIndex === 0 ? '°C' : '%';
                           return `${value.toFixed(1)} ${unit}`;
                         },
