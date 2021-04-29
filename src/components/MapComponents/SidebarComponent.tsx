@@ -143,7 +143,7 @@ const SidebarComponent = () => {
         }
       >
         <Pedestrian fill="#fff" />
-        {!sidebarCollapsed && <p>Passanten</p>}
+        {!sidebarCollapsed && <p>Passant:innen</p>}
       </IconLabel>
       <IconLabel
         active={features.bicycle}

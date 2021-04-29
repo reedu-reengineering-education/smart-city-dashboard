@@ -40,12 +40,12 @@ const PassantenComponent = () => {
 
   return (
     <BaseWidgetComponent
-      title="Passanten"
+      title="Passant:innen"
       icon={Pedestrian}
       loading={loading}
       mapFeatureTag="pedestrians"
       dataSource={`
-Die Passantenfrequenz ist ein wichtiger Indikator für die Attraktivität einer Innenstadt. Egal ob Einzelhändler, Investor, Stadt-, Verkehrsplaner, Handelsforscher oder Innenstadtbesucher, verschiedenste Akteure profitieren von Passantenfrequenzdaten. Die automatische Zählung geschieht in der Innenstadt von Münster tagesaktuell an drei Standorten: Alter Fischmarkt, Ludgeristraße und Rothenburg.
+Die Passant:innenfrequenz ist ein wichtiger Indikator für die Attraktivität einer Innenstadt. Egal ob Einzelhändler, Investor, Stadt-, Verkehrsplaner, Handelsforscher oder Innenstadtbesucher, verschiedenste Akteure profitieren von Passantenfrequenzdaten. Die automatische Zählung geschieht in der Innenstadt von Münster tagesaktuell an drei Standorten: Alter Fischmarkt, Ludgeristraße und Rothenburg.
 
 Die Daten werden anonymisiert per Laserscanner erhoben. Die Messung geschieht 24 Stunden pro Tag, 7 Tage in der Woche.
 
@@ -56,7 +56,7 @@ Datenquelle: Wirtschaftsförderung Münster GmbH in Zusammenarbeit mit hystreet.
 Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpartner/](https://www.wfm-muenster.de/die-wfm/ansprechpartner/)
 
 **Daten im Open-Data-Portal:**
-- [Passantenfrequenzen](https://opendata.stadt-muenster.de/dataset/tagesaktuelle-passantenfrequenzen-einzelhandelslagen-der-innenstadt-m%C3%BCnster)
+- [Passant:innenfrequenzen](https://opendata.stadt-muenster.de/dataset/tagesaktuelle-passantenfrequenzen-einzelhandelslagen-der-innenstadt-m%C3%BCnster)
 `}
       show24h={() => {
         setLoading(true);
@@ -105,7 +105,10 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
                 colors: ['#009fe3', '#86bc25', '#fdc300', '#ea4f3d'],
                 yaxis: {
                   title: {
-                    text: 'Passanten pro Stunde',
+                    text:
+                      mode === '1m'
+                        ? 'Passant:innen pro Tag'
+                        : 'Passant:innen pro Stunde',
                   },
                   labels: {
                     formatter: (value: number) => {
