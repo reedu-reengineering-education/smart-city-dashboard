@@ -26,7 +26,7 @@ Die Software des Dashboards wurde von der münsterschen Firma [re:edu](https://r
 
 Über Rückmeldungen, Anregungen und alles Weitere freut sich das [Team der Stabsstelle Smart City](mailto:smartcity@stadt-muenster.de)!
 
-Weitere Informationen finden Sie unter https://smartcity.ms/dashboard
+Weitere Informationen finden Sie unter [https://smartcity.ms/dashboard](https://smartcity.ms/dashboard)
 
 [Impressum](https://smartcity.ms/impressum/)
 

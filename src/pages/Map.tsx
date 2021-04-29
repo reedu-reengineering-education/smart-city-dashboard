@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import SidebarComponent from '../components/MapComponents/SidebarComponent';
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
+import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import MarkerCluster from '../components/MapComponents/MarkerCluster';
+import { TIMEOUT } from '../components/Transition';
 
 const Wrapper = styled.div`
   position: relative;
-  height: calc(100% - 64px); // 100% minus navbar height
+  height: 100%;
   width: 100%;
 `;
 
 function Map() {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
   const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);
+
+  const [map, setMap] = useState<Leaflet.Map>();
+
+  useEffect(() => {
+    if (map) {
+      setTimeout(() => {
+        map.invalidateSize();
+      }, TIMEOUT);
+    }
+  }, [map]);
 
   return (
     <Wrapper>
@@ -27,6 +39,7 @@ function Map() {
         scrollWheelZoom={true}
         style={{ width: '100%', height: '100%' }}
         zoomControl={false}
+        whenCreated={(map: Leaflet.Map) => setMap(map)}
       >
         <ZoomControl position="topright"></ZoomControl>
         <TileLayer
