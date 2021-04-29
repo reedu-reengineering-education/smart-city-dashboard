@@ -180,6 +180,9 @@ const ParkhausComponent = () => {
                   '#B33C86',
                 ],
                 yaxis: {
+                  title: {
+                    text: 'Belegte Parkplätze',
+                  },
                   labels: {
                     formatter: (value: number) => {
                       return value.toFixed(0);
