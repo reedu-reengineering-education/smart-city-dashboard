@@ -213,6 +213,7 @@ const ParkhausComponent = () => {
       }
       dataSource={`
 Die Stadt Münster verfügt über ca. 6.100 Stellplätze für Autos in der Altstadt und dem Bahnhofsbereich. Zur besseren Orientierung und zur Vermeidung von Parksuchverkehren verfügt die Stadt Münster über ein modernes, dynamisches Parkleitsystem. Dort finden Sie Auskünfte über die genaue Lage der größeren öffentlich zugänglichen Parkplätze und Parkhäuser, die Ausstattung und die aktuelle Stellplatzkapazität: [http://www.stadt-muenster.de/tiefbauamt/parkleitsystem](http://www.stadt-muenster.de/tiefbauamt/parkleitsystem)
+
 Weitere Informationen zu den Parkhäusern und Parkplätzen in Münster finden Sie auf [den Seiten des Amtes für Mobilität und Tiefbau der Stadt Münster](https://www.stadt-muenster.de/tiefbauamt/strassen/parken-in-muenster.html), sowie [auf der Homepage der Westfälische Bauindustrie GmbH (WBI)](https://www.wbi-muenster.de/parken-in-muenster/uebersicht.php)
 
 Datenquelle: Amt für Mobilität und Tiefbau, Stadt Münster
