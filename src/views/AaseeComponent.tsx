@@ -9,6 +9,12 @@ import Water from '../resources/animated/Water';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
+const FILTER_MIN = -5;
+const FILTER_MAX = 45;
+const minMaxFilter = (measurement: { time: Date; value: number }) => {
+  return measurement.value >= FILTER_MIN && measurement.value <= FILTER_MAX;
+};
+
 const AaseeComponent = () => {
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
@@ -70,34 +76,36 @@ Kontakt für inhaltliche Fragen: Daniel Berger, [bergerd@stadt-muenster.de](mail
               series={[
                 {
                   name: 'Wassertemperatur',
-                  data: aaseeData?.data?.data?.water_temperature.map(
-                    (measurement: any) => {
+                  data: aaseeData?.data?.data?.water_temperature
+                    .filter(minMaxFilter)
+                    .map((measurement: any) => {
                       return {
                         x: measurement.time,
                         y: measurement.value,
                       };
-                    }
-                  ),
+                    }),
                 },
                 {
                   name: 'Sauerstoff',
-                  data: aaseeData?.data?.data?.dissolved_oxygen.map(
-                    (measurement: any) => {
+                  data: aaseeData?.data?.data?.dissolved_oxygen
+                    .filter(minMaxFilter)
+                    .map((measurement: any) => {
                       return {
                         x: measurement.time,
                         y: measurement.value,
                       };
-                    }
-                  ),
+                    }),
                 },
                 {
                   name: 'pH-Wert',
-                  data: aaseeData?.data?.data?.pH.map((measurement: any) => {
-                    return {
-                      x: measurement.time,
-                      y: measurement.value,
-                    };
-                  }),
+                  data: aaseeData?.data?.data?.pH
+                    .filter(minMaxFilter)
+                    .map((measurement: any) => {
+                      return {
+                        x: measurement.time,
+                        y: measurement.value,
+                      };
+                    }),
                 },
               ]}
               type={'line'}
