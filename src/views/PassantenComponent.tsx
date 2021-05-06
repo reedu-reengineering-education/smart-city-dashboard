@@ -89,16 +89,19 @@ Kontakt für inhaltliche Fragen: [https://www.wfm-muenster.de/die-wfm/ansprechpa
             <TimeSeriesChart
               id="temperature"
               series={
-                pedestrianData.data?.length > 0 &&
-                pedestrianData.data?.map((sensor: any) => {
-                  return {
-                    name: sensor.name,
-                    data: sensor.measurements?.slice(0, -1).map((m: any) => ({
-                      x: m.timestamp,
-                      y: m.pedestrians_count,
-                    })),
-                  };
-                })
+                pedestrianData.data?.length > 0
+                  ? pedestrianData.data?.map((sensor: any) => {
+                      return {
+                        name: sensor.name,
+                        data: sensor.measurements
+                          ?.slice(0, -1)
+                          .map((m: any) => ({
+                            x: m.timestamp,
+                            y: m.pedestrians_count,
+                          })),
+                      };
+                    })
+                  : []
               }
               type={'line'}
               chartOptions={{

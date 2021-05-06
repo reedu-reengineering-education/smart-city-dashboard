@@ -100,18 +100,19 @@ Kontakt für inhaltliche Fragen: [fahrradbuero@stadt-muenster.de](mailto:fahrrad
             <TimeSeriesChart
               id="bicycles"
               series={
-                bicycleData.data?.length > 0 &&
-                bicycleData.data
-                  .filter((e: any) => bicycleStations.includes(e.id))
-                  .map((bicycleStation: any) => {
-                    return {
-                      name: bicycleStation.name,
-                      data: bicycleStation.data?.map((m: any) => ({
-                        x: m.date,
-                        y: m.counts,
-                      })),
-                    };
-                  })
+                bicycleData.data?.length > 0
+                  ? bicycleData.data
+                      .filter((e: any) => bicycleStations.includes(e.id))
+                      .map((bicycleStation: any) => {
+                        return {
+                          name: bicycleStation.name,
+                          data: bicycleStation.data?.map((m: any) => ({
+                            x: m.date,
+                            y: m.counts,
+                          })),
+                        };
+                      })
+                  : []
               }
               type={'line'}
               chartOptions={{
