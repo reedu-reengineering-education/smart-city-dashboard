@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { Humidity, Pressure, Temperature } from '../Icons';
+import { Humidity, Pressure, Sun, Temperature, Dust } from '../Icons';
 import { Marker } from 'react-leaflet';
 
 import MapMarker from './MapMarker';
@@ -34,6 +34,15 @@ const WeatherMarker = React.memo(() => {
                       )}
                       {sensor.title.includes('Luftd') && (
                         <Pressure fill="#fff" />
+                      )}
+                      {sensor.title.includes('Beleucht') && (
+                        <Sun style={{ padding: '0.2rem' }} />
+                      )}
+                      {sensor.title.includes('UV-Int') && (
+                        <Sun style={{ padding: '0.2rem' }} />
+                      )}
+                      {sensor.title.includes('PM') && (
+                        <Dust style={{ padding: '0.3rem' }} />
                       )}
                     </>
                   }

@@ -7,6 +7,8 @@ import { ReactComponent as CarParking } from '../resources/pictos/picto-06.svg';
 import { ReactComponent as Pedestrian } from '../resources/pictos/picto-07.svg';
 import { ReactComponent as Bicycle } from '../resources/pictos/picto-08.svg';
 import { ReactComponent as Water } from '../resources/pictos/picto-09.svg';
+import { ReactComponent as Sun } from '../resources/pictos/sun.svg';
+import { ReactComponent as Dust } from '../resources/pictos/dust.svg';
 
 import { ReactComponent as ChevronLeft } from '../resources/icons/chevron-left.svg';
 import { ReactComponent as ChevronRight } from '../resources/icons/chevron-right.svg';
@@ -21,6 +23,8 @@ export {
   Pedestrian,
   Bicycle,
   Water,
+  Sun,
+  Dust,
   ChevronLeft,
   ChevronRight,
 };
