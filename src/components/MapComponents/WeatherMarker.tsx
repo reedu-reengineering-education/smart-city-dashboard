@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { Humidity, Pressure, Sun, Temperature, Dust } from '../Icons';
-import { Marker } from 'react-leaflet';
+import { Marker, Popup } from 'react-leaflet';
 
 import MapMarker from './MapMarker';
 import { renderToStaticMarkup } from 'react-dom/server';
 import L from 'leaflet';
+import { PopupContent } from './styles';
+import TimeSeriesChart from '../TimeSeriesChart';
 
 const WeatherMarker = React.memo(() => {
   const osemData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
+
+  const getTimeSeriesFromOsem = async (boxID: string, sensorID: string) => {
+    let from = new Date();
+    from.setHours(from.getHours() - 24);
+    const request = await fetch(
+      `https://api.opensensemap.org/boxes/${boxID}/data/${sensorID}?from-date=${from.toISOString()}`
+    );
+    const data = await request.json();
+    return data;
+  };
+
+  const [timeseries, setTimeseries] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (timeseries.length >= osemData?.data?.live?.sensors.length) {
+      setTimeseries([]);
+    }
+    osemData?.data?.live?.sensors?.length > 0 &&
+      osemData?.data?.live?.sensors.map(async (sensor: any) => {
+        const data = await getTimeSeriesFromOsem(
+          '5f7ddc9f692773001c7da31c',
+          sensor._id
+        );
+        setTimeseries((old) => [
+          ...old,
+          {
+            sensor,
+            data,
+          },
+        ]);
+      });
+    // eslint-disable-next-line
+  }, [osemData?.data?.live?.sensors]);
 
   return (
     <>
@@ -55,7 +90,75 @@ const WeatherMarker = React.memo(() => {
               iconSize: [32, 32],
               iconAnchor: [16, 16],
             })}
-          ></Marker>
+          >
+            {timeseries &&
+              timeseries.length > 0 &&
+              timeseries.find((e) => e.sensor._id === sensor._id) && (
+                <Popup closeButton={false}>
+                  <PopupContent>
+                    <TimeSeriesChart
+                      id="osem"
+                      width={250}
+                      height={200}
+                      series={[
+                        {
+                          name: timeseries.find(
+                            (e) => e.sensor._id === sensor._id
+                          ).sensor.title,
+                          data: timeseries
+                            .find((e) => e.sensor._id === sensor._id)
+                            .data.map((measurement: any) => ({
+                              x: measurement.createdAt,
+                              y: measurement.value,
+                            })),
+                        },
+                      ]}
+                      title={`${
+                        timeseries.find((e) => e.sensor._id === sensor._id)
+                          .sensor.title
+                      } in ${
+                        timeseries.find((e) => e.sensor._id === sensor._id)
+                          .sensor.unit
+                      }`}
+                      type={'line'}
+                      chartOptions={{
+                        colors: ['#009fe3'],
+                        yaxis: {
+                          labels: {
+                            formatter: (value: number) => {
+                              return `${value.toFixed(2)} ${
+                                timeseries.find(
+                                  (e) => e.sensor._id === sensor._id
+                                ).sensor.unit
+                              }`;
+                            },
+                          },
+                        },
+                        tooltip: {
+                          x: {
+                            show: false,
+                            formatter: (value: number) => {
+                              const date = new Date(value);
+
+                              return `${date.toLocaleString()} Uhr`;
+                            },
+                          },
+                          y: {
+                            formatter: (value: number) => {
+                              return `${value.toFixed(2)} ${
+                                timeseries.find(
+                                  (e) => e.sensor._id === sensor._id
+                                ).sensor.unit
+                              }`;
+                            },
+                          },
+                        },
+                      }}
+                    ></TimeSeriesChart>
+                  </PopupContent>
+                </Popup>
+              )}
+          </Marker>
         ))}
     </>
   );
