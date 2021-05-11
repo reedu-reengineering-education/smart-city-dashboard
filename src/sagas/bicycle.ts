@@ -69,7 +69,13 @@ export function* fetchBicycleStationData(action: any): any {
     const data = yield response.json();
     yield put({
       type: RENDER_BICYCLE_STATION_DATA,
-      payload: { stationId: action.stationId, data },
+      payload: {
+        stationId: action.stationId,
+        data: data.filter(
+          (e: { date: string; counts: number; status: number }) =>
+            e.counts != null
+        ),
+      },
     });
   } catch (error) {
     yield put({ type: LOAD_BICYCLE_DATA_FAILED, error });
