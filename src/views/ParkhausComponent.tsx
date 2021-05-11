@@ -90,6 +90,10 @@ const ParkhausComponent = () => {
         if (ph?.timestamp) return ph.timestamp;
       });
 
+      if (filtered.length > 0) {
+        return;
+      }
+
       const parkingSpots = Object.keys(filtered[0]).filter(
         (p) => p !== 'timestamp' && p !== 'Datum und Uhrzeit'
       );
