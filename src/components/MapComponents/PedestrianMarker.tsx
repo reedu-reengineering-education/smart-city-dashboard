@@ -51,12 +51,12 @@ const PedestrianMarker = () => {
                   series={[
                     {
                       name: pedestrianSensor.name,
-                      data: pedestrianSensor.measurements.map(
-                        (measurement: any) => ({
+                      data: pedestrianSensor.measurements
+                        ?.slice(0, -1)
+                        .map((measurement: any) => ({
                           x: measurement.timestamp,
                           y: measurement.pedestrians_count,
-                        })
-                      ),
+                        })),
                     },
                   ]}
                   title="Passant:innen"
