@@ -32,9 +32,9 @@ const AaseeComponent = () => {
 
   useEffect(() => {
     if (aaseeData.data.data) {
-      setTemperature(aaseeData.data.data.water_temperature[0].value);
-      setPh(aaseeData.data.data.pH[0].value);
-      setOxygen(aaseeData.data.data.dissolved_oxygen[0].value);
+      setTemperature(aaseeData.data?.data?.water_temperature[0]?.value);
+      setPh(aaseeData.data?.data?.pH[0]?.value);
+      setOxygen(aaseeData.data?.data?.dissolved_oxygen[0]?.value);
     }
   }, [aaseeData]);
 
