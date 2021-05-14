@@ -90,7 +90,7 @@ const ParkhausComponent = () => {
         if (ph?.timestamp) return ph.timestamp;
       });
 
-      if (filtered.length > 0) {
+      if (filtered.length === 0) {
         return;
       }
 
