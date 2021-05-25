@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apexcharts": "^3.26.2",
+    "apexcharts": "ekhmoi/apexcharts.js",
     "beautiful-react-hooks": "^0.31.0",
     "bulma": "^0.9.1",
     "leaflet": "^1.7.1",

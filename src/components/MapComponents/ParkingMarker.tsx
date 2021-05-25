@@ -75,7 +75,7 @@ const MapCarParkComponent = () => {
           >
             <Popup closeButton={false}>
               <PopupContent>
-                {chartData && (
+                {chartData && chartData.length > 0 && (
                   <TimeSeriesChart
                     id={carPark.properties.NAME}
                     series={chartData.filter(
