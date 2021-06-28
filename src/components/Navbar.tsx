@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from './../resources/smart-city-ms-logo.png';
+import stadtMs from './../resources/stadtlogo_A4.jpg';
+import MMarke from './../resources/mmarke_de_A4.jpg';
 
 const Nav = styled.nav`
   .navbar-brand > .navbar-item {
@@ -55,6 +57,14 @@ const Navbar = () => {
           <Link to="/info" className="navbar-item">
             Info{' '}
           </Link>
+        </div>
+        <div className="navbar-end">
+          <a href="https://www.stadt-muenster.de/" className="navbar-item">
+            <img alt="logo" src={MMarke} height="50px" />
+          </a>
+          <a href="https://www.stadt-muenster.de/" className="navbar-item">
+            <img alt="logo" src={stadtMs} height="50px" />
+          </a>
         </div>
       </div>
     </Nav>
