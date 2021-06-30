@@ -20,6 +20,7 @@ Auf dem Dashboard („Armaturenbrett“ oder „Cockpit“) werden Echtzeitdaten
 Das Dashboard und das entsprechende Sensorennetzwerk sollen schrittweise weiter ausgebaut werden.
 Mit diesen Live-Daten kann künftig ein Überblick zum Beispiel über die Luftqualität, andere Umweltdaten oder Mobilitätsangebote gegeben werden.
 Auf Basis von Echtzeitdaten und interaktiven Zeitreihen lässt sich beispielsweise die Wirksamkeit von Maßnahmen im Stadtraum analysieren.
+
 Die interaktive Kartendarstellung gibt Informationen über die jeweiligen Orte der Datensammlung.
 Informationen und Ansprechpartner zu den einzelnen Themen finden Sie bei einem Klick auf "Über die Daten" bei der jeweiligen Themenkachel.
 Alle Daten sind als Offene Daten (Open Data) auch über das [Open-Data-Portal der Stadt Münster](https://opendata.stadt-muenster.de/) für andere Zwecke verfügbar.
