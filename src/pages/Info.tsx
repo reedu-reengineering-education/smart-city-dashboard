@@ -15,16 +15,20 @@ function Info() {
           children={`
 # Informationen
 Dieses Dashboard ist ein Informationsangebot der Stabsstelle Smart City der Stadt Münster.
-Hier werden Echtzeitdaten, die in unterschiedlichen Themen der Stadtentwicklung durch die Stadt Münster und ihre Partner erhoben werden, visualisiert.
-Interaktive Zeitreihen erlauben erste Analysen der Daten.
-Die interaktive Kartendarstellung gibt Informationen über die analogen Orte der Datensammlung.
+Auf dem Dashboard („Armaturenbrett“ oder „Cockpit“) werden Echtzeitdaten visualisiert, die in und für unterschiedliche Themen der Stadtentwicklung durch die Stadt Münster und ihre Partner erhoben werden.
 
-Informationen und Ansprechpartner zu den einzelnen Themen finden Sie bei Klick auf "Über die Daten" bei der jeweiligen Themenkachel.
+Das Dashboard und das entsprechende Sensorennetzwerk sollen schrittweise weiter ausgebaut werden.
+Mit diesen Live-Daten kann künftig ein Überblick zum Beispiel über die Luftqualität, andere Umweltdaten oder Mobilitätsangebote gegeben werden.
+Auf Basis von Echtzeitdaten und interak-tiven Zeitreihen lässt sich beispielsweise die Wirksamkeit von Maßnahmen im Stadtraum analysieren.
+Die interaktive Kartendarstellung gibt Informationen über die jeweiligen Orte der Datensammlung.
+Informationen und Ansprechpartner zu den einzelnen Themen finden Sie bei einem Klick auf "Über die Daten" bei der jeweiligen Themenkachel.
 Alle Daten sind als Offene Daten (Open Data) auch über das [Open-Data-Portal der Stadt Münster](https://opendata.stadt-muenster.de/) für andere Zwecke verfügbar.
 
-Die Software des Dashboards wurde von der münsterschen Firma [re:edu](https://reedu.de/) entwickelt und ist als Freie Software (Open Source) zur Adaption, Verbesserung und Verbreitung frei verfügbar: [Quelltext des Frontends](https://github.com/reedu-reengineering-education/smart-city-dashboard), [Quelltext des Backends](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend).
+Die Software des Dashboards wurde von der münsterschen Firma [re:edu](https://reedu.de/) entwickelt und 
+ist als Freie Software (Open Source) zur Adaption, Verbesserung und Verbreitung frei verfügbar: [Quelltext des Frontends](https://github.com/reedu-reengineering-education/smart-city-dashboard),
+[Quelltext des Backends](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend).
 
-Über Rückmeldungen, Anregungen und alles Weitere freut sich das [Team der Stabsstelle Smart City](mailto:smartcity@stadt-muenster.de)!
+Über Rückmeldungen und Anregungen freut sich das [Team der Stabsstelle Smart City](mailto:smartcity@stadt-muenster.de)!
 
 Weitere Informationen finden Sie unter [https://smartcity.ms/dashboard](https://smartcity.ms/dashboard)
 
