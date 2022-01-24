@@ -57,6 +57,13 @@ const AaseeComponent = () => {
 
         dispatch(loadAaseeTimeseriesData(from));
       }}
+      show1m={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setDate(from.getMonth() - 1);
+
+        dispatch(loadAaseeTimeseriesData(from));
+      }}
       dataSource={`
 Der Aasee ist Münsters zentralstes Naherholungsgebiet. Der 2.300 m lange See ist nur 15 Fußminuten vom berühmten Prinzipalmarkt entfernt und für Bewohner:innen und Touristen eine blau-grüne Oase im Stadtbild von Münster. Im Hitzesommer 2018 sank der Sauerstoffgehalt des Aasees soweit, dass es zu einem großen Fischsterben kam. Der Rückgang des Sauerstoffgehalts blieb damals lange unentdeckt.
 

@@ -22,6 +22,7 @@ const bicycleStations = [
   100031297, // Promenade
   100053305, // Kanalpromenade
   100031300, // Hafenstr.
+  100020113, // Wolbecker
 ];
 
 const BicycleMarker = () => {

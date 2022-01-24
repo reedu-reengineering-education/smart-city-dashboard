@@ -157,6 +157,13 @@ const ParkhausComponent = () => {
 
         dispatch(loadParkhausTimeseriesData(from, new Date()));
       }}
+      show1m={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setDate(from.getMonth() - 1);
+
+        dispatch(loadParkhausTimeseriesData(from, new Date()));
+      }}
       details={
         <ChartWrapper>
           <Suspense fallback={<Skeleton count={5} />}>
