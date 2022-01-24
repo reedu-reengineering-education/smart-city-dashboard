@@ -53,6 +53,14 @@ const OpenSenseMapComponent = () => {
 
         dispatch(loadOsemTimeseriesData(from, to));
       }}
+      show1m={() => {
+        setLoading(true);
+        let from = new Date();
+        from.setDate(from.getMonth() - 1);
+        const to = new Date();
+
+        dispatch(loadOsemTimeseriesData(from, to));
+      }}
       dataSource={`
 Hier sind Umweltdaten der senseBox der Smart City Münster zu sehen. Bei der senseBox handelt es sich um eine kleine Umweltmessstation für Zuhause: Man kann im Baukastensystem verschiedene Sensoren und Module anschließen. Die senseBox eignet sich einerseits für Schüler und Schülerinnen, aber auch für interessierte Bürger und Bürgerinnen, die sich einen eigenen Umweltsensor basteln möchten. Und all das ist komplett Open Source, liefert Open Data und kommt aus Münster.
 
