@@ -1,0 +1,66 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+categories:
+  - data-visualization
+description:
+  en:
+    features:
+      - data-visualization
+    genericName: Smart City Dashboard
+    longDescription: |
+      This dashboard is an information service provided by the Smart City staff
+      unit of the City of Münster. The dashboard ("dashboard" or "cockpit")
+      visualizes real-time data collected in and for various urban development
+      topics by the city of Münster and its partners.
+
+
+      ​
+
+
+      The dashboard and the corresponding sensor network are to be further
+      expanded step by step. In the future, these live data can be used to
+      provide an overview of, for example, air quality, other environmental data
+      or mobility offerings. On the basis of real-time data and interactive time
+      series, it will be possible, for example, to analyze the effectiveness of
+      measures in urban areas.
+
+
+      ​
+
+
+      The interactive map display provides information on the respective
+      locations of the data collection. Information and contact persons for the
+      individual topics can be found by clicking on "About the data" at the
+      respective topic tile. All data is also available as Open Data for other
+      purposes via the Open Data portal of the City of Münster.
+    shortDescription: Smart City Dashboard
+developmentStatus: stable
+it:
+  conforme:
+    gdpr: false
+    lineeGuidaDesign: false
+    misureMinimeSicurezza: false
+    modelloInteroperabilita: false
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+legal:
+  license: AGPL-3.0-or-later
+localisation:
+  availableLanguages:
+    - de
+  localisationReady: false
+maintenance:
+  type: none
+name: Smart City Dashboard
+platforms:
+  - web
+releaseDate: '2021-07-02'
+softwareType: standalone/web
+url: 'https://github.com/reedu-reengineering-education/smart-city-dashboard'
