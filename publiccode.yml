@@ -1,0 +1,100 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: "0.2.1"
+
+name: Smart City Münster Dashboard, Frontend
+url: "https://github.com/reedu-reengineering-education/smart-city-dashboard"
+landingURL: "https://dashboard.smartcity.ms/"
+softwareVersion: "1.0.1"
+releaseDate: "2022-01-24"
+
+platforms:
+  - web
+  
+softwareType: standalone/web
+
+categories:
+  - data-visualization
+  - geographic-information-systems
+  
+developmentStatus: stable
+  
+description:
+  en:
+    genericName: Smart City Münster Dashboard
+    shortDescription: |
+      This dashboard is an information service provided by the Smart City staff
+      unit of the City of Münster. The dashboard (or "cockpit")
+      visualizes real-time data collected in and for various urban development
+      topics by the city of Münster and its partners.
+    longDescription: |
+      This dashboard is an information service provided by the Smart City staff
+      unit of the City of Münster. The dashboard (or "cockpit")
+      visualizes real-time data collected in and for various urban development
+      topics by the city of Münster and its partners.
+      The dashboard and the corresponding sensor network are to be further
+      expanded step by step. In the future, these live data can be used to
+      provide an overview of, for example, air quality, other environmental data
+      or mobility offerings. On the basis of real-time data and interactive time
+      series, it will be possible, for example, to analyze the effectiveness of
+      measures in urban areas.
+      The interactive map display provides information on the respective
+      locations of the data collection. Information and contact persons for the
+      individual topics can be found by clicking on "About the data" at the
+      respective topic tile. All data are also available as Open Data for other
+      purposes via the Open Data portal of the City of Münster.
+    features:
+      - visualization of daily bicycle counts
+      - visualisation of car parking occupancy rate
+      - visualisation of hourly pedestrian count
+      - visualisation of weather information 
+      - visualisation of water quality
+    
+  de:
+    genericName: Smart City Münster Dashboard
+    shortDescription: |
+      Dieses Dashboard ist ein Informationsangebot der Stabsstelle Smart City 
+      der Stadt Münster. Auf dem Dashboard („Armaturenbrett“ oder „Cockpit“) 
+      werden Echtzeitdaten visualisiert, die in und für unterschiedliche Themen
+      der Stadtentwicklung durch die Stadt Münster und ihre Partner erhoben werden.
+    longDescription: |
+      Dieses Dashboard ist ein Informationsangebot der Stabsstelle Smart City 
+      der Stadt Münster. Auf dem Dashboard („Armaturenbrett“ oder „Cockpit“) 
+      werden Echtzeitdaten visualisiert, die in und für unterschiedliche Themen 
+      der Stadtentwicklung durch die Stadt Münster und ihre Partner erhoben werden.
+	    Das Dashboard und das entsprechende Sensorennetzwerk sollen schrittweise weiter 
+      ausgebaut werden. Mit diesen Live-Daten kann künftig ein Überblick zum Beispiel 
+      über die Luftqualität, andere Umweltdaten oder Mobilitätsangebote gegeben werden. 
+      Auf Basis von Echtzeitdaten und interaktiven Zeitreihen lässt sich beispielsweise 
+      die Wirksamkeit von Maßnahmen im Stadtraum analysieren.
+	    Die interaktive Kartendarstellung gibt Informationen über die jeweiligen Orte der 
+      Datensammlung. Informationen und Ansprechpartner zu den einzelnen Themen finden 
+      Sie bei einem Klick auf "Über die Daten" bei der jeweiligen Themenkachel. Alle 
+      Daten sind als Offene Daten (Open Data) auch über das Open-Data-Portal der Stadt 
+      Münster für andere Zwecke verfügbar.	 
+    features:
+       - Darstellung des täglichen Radverkehrgeschehens
+       - Darstellung Parkhausauslastung
+       - Darstellung Passant:innen pro Stunde
+       - Darstellung Wetterinformationen
+       - Darstellung Wasserqualität Aasee
+
+legal:
+  license: AGPL-3.0-or-later
+  mainCopyrightOwner: Reedu GmbH & Co. KG 
+  
+localisation:
+  availableLanguages:
+    - de
+  localisationReady: no
+  
+maintenance:
+  type: none
+
+dependsOn:
+  open:
+    - name: Smart City Münster Dashboard, Backend
+de:
+  countryExtensionVersion: "0.1"
