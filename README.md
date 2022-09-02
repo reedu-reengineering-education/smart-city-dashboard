@@ -2,9 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a3b0b564-6d90-4bbf-9b5f-2f5fd46d5a97/deploy-status)](https://app.netlify.com/sites/smart-city-dashboard/deploys)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-This Project contains the source code of the frontend of the smart city dashboard. The display can connect to the backend and show different kinds of environmental and smart city related data. The dashboard contains three different pages: Dashboard view, map view and an info page.
+This project contains the source code of the frontend of the smart city dashboard. The display can connect to the [backend](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend) and show different kinds of environmental and smart city related data. The dashboard contains three different pages: dashboard view, map view and an info page.
 
 ### Running the project
 
@@ -13,13 +11,21 @@ This Project contains the source code of the frontend of the smart city dashboar
 3. `cp .env.example .env`
 4. Change the env variable `REACT_APP_API_URL` to the URL of the backend
 5. `yarn` or `npm install`
-6. `yarn start` or `npm start`
+6. `yarn build` or `npm build`
+7. Serve the `build` folder with your favorite webserver
 
 ### Development
 
-Run the same steps like above
+1. Clone the repo
+2. `cd smart-city-dashboard`
+3. `cp .env.example .env`
+4. Change the env variable `REACT_APP_API_URL` to the URL of the backend
+5. `yarn` or `npm install`
+6. `yarn start` or `npm start`
 
 #### Technology
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The frontend is written in typescript and uses react. State management is done with redux and redux-saga. The page style and layout is done with bulma, where components are styled with styled-components. Data visualization on the dashboard is either custom written (e.g. parking) or visualized with apexcharts (e.g. charts).
 
