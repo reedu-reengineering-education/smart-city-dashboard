@@ -27,11 +27,11 @@ This project contains the source code of the frontend of the smart city dashboar
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The frontend is written in typescript and uses react. State management is done with redux and redux-saga. The page style and layout is done with bulma, where components are styled with styled-components. Data visualization on the dashboard is either custom written (e.g. parking) or visualized with apexcharts (e.g. charts).
+The frontend is written in [typescript](https://www.typescriptlang.org/) and uses [react](https://reactjs.org/). State management is done with [redux](https://redux.js.org/) and [redux-saga](https://redux-saga.js.org/). The page style and layout is done with [bulma](https://bulma.io/), while components are styled with [styled-components](https://styled-components.com/). Data visualization on the dashboard is either custom written (e.g. parking) or visualized with [apexcharts](https://apexcharts.com/) (e.g. charts).
 
 #### Dev Technology
 
-We are using typescript for type safety. In order to have consistend formatting / styling of the code, we are using husky, lint-staged and prettier.
+We are using typescript for type safety. In order to have consistend formatting / styling of the code, we are using [husky](https://typicode.github.io/husky/#/), [lint-staged](https://github.com/okonet/lint-staged) and [prettier](https://prettier.io/).
 
 #### File Structure
 
