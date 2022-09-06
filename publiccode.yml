@@ -98,3 +98,6 @@ dependsOn:
     - name: Smart City Münster Dashboard, Backend
 de:
   countryExtensionVersion: "0.1"
+  
+usedBy:
+  - Stadt Münster
