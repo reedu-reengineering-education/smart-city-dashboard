@@ -63,6 +63,14 @@ If you want to add a new data source to the dashboard, there are multiple steps 
 1. The most labour will take place in `src/views` where you create a new container for your data. Here, you need to access the redux state and render different kinds of visualizations
 2. You can now import your container in `pages/Home` to display it on the main page. You might need to adjust the overall page layout here
 
+#### Add license header to file
+
+After creating a new file in the `src` directory, please run the `license-header` script to prepend a comment with license information to the file. You can simply run
+```sh
+yarn license-header # or npm run license-header
+```
+which automatically updates the file
+
 #### License
 
 Copyright (C) 2022 Reedu GmbH & Co. KG
