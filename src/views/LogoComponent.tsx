@@ -49,6 +49,10 @@ const Logo = styled.img`
   width: auto;
 `;
 
+/**
+ *
+ * @returns A simple view to show the logo of smart city muenster
+ */
 const LogoComponent = () => (
   <ComponentWrapper>
     <Container>

@@ -39,6 +39,7 @@ function App() {
   );
 }
 
+// router with animated page transitions
 const AnimatedRoutes = () => {
   let location = useLocation();
 

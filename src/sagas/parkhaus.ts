@@ -25,6 +25,7 @@ import {
   RENDER_PARKHAUS_TIMELINE_DATA,
 } from '../actions/parkhaus';
 
+// update interval in seconds
 const INTERVAL = 60;
 
 export function* fetchParkhausDataPeriodically() {

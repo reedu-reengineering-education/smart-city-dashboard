@@ -50,6 +50,9 @@ const initialState: MapState = {
   },
 };
 
+/**
+ * Reducer to update the map state
+ */
 export default function map(state = initialState, action: any) {
   switch (action.type) {
     case UPDATE_MAP_VIEWPORT:

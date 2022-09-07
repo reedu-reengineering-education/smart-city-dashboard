@@ -50,6 +50,7 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
+// fetch data on load of the application
 // we might want to run that somewhere else
 store.dispatch(loadParkhausData());
 let from = new Date();

@@ -134,6 +134,11 @@ const ProgressDone = styled.div<ProgressBarProps>`
   transition: 1s ease;
 `;
 
+/**
+ * Custom progress bar starting from 0
+ * @param props Properties of the progress bar
+ * @returns Component that renders single progress bar
+ */
 export const Progress = (props: ProgressProps) => (
   <ProgressComponentWrapper>
     <Title>{props.title}</Title>

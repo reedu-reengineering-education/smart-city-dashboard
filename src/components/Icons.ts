@@ -31,6 +31,8 @@ import { ReactComponent as Dust } from '../resources/pictos/dust.svg';
 import { ReactComponent as ChevronLeft } from '../resources/icons/chevron-left.svg';
 import { ReactComponent as ChevronRight } from '../resources/icons/chevron-right.svg';
 
+// exporting all svg icons as react components
+
 export {
   Temperature,
   Humidity,

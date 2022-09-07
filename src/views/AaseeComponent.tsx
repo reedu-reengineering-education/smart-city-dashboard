@@ -27,13 +27,19 @@ import Water from '../resources/animated/Water';
 
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 
+// function to filter out unrealistic data
 const FILTER_MIN = -5;
 const FILTER_MAX = 45;
 const minMaxFilter = (measurement: { time: Date; value: number }) => {
   return measurement.value >= FILTER_MIN && measurement.value <= FILTER_MAX;
 };
 
+/**
+ *
+ * @returns The main view for aasee data. Renders tiles for current data and timeline for timeseries data
+ */
 const AaseeComponent = () => {
+  // get data from redux store
   const aaseeData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.aasee
   );
@@ -48,6 +54,7 @@ const AaseeComponent = () => {
   const [ph, setPh] = useState(0);
   const [oxygen, setOxygen] = useState(0);
 
+  // write redux store data in react state
   useEffect(() => {
     if (aaseeData.data.data) {
       setTemperature(aaseeData.data?.data?.water_temperature[0]?.value);

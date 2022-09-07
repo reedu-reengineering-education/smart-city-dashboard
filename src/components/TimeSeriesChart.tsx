@@ -45,6 +45,11 @@ interface ITimeSeriesChartProps {
     | 'polarArea';
 }
 
+/**
+ * Timeline based on Apexcharts Timeline
+ * @param props Properties of the timeline
+ * @returns Timeline component
+ */
 const TimeSeriesChart = (props: ITimeSeriesChartProps) => {
   const baseOptions: ApexOptions = {
     chart: {

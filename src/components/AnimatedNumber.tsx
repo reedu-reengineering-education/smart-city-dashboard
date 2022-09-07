@@ -23,6 +23,11 @@ interface IAnimatedNumberProps {
   decimals?: number;
 }
 
+/**
+ *
+ * @param props value (and optionally how many decimals) the number should display
+ * @returns Component which animates number changes
+ */
 const AnimatedNumber = (props: IAnimatedNumberProps) => {
   const spring = useSpring({
     number: props.value,

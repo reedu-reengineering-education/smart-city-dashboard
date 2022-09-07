@@ -25,6 +25,11 @@ const Content = styled(ReactMarkdown)`
     margin-bottom: 1rem;
   }
 `;
+
+/**
+ *
+ * @returns Information, imprint and privacy policy
+ */
 function Info() {
   return (
     <React.Fragment>
@@ -43,7 +48,7 @@ Die interaktive Kartendarstellung gibt Informationen über die jeweiligen Orte d
 Informationen und Ansprechpartner zu den einzelnen Themen finden Sie bei einem Klick auf "Über die Daten" bei der jeweiligen Themenkachel.
 Alle Daten sind als Offene Daten (Open Data) auch über das [Open-Data-Portal der Stadt Münster](https://opendata.stadt-muenster.de/) für andere Zwecke verfügbar.
 
-Die Software des Dashboards wurde von der münsterschen Firma [re:edu](https://reedu.de/) entwickelt und 
+Die Software des Dashboards wurde von der münsterschen Firma [re:edu](https://reedu.de/) entwickelt und
 ist als Freie Software (Open Source) zur Adaption, Verbesserung und Verbreitung frei verfügbar: [Quelltext des Frontends](https://github.com/reedu-reengineering-education/smart-city-dashboard),
 [Quelltext des Backends](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend).
 

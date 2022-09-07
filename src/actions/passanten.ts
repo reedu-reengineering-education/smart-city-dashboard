@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle pedestrian data
+
 export const LOAD_PEDESTRIAN_DATA = 'LOAD_PEDESTRIAN_DATA';
 export const LOAD_PEDESTRIAN_TIMESERIES_DATA =
   'LOAD_PEDESTRIAN_TIMESERIES_DATA';

@@ -83,7 +83,12 @@ const StatusRed = styled.span`
   font-weight: bold;
 `;
 
+/**
+ *
+ * @returns The main view for parking data. Renders custom porgress component for current data and timeline for timeseries data
+ */
 const ParkhausComponent = () => {
+  // get data from redux store
   const parkhausData: IParkingState = useSelector(
     (state: RootStateOrAny) => state.parkhaus
   );
@@ -139,6 +144,7 @@ const ParkhausComponent = () => {
 
   useEffect(() => {
     if (parkhausData?.data?.features?.length > 0) {
+      // calculate total parking lots
       const parkingTotalReducer = (acc: any, curr: any) =>
         acc + Number(curr.properties?.parkingTotal);
 

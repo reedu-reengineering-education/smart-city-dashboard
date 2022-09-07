@@ -26,6 +26,7 @@ import {
   RENDER_HUMIDITY_24_DATA,
 } from '../actions/opensensemap';
 
+// update interval in seconds
 const INTERVAL = 60;
 
 export function* fetchOsemDataPeriodically() {

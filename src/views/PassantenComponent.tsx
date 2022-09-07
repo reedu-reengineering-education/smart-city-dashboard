@@ -42,7 +42,12 @@ const timeRange = (timestamp: string) => {
   return `${date.getHours()} - ${date.getHours() + 1} Uhr`;
 };
 
+/**
+ *
+ * @returns The main view for pedestrian data. Renders tiles for current data and timeline for timeseries data
+ */
 const PassantenComponent = () => {
+  // get data from redux store
   const pedestrianData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.passanten
   );

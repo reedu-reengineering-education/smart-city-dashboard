@@ -124,6 +124,9 @@ const HighlightedFooterButton = styled(FooterButton)<{ bold?: boolean }>`
   }
 `;
 
+/**
+ * Each dashboard view (in src/views) uses the BaseWidgetComponent to visualize data. Each view will therefore have more or less the same appearence and features
+ */
 const BaseWidgetComponent = (props: IBaseWidgetProps) => {
   const dispatch = useDispatch();
 

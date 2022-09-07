@@ -41,7 +41,7 @@ We are using typescript for type safety. In order to have consistend formatting 
   - `pages` Pages of the website
   - `reducers` Redux reducers (splitted for each data source)
   - `resources` Assets that will be compiled (like icons, images etc)
-  - `sagas` redux sagas (Sagas are implemented using Generator functions)
+  - `sagas` redux sagas (Sagas are implemented using generator functions)
   - `views` Containers that display data (splitted for each data source)
 
 #### Available Visualizations
@@ -66,9 +66,11 @@ If you want to add a new data source to the dashboard, there are multiple steps 
 #### Add license header to file
 
 After creating a new file in the `src` directory, please run the `license-header` script to prepend a comment with license information to the file. You can simply run
+
 ```sh
 yarn license-header # or npm run license-header
 ```
+
 which automatically updates the file
 
 #### License

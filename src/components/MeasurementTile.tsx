@@ -84,6 +84,11 @@ const Value = styled.p`
   font-weight: var(--scms-semi-bold);
 `;
 
+/**
+ * A tile component that displays a numeric value with optional footer, unit etc
+ * @param props information about the tile itself
+ * @returns Component with information passed in the props
+ */
 const MeasurementTile = (props: MeasurementTileProps) => {
   return (
     <MeasurementContainer status={props.status}>

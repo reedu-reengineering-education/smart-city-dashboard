@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle parking data
+
 export const LOAD_PARKHAUS_DATA = 'LOAD_PARKHAUS_DATA';
 export const LOAD_PARKHAUS_TIMESERIES_DATA = 'LOAD_PARKHAUS_TIMESERIES_DATA';
 export const LOAD_PARKHAUS_DATA_FAILED = 'LOAD_PARKHAUS_DATA_FAILED';

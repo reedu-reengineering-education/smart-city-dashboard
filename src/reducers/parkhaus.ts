@@ -47,6 +47,9 @@ const initialState: IParkingState = {
   },
 };
 
+/**
+ * Reducer to update the parking state
+ */
 export default function parkhaus(state = initialState, action: any) {
   switch (action.type) {
     case RENDER_PARKHAUS_DATA:
