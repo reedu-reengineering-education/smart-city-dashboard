@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a3b0b564-6d90-4bbf-9b5f-2f5fd46d5a97/deploy-status)](https://app.netlify.com/sites/smart-city-dashboard/deploys)
 
-This project contains the source code of the frontend of the smart city dashboard. The display can connect to the [backend](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend) and show different kinds of environmental and smart city related data. The dashboard contains three different pages: dashboard view, map view and an info page.
+This project contains the source code of the frontend of the smart city dashboard. The display can connect to the [backend](https://github.com/reedu-reengineering-education/smart-city-dashboard-backend) and shows different kinds of environmental and smart city related data. The dashboard contains three different pages: dashboard view, map view and an info page.
 
 ### Running the project
 
@@ -16,11 +16,8 @@ This project contains the source code of the frontend of the smart city dashboar
 
 ### Development
 
-1. Clone the repo
-2. `cd smart-city-dashboard`
-3. `cp .env.example .env`
-4. Change the env variable `REACT_APP_API_URL` to the URL of the backend
-5. `yarn` or `npm install`
+The same as "Running the Project" but instead of steps 6 and 7 do the following:
+
 6. `yarn start` or `npm start`
 
 #### Technology
@@ -57,14 +54,14 @@ We are using typescript for type safety. In order to have consistend formatting 
 
 If you want to add a new data source to the dashboard, there are multiple steps neccessary:
 
-1. Start in the `src/reducers` folder and create a new reducer similar to the existing ones. Here, you will also define the state for youry particular dataset
+1. Start in the `src/reducers` folder and create a new reducer similar to the existing ones. Here, you will also define the state for your particular dataset
 2. Next one, create corresponding actions for your data in the `src/actions` folder
 3. After defining how the data should be stored and managed, we can take care of fething the data. Create a new saga in the `src/sagas` folder similar to the existing files. The generator functions will fetch data regularly based on the interval you can define
 
 #### Show the data on the dashboard
 
-1. The most laborious will take place in `src/views` where you create a new container for your data. Here, you need to access the redux state and render different kinds of visualizations
-2. You can now import your container in `pages/Home` to display it on the main page. You might need to adjust the layout here
+1. The most labour will take place in `src/views` where you create a new container for your data. Here, you need to access the redux state and render different kinds of visualizations
+2. You can now import your container in `pages/Home` to display it on the main page. You might need to adjust the overall page layout here
 
 #### License
 
