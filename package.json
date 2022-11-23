@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/open-sans": "^4.5.13",
     "apexcharts": "ekhmoi/apexcharts.js",
     "beautiful-react-hooks": "^0.31.0",
     "bulma": "^0.9.1",
