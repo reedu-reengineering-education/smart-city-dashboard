@@ -26,6 +26,7 @@ import {
   LOAD_BICYCLE_TIMESERIES_DATA,
 } from '../actions/bicycle';
 
+// update interval in seconds
 const INTERVAL = 3600; // each hour
 
 // static

@@ -43,6 +43,10 @@ const Dot = styled.div<{ delay: string }>`
   animation: ${BounceAnimation} 0.5s linear infinite;
   animation-delay: ${(props) => props.delay};
 `;
+
+/**
+ * Loading animation component
+ */
 class LoadingDots extends Component {
   render() {
     return (

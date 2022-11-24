@@ -32,6 +32,10 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+/**
+ *
+ * @returns The map page which renders a map with different features that can be toggled in a sidebar
+ */
 function Map() {
   const viewport = useSelector((state: RootStateOrAny) => state.map.viewport);
   const bbox = useSelector((state: RootStateOrAny) => state.map.bbox);

@@ -38,6 +38,9 @@ const initialState: ServiceState = {
   },
 };
 
+/**
+ * Reducer to update the opensensemap state
+ */
 export default function opensensemap(state = initialState, action: any) {
   switch (action.type) {
     case RENDER_OSEM_DATA:

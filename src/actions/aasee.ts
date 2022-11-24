@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle aasee data
+
 export const LOAD_AASEE_DATA = 'LOAD_AASEE_DATA';
 export const LOAD_AASEE_TIMESERIES_DATA = 'LOAD_AASEE_TIMESERIES_DATA';
 export const LOAD_AASEE_DATA_FAILED = 'LOAD_AASEE_DATA_FAILED';

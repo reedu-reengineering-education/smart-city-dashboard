@@ -24,6 +24,7 @@ import parkhaus from './parkhaus';
 import passanten from './passanten';
 import bicycle from './bicycle';
 
+// export all reducers
 export default combineReducers({
   aasee,
   map,

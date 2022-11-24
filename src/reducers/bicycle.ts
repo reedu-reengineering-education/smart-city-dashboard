@@ -32,6 +32,9 @@ const initialState: ServiceState = {
   },
 };
 
+/**
+ * Reducer to update the bicycle state
+ */
 export default function bicycle(state = initialState, action: any) {
   switch (action.type) {
     case RENDER_BICYCLE_DATA:

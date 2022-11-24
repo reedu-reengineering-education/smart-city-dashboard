@@ -24,6 +24,7 @@ import {
   RENDER_PEDESTRIAN_DATA,
 } from '../actions/passanten';
 
+// update interval in seconds
 const INTERVAL = 60; // 1 minute
 
 export function* fetchPedestrianDataPeriodically() {

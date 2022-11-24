@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle bicycle data
+
 export const LOAD_BICYCLE_DATA = 'LOAD_BICYCLE_DATA';
 export const LOAD_BICYCLE_TIMESERIES_DATA = 'LOAD_BICYCLE_TIMESERIES_DATA';
 export const LOAD_BICYCLE_STATION_DATA = 'LOAD_BICYCLE_STATION_DATA';

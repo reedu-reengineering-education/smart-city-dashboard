@@ -50,9 +50,14 @@ const DateTimeSemiBold = styled.p`
   font-weight: var(--scms-semi-bold);
 `;
 
+/**
+ *
+ * @returns A simple view to show the current date and time
+ */
 const DateTimeComponent = () => {
   const [date, setDate] = useState(new Date());
 
+  // update the date and time each second
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000);
     return function cleanup() {

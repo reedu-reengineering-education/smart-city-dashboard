@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle opensensemap (https://opensensemap.org/) data
+
 export const LOAD_OSEM_DATA = 'LOAD_OSEM_DATA';
 export const LOAD_OSEM_TIMESERIES_DATA = 'LOAD_OSEM_TIMESERIES_DATA';
 export const LOAD_OSEM_DATA_FAILED = 'LOAD_OSEM_DATA_FAILED';

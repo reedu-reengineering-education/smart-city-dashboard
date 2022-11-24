@@ -27,7 +27,12 @@ import Cloud from '../resources/animated/Cloud';
 const MeasurementTile = lazy(() => import('../components/MeasurementTile'));
 const TimeSeriesChart = lazy(() => import('../components/TimeSeriesChart'));
 
+/**
+ *
+ * @returns The main view for opensensemap data. Renders tiles for current data and timeline for timeseries data
+ */
 const OpenSenseMapComponent = () => {
+  // get data from redux store
   const opensensemapData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.opensensemap
   );
@@ -43,6 +48,7 @@ const OpenSenseMapComponent = () => {
   const [humidity, setHumidity] = useState(0);
   const [pressure, setPressure] = useState(0);
 
+  // write redux store data in react state
   useEffect(() => {
     if (opensensemapData.data.live.sensors?.length > 0) {
       setTemperature(

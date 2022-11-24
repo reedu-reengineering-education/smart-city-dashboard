@@ -24,6 +24,7 @@ import {
   RENDER_AASEE_DATA,
 } from '../actions/aasee';
 
+// update interval in seconds
 const INTERVAL = 60;
 
 export function* fetchAaseeDataPeriodically() {

@@ -31,6 +31,9 @@ const initialState: ServiceState = {
   },
 };
 
+/**
+ * Reducer to update the pedestrian state
+ */
 export default function pedestrian(state = initialState, action: any) {
   switch (action.type) {
     case RENDER_PEDESTRIAN_DATA:

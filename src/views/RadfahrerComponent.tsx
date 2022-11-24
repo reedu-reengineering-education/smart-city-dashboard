@@ -44,6 +44,7 @@ const BicycleTilesWrapper = styled(TilesWrapper)`
   }
 `;
 
+// which stations should be displayed in tiles
 const bicycleStations = [
   100031297, // Promenade
   100020113, // Wolbecker
@@ -53,7 +54,12 @@ const bicycleStations = [
   100034978, // Gartenstr
 ];
 
+/**
+ *
+ * @returns The main view for bicycle data. Renders tiles for current data and timeline for timeseries data
+ */
 const RadfahrerComponent = () => {
+  // get data from redux store
   const bicycleData: ServiceState = useSelector(
     (state: RootStateOrAny) => state.bicycle
   );

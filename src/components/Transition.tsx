@@ -48,6 +48,9 @@ type TransitionProps = {
   location: any;
 };
 
+/**
+ * Page transition
+ */
 const Transition = ({ children, location }: TransitionProps) => {
   return (
     <TransitionGroup

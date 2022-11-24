@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// redux actions to handle map viewport and features
+
 export const UPDATE_MAP_VIEWPORT = 'UPDATE_MAP_VIEWPORT';
 export const UPDATE_FEATURES_VISIBLE = 'UPDATE_FEATURES_VISIBLE';
 export const SET_ACTIVE_POPUP = 'SET_ACTIVE_POPUP';

@@ -28,6 +28,9 @@ const initialState: ServiceState = {
   },
 };
 
+/**
+ * Reducer to update the aasee state
+ */
 export default function aasee(state = initialState, action: any) {
   switch (action.type) {
     case RENDER_AASEE_DATA:

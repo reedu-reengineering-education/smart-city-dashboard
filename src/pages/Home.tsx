@@ -34,6 +34,10 @@ const Container = styled.div`
   max-width: 1632px !important;
 `;
 
+/**
+ *
+ * @returns The landing page with all dashboard components
+ */
 function Home() {
   return (
     <React.Fragment>
