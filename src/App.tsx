@@ -30,6 +30,11 @@ import Info from './pages/Info';
 import Transition from './components/Transition';
 import './App.scss';
 
+import '@fontsource/open-sans/300.css';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/600.css';
+import '@fontsource/open-sans/700.css';
+
 function App() {
   return (
     <Router>
